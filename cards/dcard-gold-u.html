@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dカードGOLD U完全解説｜29歳以下限定・年会費無料のゴールドカード | マネーマップ</title>
+  <meta name="description" content="dカードGOLD Uの特徴・メリット・デメリットを徹底解説。29歳以下限定で年会費無料、通常のdカードGOLD相当の特典が使えるドコモユーザー必携カードをわかりやすく紹介。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy:       #0b1f3a;
+      --navy-mid:   #12305e;
+      --navy-light: #1a4a8a;
+      --gold:       #b8921e;
+      --gold-mid:   #c9a227;
+      --gold-light: #f0d67a;
+      --gold-pale:  #fdf6df;
+      --white:      #ffffff;
+      --gray-50:    #f8fafc;
+      --gray-100:   #f1f5f9;
+      --gray-200:   #e2e8f0;
+      --gray-400:   #94a3b8;
+      --gray-600:   #475569;
+      --green:      #059669;
+      --green-light:#d1fae5;
+      --red:        #dc2626;
+      --red-light:  #fee2e2;
+      --line:       #06c755;
+      --text:       #1e293b;
+      --shadow-sm:  0 1px 3px rgba(11,31,58,.06), 0 4px 12px rgba(11,31,58,.06);
+      --shadow:     0 4px 16px rgba(11,31,58,.10), 0 1px 4px rgba(11,31,58,.06);
+      --shadow-lg:  0 16px 48px rgba(11,31,58,.14);
+      --radius-sm:  6px;
+      --radius:     10px;
+      --radius-lg:  16px;
+      --transition: 0.22s cubic-bezier(.4,0,.2,1);
+      /* dcard accent */
+      --docomo-red: #cc0033;
+      --docomo-dark:#8a0022;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      color: var(--text); background: var(--white);
+      line-height: 1.75; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(860px, calc(100% - 48px)); margin: 0 auto; }
+
+    /* Header */
+    .site-header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: box-shadow var(--transition);
+    }
+    .site-header.scrolled { box-shadow: var(--shadow-sm); }
+    .header-inner { height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: "Inter","Noto Sans JP",sans-serif;
+      font-weight: 800; color: var(--navy); font-size: 1.05rem;
+    }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      color: var(--gold-light); display: grid; place-items: center;
+      font-size: .9rem; font-weight: 800; box-shadow: 0 2px 6px rgba(11,31,58,.25);
+    }
+    .back-link {
+      display: flex; align-items: center; gap: 6px;
+      font-size: .85rem; font-weight: 600; color: var(--gray-600);
+      padding: 7px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--gray-200);
+      transition: background var(--transition), color var(--transition);
+    }
+    .back-link:hover { background: var(--gray-100); color: var(--navy); }
+
+    /* Hero */
+    .card-hero {
+      position: relative;
+      background: linear-gradient(135deg, #1a0008 0%, #3d0015 40%, #800022 100%);
+      color: var(--white); padding: 60px 0 52px; overflow: hidden;
+    }
+    .card-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 90% 50%, rgba(180,0,50,.4) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 60% at 5% 90%, rgba(184,146,30,.12) 0%, transparent 55%);
+    }
+    .card-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    .card-hero-inner {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; gap: 32px;
+    }
+    .card-visual {
+      width: 256px; height: 162px; border-radius: 14px;
+      background: linear-gradient(140deg, #8a0022 0%, #5c0018 45%, #3d000f 100%);
+      border: 1px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; flex-shrink: 0;
+      box-shadow: 0 24px 56px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.3);
+    }
+    .card-visual::before {
+      content: ''; position: absolute;
+      top: -48px; right: -48px; width: 160px; height: 160px;
+      border-radius: 50%; background: rgba(255,180,180,.1);
+    }
+    .card-visual::after {
+      content: ''; position: absolute;
+      bottom: -24px; left: -16px; width: 100px; height: 100px;
+      border-radius: 50%; background: rgba(255,255,255,.04);
+    }
+    .card-visual-chip {
+      position: absolute; top: 22px; left: 20px;
+      width: 30px; height: 22px; border-radius: 4px;
+      background: linear-gradient(135deg, #d4af37, #c9a227); opacity: .75;
+    }
+    .card-visual-label {
+      position: relative; z-index: 1; text-align: center; color: rgba(255,255,255,.92);
+    }
+    .card-visual-label .card-name-en {
+      font-family: "Inter",sans-serif; font-size: .6rem;
+      letter-spacing: .18em; opacity: .55; margin-bottom: 6px;
+    }
+    .card-visual-label .card-name-ja { font-size: .92rem; font-weight: 800; line-height: 1.55; }
+    .card-visual-label .card-badge-label {
+      display: inline-block; margin-top: 10px; padding: 2px 10px;
+      border: 1px solid rgba(255,200,200,.4); border-radius: 3px;
+      font-family: "Inter",sans-serif; font-size: .58rem;
+      color: #ffb0b0; letter-spacing: .14em;
+    }
+    .card-info h1 {
+      font-size: clamp(1.5rem,5vw,2.4rem); line-height: 1.25;
+      letter-spacing: -.01em; margin-bottom: 12px;
+    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .tag {
+      padding: 4px 12px; border-radius: 999px; font-size: .8rem; font-weight: 700;
+      background: rgba(255,180,180,.12); border: 1px solid rgba(255,180,180,.3); color: #ffb0b0;
+    }
+    .card-summary { color: rgba(255,255,255,.78); font-size: .97rem; max-width: 560px; line-height: 1.9; }
+
+    /* Rating */
+    .rating-bar-section {
+      padding: 32px 0; background: var(--white); border-bottom: 1px solid var(--gray-200);
+    }
+    .rating-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px 32px; }
+    .rating-item label { display: flex; justify-content: space-between; font-size: .85rem; font-weight: 700; color: var(--navy); margin-bottom: 7px; }
+    .rating-item label span { color: var(--gold-mid); font-family: "Inter",sans-serif; }
+    .bar-track { height: 7px; background: var(--gray-200); border-radius: 999px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg,var(--navy),var(--navy-light)); }
+
+    /* Sections */
+    section { padding: 72px 0; }
+    .section-label {
+      font-family: "Inter",sans-serif; color: var(--gold-mid);
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .section-title { color: var(--navy); font-size: clamp(1.4rem,5vw,2rem); font-weight: 800; margin-bottom: 16px; line-height: 1.3; }
+
+    /* Spec */
+    .spec-section { background: var(--gray-50); }
+    .spec-table {
+      width: 100%; border-collapse: collapse; background: var(--white);
+      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow);
+    }
+    .spec-table th, .spec-table td { padding: 16px 20px; border-bottom: 1px solid var(--gray-200); text-align: left; font-size: .95rem; }
+    .spec-table th { width: 36%; background: var(--gray-50); color: var(--navy); font-weight: 700; }
+    .spec-table tr:last-child th, .spec-table tr:last-child td { border-bottom: none; }
+    .highlight-value { color: var(--navy); font-weight: 800; font-size: 1.08rem; }
+    .spec-note { font-size: .82rem; color: var(--gray-400); margin-top: 5px; }
+
+    /* Alert box */
+    .age-alert {
+      margin-bottom: 28px; padding: 16px 20px;
+      background: #fff3cd; border: 1px solid #fcd34d; border-radius: var(--radius);
+      font-size: .92rem; color: #92610a; font-weight: 600; display: flex; gap: 10px; align-items: flex-start;
+    }
+
+    /* Simulation */
+    .simulation-section { background: var(--white); }
+    .sim-intro { color: var(--gray-600); margin-bottom: 32px; font-size: .97rem; line-height: 1.85; }
+    .sim-cards { display: grid; gap: 16px; }
+    .sim-card {
+      border: 1px solid var(--gray-200); border-radius: var(--radius-lg);
+      overflow: hidden; box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .sim-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .sim-card-header {
+      background: linear-gradient(135deg,#5c0018,#8a0022);
+      color: var(--white); padding: 16px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-weight: 700; font-size: .92rem;
+    }
+    .sim-card-header .rate { font-family: "Inter",sans-serif; color: #ffb0b0; font-size: 1.05rem; font-weight: 800; }
+    .sim-card-body { padding: 20px; }
+    .sim-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: .9rem; }
+    .sim-row:last-child { border-bottom: none; }
+    .sim-row .label { color: var(--gray-600); }
+    .sim-row .value { font-weight: 700; color: var(--navy); }
+    .sim-total {
+      margin-top: 14px; padding: 14px 16px;
+      background: var(--gold-pale); border: 1px solid rgba(184,146,30,.2);
+      border-radius: var(--radius-sm);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .sim-total .label { font-weight: 700; color: var(--navy); font-size: .92rem; }
+    .sim-total .value { font-weight: 800; color: var(--gold); font-size: 1.15rem; }
+    .sim-annual { margin-top: 8px; text-align: right; font-size: .82rem; color: var(--gray-400); }
+
+    /* Story */
+    .story-section { background: var(--gray-50); }
+    .story-intro { color: var(--gray-600); margin-bottom: 36px; font-size: .97rem; line-height: 1.85; }
+    .story-grid { display: grid; gap: 20px; }
+    .story-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      border: 1px solid var(--gray-200); padding: 28px; box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .story-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .story-persona { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .persona-avatar {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: linear-gradient(135deg,#5c0018,#8a0022);
+      display: grid; place-items: center; font-size: 1.2rem; flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(139,0,34,.2);
+    }
+    .persona-info .name { font-weight: 700; color: var(--navy); font-size: .95rem; }
+    .persona-info .attr { font-size: .82rem; color: var(--gray-400); }
+    .story-body {
+      font-size: .92rem; color: var(--text); line-height: 1.9;
+      border-left: 3px solid var(--gold-mid); padding-left: 14px; margin-bottom: 16px;
+    }
+    .story-result {
+      background: var(--gray-50); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm); padding: 12px 16px;
+      font-size: .88rem; color: var(--navy); font-weight: 700;
+    }
+
+    /* Merits */
+    .merits-section { background: var(--white); }
+    .merits-intro { color: var(--gray-600); margin-bottom: 28px; font-size: .97rem; line-height: 1.85; }
+    .merit-group-title { font-size: .95rem; font-weight: 800; color: var(--navy); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .merit-list { display: grid; gap: 12px; margin-bottom: 32px; }
+    .merit-item {
+      display: flex; gap: 16px; padding: 20px; border-radius: var(--radius);
+      border: 1px solid; align-items: flex-start; transition: transform var(--transition);
+    }
+    .merit-item:hover { transform: translateX(3px); }
+    .merit-item.pro { background: #f0fdf8; border-color: #a7f3d0; }
+    .merit-item.con { background: #fff8f8; border-color: #fca5a5; }
+    .merit-icon { font-size: 1.15rem; flex-shrink: 0; margin-top: 2px; }
+    .merit-item h4 { font-size: .97rem; font-weight: 700; margin-bottom: 6px; color: var(--navy); }
+    .merit-item p { font-size: .9rem; color: var(--gray-600); line-height: 1.8; }
+
+    /* Compare */
+    .compare-section { background: var(--gray-50); }
+    .compare-intro { color: var(--gray-600); margin-bottom: 28px; font-size: .97rem; line-height: 1.85; }
+    .compare-table {
+      width: 100%; border-collapse: collapse; background: var(--white);
+      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); font-size: .9rem;
+    }
+    .compare-table th { padding: 15px 16px; background: var(--navy); color: var(--white); font-weight: 700; text-align: center; }
+    .compare-table th.highlight-col { background: var(--gold-mid); color: var(--navy); }
+    .compare-table td { padding: 13px 16px; border-bottom: 1px solid var(--gray-100); text-align: center; }
+    .compare-table td.row-label { text-align: left; font-weight: 600; color: var(--navy); background: var(--gray-50); }
+    .compare-table td.highlight-col { font-weight: 700; color: var(--navy); background: #fffbeb; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .check { color: var(--green); font-weight: 800; }
+    .cross { color: var(--red); }
+
+    /* FAQ */
+    .faq-section { background: var(--white); }
+    .faq-intro { color: var(--gray-600); margin-bottom: 28px; font-size: .97rem; line-height: 1.85; }
+    .faq-list { display: grid; gap: 12px; }
+    .faq-item { border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; transition: box-shadow var(--transition); }
+    .faq-item:hover { box-shadow: var(--shadow-sm); }
+    .faq-q {
+      padding: 18px 20px; background: var(--gray-50);
+      font-weight: 700; color: var(--navy); font-size: .95rem; display: flex; gap: 12px; align-items: flex-start;
+    }
+    .faq-q::before {
+      content: 'Q'; width: 26px; height: 26px; border-radius: 50%;
+      background: linear-gradient(135deg,var(--navy),var(--navy-mid));
+      color: var(--white); display: grid; place-items: center;
+      font-size: .8rem; flex-shrink: 0; margin-top: 1px; box-shadow: 0 2px 6px rgba(11,31,58,.2);
+    }
+    .faq-a {
+      padding: 18px 20px; font-size: .92rem; color: var(--text);
+      line-height: 1.9; display: flex; gap: 12px; align-items: flex-start;
+    }
+    .faq-a::before {
+      content: 'A'; width: 26px; height: 26px; border-radius: 50%;
+      background: var(--gold-mid); color: var(--navy); display: grid; place-items: center;
+      font-size: .8rem; font-weight: 800; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* Recommend */
+    .recommend-section { background: var(--gray-50); }
+    .recommend-grid { display: grid; gap: 12px; }
+    .recommend-item {
+      display: flex; align-items: center; gap: 14px; padding: 16px 20px;
+      background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--gray-200); font-size: .95rem;
+      color: var(--navy); font-weight: 600; box-shadow: var(--shadow-sm);
+    }
+    .not-recommend-item {
+      display: flex; align-items: center; gap: 14px; padding: 16px 20px;
+      background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--gray-200); font-size: .95rem; color: var(--gray-600);
+    }
+
+    /* Steps */
+    .steps-section { background: var(--white); }
+    .steps-intro { color: var(--gray-600); margin-bottom: 32px; font-size: .97rem; line-height: 1.85; }
+    .step-list { display: grid; gap: 0; position: relative; }
+    .step-item { display: flex; gap: 22px; padding-bottom: 32px; position: relative; }
+    .step-item:last-child { padding-bottom: 0; }
+    .step-item:not(:last-child)::before {
+      content: ''; position: absolute; left: 22px; top: 44px; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--gray-200), transparent);
+    }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg,var(--navy),var(--navy-mid));
+      color: var(--white); display: grid; place-items: center;
+      font-weight: 800; font-size: .9rem; flex-shrink: 0; position: relative; z-index: 1;
+      box-shadow: 0 4px 12px rgba(11,31,58,.25);
+    }
+    .step-content h4 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; margin-top: 10px; }
+    .step-content p { font-size: .9rem; color: var(--gray-600); line-height: 1.8; }
+    .step-time {
+      display: inline-block; margin-top: 8px; padding: 3px 12px;
+      background: var(--gold-pale); border: 1px solid rgba(184,146,30,.2);
+      border-radius: 4px; font-size: .78rem; color: var(--gold); font-weight: 700;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 72px 0;
+      background: linear-gradient(135deg,#1a0008 0%,#5c0018 60%,#8a0022 100%);
+      color: var(--white); text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px), linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+      background-size: 48px 48px;
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-eyebrow {
+      display: inline-block; padding: 4px 14px; border-radius: 999px;
+      border: 1px solid rgba(255,176,176,.3); color: #ffb0b0;
+      font-size: .78rem; font-weight: 700; letter-spacing: .06em; margin-bottom: 16px;
+    }
+    .cta-section h2 { font-size: clamp(1.5rem,5vw,2.4rem); margin-bottom: 14px; line-height: 1.3; letter-spacing: -.01em; }
+    .cta-desc { color: rgba(255,255,255,.72); margin-bottom: 32px; font-size: .97rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-points { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: center; margin-bottom: 36px; }
+    .cta-point { display: flex; align-items: center; gap: 8px; font-size: .92rem; color: rgba(255,255,255,.85); }
+    .cta-point::before { content: '✓'; color: #ffb0b0; font-weight: 800; }
+    .cta-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .cta-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 58px; padding: 16px 40px; border-radius: var(--radius);
+      background: var(--gold-mid); color: var(--navy); font-weight: 800; font-size: 1.05rem;
+      transition: opacity var(--transition), transform var(--transition);
+      width: 100%; max-width: 380px;
+    }
+    .cta-line {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; padding: 14px 36px; border-radius: var(--radius);
+      background: var(--line); color: var(--white); font-weight: 800; font-size: .97rem;
+      transition: opacity var(--transition), transform var(--transition);
+      width: 100%; max-width: 380px;
+    }
+    .cta-primary:hover, .cta-line:hover { opacity: .88; transform: translateY(-2px); }
+    .cta-note { margin-top: 20px; font-size: .8rem; color: rgba(255,255,255,.4); }
+
+    /* Notice */
+    .notice-section { padding: 32px 0; background: var(--gray-50); }
+    .notice {
+      padding: 20px 24px; border-left: 4px solid var(--gold-mid);
+      background: var(--white); color: var(--gray-600);
+      font-size: .83rem; line-height: 1.9;
+      border-radius: 0 var(--radius) var(--radius) 0; box-shadow: var(--shadow-sm);
+    }
+
+    /* Footer */
+    .site-footer { background: var(--navy); color: var(--white); padding: 44px 0 28px; }
+    .footer-inner { display: flex; flex-direction: column; gap: 20px; margin-bottom: 24px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 12px 20px; font-size: .88rem; color: rgba(255,255,255,.65); }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom { padding-top: 18px; border-top: 1px solid rgba(255,255,255,.1); font-size: .8rem; color: rgba(255,255,255,.4); }
+    .breadcrumb { font-size: .82rem; color: rgba(255,255,255,.6); margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
+
+    @media (min-width: 640px) {
+      .card-hero-inner { flex-direction: row; align-items: center; }
+      .rating-grid { grid-template-columns: repeat(4,1fr); }
+      .sim-cards { grid-template-columns: repeat(3,1fr); }
+      .story-grid { grid-template-columns: repeat(2,1fr); }
+      .merit-list { grid-template-columns: 1fr 1fr; }
+      .recommend-grid { grid-template-columns: 1fr 1fr; }
+      .cta-buttons { flex-direction: row; justify-content: center; }
+    }
+    @media (max-width: 639px) {
+      .container { width: calc(100% - 36px); }
+      section { padding: 56px 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-mark">M</span>
+        <span>マネーマップ</span>
+      </a>
+      <a href="../index.html" class="back-link">← 一覧に戻る</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="card-hero">
+      <div class="card-hero-grid"></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html">トップ</a><span>›</span><span>dカードGOLD U</span>
+        </div>
+        <div class="card-hero-inner">
+          <div class="card-visual">
+            <div class="card-visual-chip"></div>
+            <div class="card-visual-label">
+              <div class="card-name-en">NTT DOCOMO</div>
+              <div class="card-name-ja">dカードGOLD U</div>
+              <div class="card-badge-label">UNDER 29 GOLD</div>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="card-tags">
+              <span class="tag">29歳以下限定申し込み</span>
+              <span class="tag">年会費無料（29歳以下）</span>
+              <span class="tag">ドコモ利用料10%還元</span>
+              <span class="tag">GOLDクラス保険付帯</span>
+            </div>
+            <h1>dカードGOLD U<br>完全解説</h1>
+            <p class="card-summary">
+              通常のdカードGOLDは年会費11,000円（税込）。しかしdカードGOLD Uなら29歳以下は年会費無料でほぼ同等のGOLD特典を享受できる。ドコモユーザーなら携帯料金の10%がポイント還元——毎月の固定費を一気に取り戻せる、ドコモユーザー必携の一枚だ。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 評価バー -->
+    <section class="rating-bar-section">
+      <div class="container">
+        <div class="rating-grid">
+          <div class="rating-item">
+            <label>コスパ <span>★ 5.0</span></label>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="rating-item">
+            <label>ドコモユーザー向け <span>★ 5.0</span></label>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="rating-item">
+            <label>付帯保険 <span>★ 5.0</span></label>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="rating-item">
+            <label>非ドコモユーザー向け <span>★ 2.5</span></label>
+            <div class="bar-track"><div class="bar-fill" style="width:50%"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- スペック -->
+    <section class="spec-section">
+      <div class="container">
+        <div class="section-label">Spec</div>
+        <div class="section-title">基本スペック一覧</div>
+
+        <div class="age-alert">
+          ⚠️ <span>dカードGOLD Uは<strong>29歳以下</strong>が申し込み対象です。30歳になると通常のdカードGOLD（年会費11,000円）への移行が発生する場合があります。詳細は公式サイトをご確認ください。</span>
+        </div>
+
+        <table class="spec-table">
+          <tbody>
+            <tr>
+              <th>年会費</th>
+              <td>
+                <span class="highlight-value">無料（29歳以下の間）</span>
+                <div class="spec-note">30歳になった後の扱いは公式サイトの最新情報をご確認ください。</div>
+              </td>
+            </tr>
+            <tr>
+              <th>申し込み対象</th>
+              <td>
+                <span class="highlight-value">29歳以下限定</span>
+                <div class="spec-note">満29歳以下の方が新規申し込み可能。</div>
+              </td>
+            </tr>
+            <tr>
+              <th>基本ポイント還元率</th>
+              <td>
+                <span class="highlight-value">1.0%</span>（dポイント）
+                <div class="spec-note">100円（税込）ごとに1pt。1pt＝1円相当で使えます。</div>
+              </td>
+            </tr>
+            <tr>
+              <th>ドコモ携帯料金の還元率</th>
+              <td>
+                <span class="highlight-value">10%</span>（dポイント）
+                <div class="spec-note">ドコモの携帯電話・ドコモ光の利用料金（税抜）の10%がポイント還元。毎月の固定費をそのままポイントに変換できます。</div>
+              </td>
+            </tr>
+            <tr>
+              <th>d払い還元率</th>
+              <td>
+                <span class="highlight-value">最大4.5%</span>
+                <div class="spec-note">d払い（iD）とdカードGOLD Uの組み合わせで還元率が積み上がります。</div>
+              </td>
+            </tr>
+            <tr>
+              <th>国際ブランド</th>
+              <td>Visa / Mastercard（選択制）</td>
+            </tr>
+            <tr>
+              <th>タッチ決済 / iD</th>
+              <td>対応（Apple Pay・Google Pay・iD）</td>
+            </tr>
+            <tr>
+              <th>海外旅行傷害保険</th>
+              <td>
+                <span class="highlight-value">最高1億円</span>（自動付帯+利用付帯）
+                <div class="spec-note">GOLDクラスの手厚い保険。年会費無料でこの水準は破格です。</div>
+              </td>
+            </tr>
+            <tr>
+              <th>国内旅行傷害保険</th>
+              <td>最高5,000万円（利用付帯）</td>
+            </tr>
+            <tr>
+              <th>ショッピング保険</th>
+              <td>年間最高300万円まで（海外・国内）</td>
+            </tr>
+            <tr>
+              <th>空港ラウンジ</th>
+              <td>国内主要空港・ダニエル K. イノウエ国際空港（ハワイ）のラウンジが無料</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- シミュレーション -->
+    <section class="simulation-section">
+      <div class="container">
+        <div class="section-label">Simulation</div>
+        <div class="section-title">ドコモユーザーなら<br>毎月いくら得するのか？</div>
+        <p class="sim-intro">このカードの最大の強みはドコモ携帯料金10%還元です。毎月の固定費がそのままポイントに変わります。</p>
+
+        <div class="sim-cards">
+          <div class="sim-card">
+            <div class="sim-card-header">
+              <span>📱 ドコモ契約のみ</span>
+              <span class="rate">還元率 10%</span>
+            </div>
+            <div class="sim-card-body">
+              <div class="sim-row"><span class="label">月のドコモ携帯料金</span><span class="value">6,000円</span></div>
+              <div class="sim-row"><span class="label">月間還元ポイント</span><span class="value">600pt</span></div>
+              <div class="sim-total">
+                <span class="label">年間還元額</span>
+                <span class="value">約7,200円</span>
+              </div>
+              <div class="sim-annual">通常のdカードGOLD年会費（11,000円）を超える還元</div>
+            </div>
+          </div>
+
+          <div class="sim-card">
+            <div class="sim-card-header">
+              <span>📱🌐 ドコモ＋ドコモ光</span>
+              <span class="rate">還元率 10%</span>
+            </div>
+            <div class="sim-card-body">
+              <div class="sim-row"><span class="label">携帯＋光セット料金</span><span class="value">10,000円</span></div>
+              <div class="sim-row"><span class="label">月間還元ポイント</span><span class="value">1,000pt</span></div>
+              <div class="sim-total">
+                <span class="label">年間還元額</span>
+                <span class="value">約12,000円</span>
+              </div>
+              <div class="sim-annual">毎月1,000円以上が実質キャッシュバック</div>
+            </div>
+          </div>
+
+          <div class="sim-card">
+            <div class="sim-card-header">
+              <span>💳 日常まとめ払い</span>
+              <span class="rate">還元率 1〜10%</span>
+            </div>
+            <div class="sim-card-body">
+              <div class="sim-row"><span class="label">ドコモ料金+日常利用</span><span class="value">計40,000円</span></div>
+              <div class="sim-row"><span class="label">平均還元想定</span><span class="value">約900pt</span></div>
+              <div class="sim-total">
+                <span class="label">年間還元額</span>
+                <span class="value">約10,800円</span>
+              </div>
+              <div class="sim-annual">固定費を全部このカードにまとめると最大化</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ストーリー -->
+    <section class="story-section">
+      <div class="container">
+        <div class="section-label">Story</div>
+        <div class="section-title">こんな使い方をしている人がいます</div>
+        <p class="story-intro">dカードGOLD Uが特に威力を発揮する、典型的な利用シナリオを紹介します。</p>
+
+        <div class="story-grid">
+          <div class="story-card">
+            <div class="story-persona">
+              <div class="persona-avatar">💼</div>
+              <div class="persona-info">
+                <div class="name">新社会人1年目・Eさん（22歳）</div>
+                <div class="attr">ドコモユーザー・月額6,800円プラン</div>
+              </div>
+            </div>
+            <div class="story-body">
+              上京して新生活を始めたEさん。ドコモの月額6,800円プランを継続しながら、dカードGOLD Uを作った。毎月680ptが自動で貯まり、年間約8,160ポイントをdポイントとして日常のコンビニやネットショッピングで消費している。「携帯料金が実質0円に近づいている感覚」と語る。
+            </div>
+            <div class="story-result">💡 ドコモ料金10%還元で年間約8,000円以上お得</div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-persona">
+              <div class="persona-avatar">🎓</div>
+              <div class="persona-info">
+                <div class="name">大学4年生・Fさん（22歳）</div>
+                <div class="attr">就活中・旅行好き</div>
+              </div>
+            </div>
+            <div class="story-body">
+              就活の移動で頻繁に飛行機を使うFさん。dカードGOLD Uの空港ラウンジ無料特典を使って出発前にラウンジでゆっくり準備できるようになった。「年会費無料でラウンジが使えるカードなんてほかにない。しかも保険が最高1億円とか正直信じられない」と驚く。海外旅行保険証明書の代わりにもなっている。
+            </div>
+            <div class="story-result">💡 空港ラウンジ＋最高1億円保険付きで年会費無料</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- メリット・デメリット -->
+    <section class="merits-section">
+      <div class="container">
+        <div class="section-label">Merit / Demerit</div>
+        <div class="section-title">正直に伝えるメリット・デメリット</div>
+        <p class="merits-intro">良い点だけでなく注意点もきちんとお伝えします。</p>
+
+        <div class="merit-group-title">✅ メリット</div>
+        <div class="merit-list">
+          <div class="merit-item pro">
+            <div class="merit-icon">📱</div>
+            <div>
+              <h4>ドコモ携帯料金の10%がポイント還元</h4>
+              <p>月6,000円のプランなら毎月600pt（年間7,200pt）が自動で貯まります。通常のdカードGOLDの年会費11,000円を上回る還元が、このカードなら無料で得られます。</p>
+            </div>
+          </div>
+          <div class="merit-item pro">
+            <div class="merit-icon">🛡️</div>
+            <div>
+              <h4>最高1億円の海外旅行傷害保険が付帯</h4>
+              <p>GOLDカード相当の保険が年会費無料で付帯。留学・バックパック旅行・就活の海外インターンにも対応できる安心感は、他の無料カードでは到底得られません。</p>
+            </div>
+          </div>
+          <div class="merit-item pro">
+            <div class="merit-icon">✈️</div>
+            <div>
+              <h4>国内主要空港ラウンジが無料</h4>
+              <p>羽田・成田・伊丹・福岡など国内主要空港のラウンジが無料で利用できます。年会費無料でこの特典は業界でもほぼ唯一の存在です。</p>
+            </div>
+          </div>
+          <div class="merit-item pro">
+            <div class="merit-icon">🛒</div>
+            <div>
+              <h4>年間最高300万円のショッピング保険</h4>
+              <p>カードで購入した商品の破損・盗難を補償。高額な家電やスマホをカード購入した際も安心です。</p>
+            </div>
+          </div>
+          <div class="merit-item pro">
+            <div class="merit-icon">💳</div>
+            <div>
+              <h4>d払い（iD）と組み合わせで還元率アップ</h4>
+              <p>d払いとdカードGOLD Uを組み合わせることで、対応店舗では合算で最大4.5%近い還元率を実現できます。</p>
+            </div>
+          </div>
+          <div class="merit-item pro">
+            <div class="merit-icon">🏠</div>
+            <div>
+              <h4>国内旅行傷害保険も最高5,000万円</h4>
+              <p>国内旅行・出張中の事故にも備えられます。社会人1年目で出張が多い人にも安心感をもたらします。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="merit-group-title" style="margin-top:8px;">⚠️ デメリット・注意点</div>
+        <div class="merit-list">
+          <div class="merit-item con">
+            <div class="merit-icon">📡</div>
+            <div>
+              <h4>ドコモユーザー以外は旨みが薄い</h4>
+              <p>最大の強みである10%還元はドコモ契約者専用の特典です。au・SoftBank・楽天モバイルユーザーにとっては、基本還元率1%の普通のカードになってしまいます。</p>
+            </div>
+          </div>
+          <div class="merit-item con">
+            <div class="merit-icon">📅</div>
+            <div>
+              <h4>30歳以降の年会費を事前確認が必要</h4>
+              <p>30歳になった際に通常のdカードGOLD（年会費11,000円）へ移行するかどうかは、公式サイトで最新の条件を必ず確認してください。移行前に判断できるよう余裕を持って確認しましょう。</p>
+            </div>
+          </div>
+          <div class="merit-item con">
+            <div class="merit-icon">💰</div>
+            <div>
+              <h4>基本還元率は1%でJCBカードWと並ぶ水準</h4>
+              <p>ドコモ以外の日常利用の還元率は1%。コンビニ7%の三井住友カードNLや、Amazon3%のJCBカードWと比べるとネットショッピングや外食での優位性は低めです。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 比較 -->
+    <section class="compare-section">
+      <div class="container">
+        <div class="section-label">Compare</div>
+        <div class="section-title">他の人気カードと比較してみると？</div>
+        <p class="compare-intro">29歳以下の若者に人気の定番カードと客観的に比べました。</p>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th style="text-align:left;background:var(--gray-50);color:var(--navy);">比較項目</th>
+              <th class="highlight-col">dカードGOLD U</th>
+              <th>三井住友（NL）</th>
+              <th>JCBカードW</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">年会費</td>
+              <td class="highlight-col">無料（29歳以下）</td>
+              <td>永年無料</td>
+              <td>永年無料</td>
+            </tr>
+            <tr>
+              <td class="row-label">基本還元率</td>
+              <td class="highlight-col">1.0%</td>
+              <td>0.5%</td>
+              <td>1.0%</td>
+            </tr>
+            <tr>
+              <td class="row-label">ドコモ料金還元</td>
+              <td class="highlight-col"><strong>10%</strong></td>
+              <td><span class="cross">なし</span></td>
+              <td><span class="cross">なし</span></td>
+            </tr>
+            <tr>
+              <td class="row-label">海外旅行保険</td>
+              <td class="highlight-col"><strong>最高1億円</strong></td>
+              <td>最高2,000万円</td>
+              <td>最高2,000万円</td>
+            </tr>
+            <tr>
+              <td class="row-label">空港ラウンジ</td>
+              <td class="highlight-col"><span class="check">◎ 無料</span></td>
+              <td><span class="cross">なし</span></td>
+              <td><span class="cross">なし</span></td>
+            </tr>
+            <tr>
+              <td class="row-label">ショッピング保険</td>
+              <td class="highlight-col"><span class="check">年間300万円</span></td>
+              <td><span class="cross">なし</span></td>
+              <td>年間100万円（海外のみ）</td>
+            </tr>
+            <tr>
+              <td class="row-label">申し込み年齢</td>
+              <td class="highlight-col"><strong>29歳以下限定</strong></td>
+              <td>18歳〜</td>
+              <td>18〜39歳</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-label">FAQ</div>
+        <div class="section-title">よくある疑問に答えます</div>
+        <p class="faq-intro">dカードGOLD Uについての疑問をまとめました。</p>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q">ドコモユーザーでないと作れませんか？</div>
+            <div class="faq-a">ドコモ契約がなくても申し込めます。ただし、最大の強みである携帯料金10%還元はドコモ契約者のみの特典です。非ドコモユーザーの場合は、JCBカードWや三井住友カードNLの方がライフスタイルに合う場合があります。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">30歳になったらどうなりますか？</div>
+            <div class="faq-a">30歳以降の取り扱いは変更される可能性があるため、必ず公式サイトの最新情報をご確認ください。通常のdカードGOLD（年会費11,000円）へ移行するケースが想定されますが、詳細条件は申し込み時に確認することをお勧めします。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">空港ラウンジはどこで使えますか？</div>
+            <div class="faq-a">羽田・成田・関西・伊丹・中部・福岡・那覇など国内主要空港のカードラウンジが無料で使えます。海外ではダニエル K. イノウエ国際空港（ハワイ・ホノルル）のラウンジも利用可能です。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">dポイントはどうやって使いますか？</div>
+            <div class="faq-a">ローソン・マクドナルド・マツモトキヨシ・メルカリ・d払い加盟店など多数の場所で1pt＝1円として使えます。dショッピングやAmazonでのd払いでも使用可能です。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">学生でも申し込めますか？</div>
+            <div class="faq-a">18歳以上であれば学生でも申し込み可能です。ただし高校生は申し込めません。アルバイトなど収入があることが望ましいですが、審査基準は公開されていないため結果は個人差があります。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- おすすめ -->
+    <section class="recommend-section">
+      <div class="container">
+        <div class="section-label">For Who</div>
+        <div class="section-title">こんな人に特におすすめ</div>
+        <div class="recommend-grid" style="margin-bottom:28px;">
+          <div class="recommend-item">📱 ドコモの携帯・光を使っている人</div>
+          <div class="recommend-item">✈️ 旅行・留学・出張が多い人</div>
+          <div class="recommend-item">🛡️ 手厚い保険を無料で持ちたい人</div>
+          <div class="recommend-item">🏢 空港ラウンジを活用したい人</div>
+          <div class="recommend-item">💳 GOLDクラスの特典を費用ゼロで使いたい人</div>
+          <div class="recommend-item">📅 29歳以下の今のうちに作りたい人</div>
+        </div>
+        <div class="section-label">Not For</div>
+        <div style="font-size:.97rem;color:var(--navy);font-weight:700;margin-bottom:14px;">こんな人は他のカードも検討を</div>
+        <div class="recommend-grid">
+          <div class="not-recommend-item">📡 au・SoftBank・楽天モバイルユーザー（ドコモ特典が使えない）</div>
+          <div class="not-recommend-item">🛒 AmazonやコンビニでのポイントをメインにしたいAmazon・外食メインの人</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ステップ -->
+    <section class="steps-section">
+      <div class="container">
+        <div class="section-label">How to Apply</div>
+        <div class="section-title">申し込みの流れ</div>
+        <p class="steps-intro">ドコモのサービスサイトまたはdカード公式サイトから申し込めます。スマホで完結します。</p>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>dカード公式サイトからdカードGOLD Uを選ぶ</h4>
+              <p>「dカードGOLD U」を選択して申し込みフォームを開きます。29歳以下であることを確認のうえ進みます。</p>
+              <span class="step-time">約5分</span>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>必要情報の入力</h4>
+              <p>氏名・住所・生年月日・職業・年収・ドコモ契約情報を入力します。dアカウントでのログインがあるとスムーズです。</p>
+              <span class="step-time">約5〜10分</span>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>本人確認書類の提出</h4>
+              <p>運転免許証またはマイナンバーカードの写真をアップロードします。郵送不要で完結します。</p>
+              <span class="step-time">約2〜3分</span>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>審査通過後、カード到着</h4>
+              <p>審査通過後、カードが郵送されます。到着後すぐにApple Pay・Google Payに登録して使い始めましょう。ドコモのマイページでカードを紐付けると10%還元が自動で適用されます。</p>
+              <span class="step-time">カード到着まで約1〜2週間</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container cta-inner">
+        <div class="cta-eyebrow">29歳以下限定 GOLD特典</div>
+        <h2>ドコモユーザーなら、<br>これ以上のカードはない。</h2>
+        <p class="cta-desc">年会費無料・携帯料金10%還元・最高1億円保険・空港ラウンジ無料。この4つが無料で手に入るのは29歳以下の今だけです。</p>
+        <div class="cta-points">
+          <div class="cta-point">年会費無料（29歳以下）</div>
+          <div class="cta-point">ドコモ料金10%還元</div>
+          <div class="cta-point">海外旅行保険 最高1億円</div>
+          <div class="cta-point">空港ラウンジ無料</div>
+        </div>
+        <div class="cta-buttons">
+          <a href="#" class="cta-primary">公式サイトで申し込む（無料）</a>
+          <a href="#" class="cta-line">LINEで他のカードも診断する</a>
+        </div>
+        <p class="cta-note">※ 当サイトのリンクはアフィリエイトリンクを含みます。掲載情報は執筆時点のものです。</p>
+      </div>
+    </section>
+
+    <section class="notice-section">
+      <div class="container">
+        <div class="notice">
+          【免責事項】掲載情報は執筆時点のものです。年会費・ポイント還元率・付帯保険・対象サービス・30歳以降の取り扱い等は予告なく変更される場合があります。申し込み前には必ずNTTドコモの公式サイトにて最新の情報をご確認ください。当サイトはアフィリエイトプログラムに参加しており、リンク経由の申し込みにより報酬を受ける場合があります。クレジットカードは計画的にご利用ください。ドコモ回線の料金10%還元はドコモ携帯電話・ドコモ光の月額料金（税抜）が対象です。詳細はdカード公式サイトをご確認ください。
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../index.html" class="logo">
+          <span class="logo-mark">M</span>
+          <span>マネーマップ</span>
+        </a>
+        <div class="footer-links">
+          <a href="#">運営者情報</a>
+          <a href="#">プライバシーポリシー</a>
+          <a href="#">広告掲載について</a>
+          <a href="#">お問い合わせ</a>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 MoneyMap. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+  </script>
+</body>
+</html>

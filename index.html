@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>マネーマップ｜18〜25歳のための金融リテラシーガイド</title>
+  <meta name="description" content="マネーマップは学生・新社会人が自分に合うクレジットカードや金融商品を安心して選べる情報サイトです。LINE診断であなたにぴったりの1枚を提案します。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --navy:       #0b1f3a;
+      --navy-mid:   #12305e;
+      --navy-light: #1a4a8a;
+      --gold:       #b8921e;
+      --gold-mid:   #c9a227;
+      --gold-light: #f0d67a;
+      --gold-pale:  #fdf6df;
+      --white:      #ffffff;
+      --gray-50:    #f8fafc;
+      --gray-100:   #f1f5f9;
+      --gray-200:   #e2e8f0;
+      --gray-400:   #94a3b8;
+      --gray-600:   #475569;
+      --gray-800:   #1e293b;
+      --green:      #06c755;
+      --text:       #1e293b;
+      --radius-sm:  6px;
+      --radius:     10px;
+      --radius-lg:  16px;
+      --shadow-sm:  0 1px 3px rgba(11,31,58,.06), 0 4px 12px rgba(11,31,58,.06);
+      --shadow:     0 4px 16px rgba(11,31,58,.10), 0 1px 4px rgba(11,31,58,.06);
+      --shadow-lg:  0 16px 48px rgba(11,31,58,.14), 0 4px 16px rgba(11,31,58,.08);
+      --transition: 0.22s cubic-bezier(.4,0,.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1100px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: box-shadow var(--transition);
+    }
+
+    .site-header.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-inner {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Inter", "Noto Sans JP", sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      color: var(--gold-light);
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+      font-weight: 800;
+      box-shadow: 0 2px 8px rgba(11,31,58,.25);
+    }
+
+    .header-nav {
+      display: none;
+      align-items: center;
+      gap: 28px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gray-600);
+    }
+
+    .header-nav a:hover { color: var(--navy); }
+
+    .header-cta {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 700;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .header-cta:hover {
+      background: var(--navy-mid);
+      transform: translateY(-1px);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 680px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(26,74,138,.55) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(184,146,30,.12) 0%, transparent 60%),
+        linear-gradient(160deg, #0b1f3a 0%, #0f2d52 50%, #0b1f3a 100%);
+    }
+
+    .hero-grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 100px 0 90px;
+      max-width: 660px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(240,214,122,.12);
+      border: 1px solid rgba(240,214,122,.3);
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 5.5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: rgba(255,255,255,.75);
+      max-width: 520px;
+      margin-bottom: 40px;
+      line-height: 1.85;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 28px;
+      border-radius: var(--radius);
+      background: var(--green);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 0.97rem;
+      box-shadow: 0 8px 24px rgba(6,199,85,.3);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .btn-line:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(6,199,85,.4);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 28px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.9);
+      font-weight: 700;
+      font-size: 0.97rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,.14);
+      transform: translateY(-2px);
+    }
+
+    .hero-trust {
+      position: relative;
+      z-index: 1;
+      margin-top: 52px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px 40px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,.6);
+    }
+
+    .trust-item strong {
+      color: rgba(255,255,255,.9);
+      font-weight: 700;
+    }
+
+    /* ── Section Common ── */
+    section { padding: 80px 0; }
+
+    .section-eyebrow {
+      font-family: "Inter", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-mid);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      font-size: 0.97rem;
+      color: var(--gray-600);
+      max-width: 560px;
+      line-height: 1.85;
+    }
+
+    .section-head {
+      margin-bottom: 48px;
+    }
+
+    /* ── Why Section ── */
+    .why-section {
+      background: var(--gray-50);
+    }
+
+    .why-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .why-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .why-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .why-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--gold-pale) 0%, #fef3c7 100%);
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      border: 1px solid rgba(184,146,30,.15);
+    }
+
+    .why-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .why-card p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.85;
+    }
+
+    /* ── Flow Section ── */
+    .flow-section {
+      background: var(--white);
+    }
+
+    .flow-list {
+      display: grid;
+      gap: 0;
+      position: relative;
+    }
+
+    .flow-item {
+      display: flex;
+      gap: 24px;
+      padding-bottom: 40px;
+      position: relative;
+    }
+
+    .flow-item:last-child { padding-bottom: 0; }
+
+    .flow-item:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 48px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gray-200), transparent);
+    }
+
+    .flow-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 12px rgba(11,31,58,.25);
+    }
+
+    .flow-content {
+      padding-top: 10px;
+    }
+
+    .flow-content h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .flow-content p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.85;
+    }
+
+    .flow-badge {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 12px;
+      background: var(--gold-pale);
+      border: 1px solid rgba(184,146,30,.2);
+      border-radius: 4px;
+      font-size: 0.78rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── Cards Section ── */
+    .cards-section {
+      background: var(--gray-50);
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .card-item {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .card-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gold-mid);
+    }
+
+    .card-item-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-thumbnail {
+      width: 80px;
+      height: 50px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #1a3a6b 0%, #0b2252 100%);
+      border: 1px solid rgba(255,255,255,.15);
+      display: grid;
+      place-items: center;
+      font-size: 0.55rem;
+      color: rgba(255,255,255,.7);
+      letter-spacing: 0.06em;
+      text-align: center;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-thumbnail::after {
+      content: '';
+      position: absolute;
+      top: -10px; right: -10px;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(240,214,122,.15);
+    }
+
+    .card-badge {
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .badge-popular {
+      background: #fff3cd;
+      color: #92610a;
+      border: 1px solid #fcd34d;
+    }
+
+    .badge-beginner {
+      background: #dbeafe;
+      color: #1e40af;
+      border: 1px solid #93c5fd;
+    }
+
+    .badge-new {
+      background: var(--gold-pale);
+      color: var(--gold);
+      border: 1px solid rgba(184,146,30,.3);
+    }
+
+    .card-item h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    .card-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .spec-row:last-child { border-bottom: none; }
+
+    .spec-row .spec-key { color: var(--gray-600); }
+    .spec-row .spec-val { font-weight: 700; color: var(--navy); }
+    .spec-row .spec-val.accent { color: var(--gold); }
+
+    .card-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 13px;
+      border-radius: var(--radius);
+      background: var(--navy);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-top: auto;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .card-link:hover {
+      background: var(--navy-mid);
+      transform: translateY(-1px);
+    }
+
+    .card-link-arrow {
+      font-size: 0.8rem;
+      transition: transform var(--transition);
+    }
+
+    .card-item:hover .card-link-arrow {
+      transform: translateX(3px);
+    }
+
+    /* ── Notice Banner ── */
+    .notice-banner {
+      margin-top: 36px;
+      padding: 16px 20px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-left: 4px solid var(--gold-mid);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.84rem;
+      color: var(--gray-600);
+      line-height: 1.8;
+    }
+
+    /* ── CTA Banner ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-eyebrow {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(240,214,122,.3);
+      color: var(--gold-light);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .cta-section p {
+      font-size: 0.97rem;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 36px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      background: var(--navy);
+      color: var(--white);
+      padding: 56px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand .logo {
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,.55);
+      line-height: 1.85;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.5);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,.65);
+      transition: color var(--transition);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,.4);
+    }
+
+    .footer-disclaimer {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,.35);
+      line-height: 1.8;
+      margin-top: 16px;
+    }
+
+    /* ── Responsive ── */
+    @media (min-width: 640px) {
+      .why-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .card-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .card-grid .card-item {
+        flex: 0 1 calc(33.33% - 14px);
+        min-width: 220px;
+      }
+
+      .header-nav,
+      .header-cta {
+        display: flex;
+      }
+
+      .flow-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0 40px;
+      }
+
+      .flow-item:nth-child(odd):not(:last-child)::before {
+        display: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.6fr 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 639px) {
+      .container {
+        width: calc(100% - 36px);
+      }
+
+      section { padding: 60px 0; }
+
+      .hero-content { padding: 80px 0 72px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">M</span>
+        <span>マネーマップ</span>
+      </a>
+
+      <nav class="header-nav">
+        <a href="#why">サイトの特徴</a>
+        <a href="#cards">カード一覧</a>
+        <a href="#flow">LINE診断</a>
+      </nav>
+
+      <a href="#flow" class="header-cta">無料で診断する</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid-overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-eyebrow">18〜25歳のための金融リテラシーガイド</div>
+          <h1>はじめての<em>クレカ選び</em>を、<br>もっとわかりやすく。</h1>
+          <p class="hero-sub">
+            「どのカードが自分に合うの？」その答えをLINE診断で提案します。年会費・ポイント還元・セキュリティ——難しいことは全部整理しました。
+          </p>
+          <div class="hero-actions">
+            <a href="#flow" class="btn-line">LINEで無料診断する</a>
+            <a href="#cards" class="btn-ghost">カードを比べてみる</a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-item"><strong>完全無料</strong>で使えます</div>
+            <div class="trust-item"><strong>広告表記</strong>を明示しています</div>
+            <div class="trust-item"><strong>デメリット</strong>も正直に書いています</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section class="why-section" id="why">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">Why MoneyMap</div>
+          <h2 class="section-title">マネーマップが選ばれる理由</h2>
+          <p class="section-desc">「なんか怪しそう」「本当に自分に合うの？」その不安を取り除くために、3つのことを大切にしています。</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-icon">🔍</div>
+            <h3>メリットもデメリットも正直に書く</h3>
+            <p>良い点だけでなく、注意点・向いていない人もきちんと記載。広告費のために都合の悪い情報を隠すことはしません。</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">🎯</div>
+            <h3>18〜25歳に特化した情報設計</h3>
+            <p>学生・アルバイト・新社会人の生活スタイルに合わせて情報を整理。難しい金融用語もわかりやすく解説しています。</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">🛡️</div>
+            <h3>提携先・広告主を明示する</h3>
+            <p>当サイトはアフィリエイトプログラムに参加しています。該当する記事には広告表記を必ず記載し、透明性を確保しています。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flow -->
+    <section class="flow-section" id="flow">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">How It Works</div>
+          <h2 class="section-title">LINE診断の使い方</h2>
+          <p class="section-desc">3分でできるLINE診断で、あなたにぴったりのカードを提案します。</p>
+        </div>
+        <div class="flow-list">
+          <div class="flow-item">
+            <div class="flow-num">1</div>
+            <div class="flow-content">
+              <h4>LINEを友だち追加する</h4>
+              <p>ボタンをタップしてマネーマップの公式LINEを友だち追加します。個人情報の入力は不要です。</p>
+              <span class="flow-badge">所要：10秒</span>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-num">2</div>
+            <div class="flow-content">
+              <h4>簡単な質問に答える</h4>
+              <p>「コンビニをよく使う？」「学生？社会人？」など、数問の選択式の質問に答えるだけです。</p>
+              <span class="flow-badge">所要：約2分</span>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-num">3</div>
+            <div class="flow-content">
+              <h4>あなたに合うカードを提案</h4>
+              <p>回答をもとに、最もあなたのライフスタイルに合ったクレジットカードを提案します。</p>
+              <span class="flow-badge">すぐに回答</span>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-num">4</div>
+            <div class="flow-content">
+              <h4>詳細を確認して申し込む</h4>
+              <p>このサイトの詳細解説ページで内容を確認し、納得したうえで公式サイトから申し込めます。</p>
+              <span class="flow-badge">強引な勧誘はありません</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="cards-section" id="cards">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">Recommended Cards</div>
+          <h2 class="section-title">おすすめクレジットカード</h2>
+          <p class="section-desc">18〜25歳の生活スタイルを考慮して厳選。条件・還元率・安全性を総合評価しています。</p>
+        </div>
+
+        <div class="card-grid">
+
+          <!-- 三井住友 NL -->
+          <div class="card-item">
+            <div class="card-item-top">
+              <div class="card-thumbnail">
+                <span style="position:relative;z-index:1;line-height:1.6">SMBC<br>NUMBER<br>LESS</span>
+              </div>
+              <span class="card-badge badge-popular">編集部イチオシ</span>
+            </div>
+            <h3>三井住友カード<br>（NL）</h3>
+            <div class="card-specs">
+              <div class="spec-row">
+                <span class="spec-key">年会費</span>
+                <span class="spec-val">永年無料</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">コンビニ還元率</span>
+                <span class="spec-val accent">最大 7%</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">ナンバーレス</span>
+                <span class="spec-val">◎ 対応</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">こんな人に</span>
+                <span class="spec-val">学生・新社会人</span>
+              </div>
+            </div>
+            <a href="cards/smbc-nl.html" class="card-link">
+              詳しく見る <span class="card-link-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- JCBカードW -->
+          <div class="card-item">
+            <div class="card-item-top">
+              <div class="card-thumbnail" style="background:linear-gradient(135deg,#001a4d,#002880)">
+                <span style="position:relative;z-index:1;line-height:1.6">JCB<br>CARD<br>W</span>
+              </div>
+              <span class="card-badge badge-beginner">39歳以下限定</span>
+            </div>
+            <h3>JCBカードW</h3>
+            <div class="card-specs">
+              <div class="spec-row">
+                <span class="spec-key">年会費</span>
+                <span class="spec-val">永年無料</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">基本還元率</span>
+                <span class="spec-val accent">1.0%</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">Amazon還元率</span>
+                <span class="spec-val accent">最大 3.0%</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">こんな人に</span>
+                <span class="spec-val">Amazon・スタバ好き</span>
+              </div>
+            </div>
+            <a href="cards/jcb-card-w.html" class="card-link">
+              詳しく見る <span class="card-link-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- dカードGOLD U -->
+          <div class="card-item">
+            <div class="card-item-top">
+              <div class="card-thumbnail" style="background:linear-gradient(135deg,#5c0018,#8a0022)">
+                <span style="position:relative;z-index:1;line-height:1.6">dカード<br>GOLD<br>U</span>
+              </div>
+              <span class="card-badge badge-popular">29歳以下限定</span>
+            </div>
+            <h3>dカードGOLD U</h3>
+            <div class="card-specs">
+              <div class="spec-row">
+                <span class="spec-key">年会費</span>
+                <span class="spec-val">無料（29歳以下）</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">ドコモ料金還元</span>
+                <span class="spec-val accent">10%</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">海外旅行保険</span>
+                <span class="spec-val">最高1億円</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">こんな人に</span>
+                <span class="spec-val">ドコモユーザー</span>
+              </div>
+            </div>
+            <a href="cards/dcard-gold-u.html" class="card-link">
+              詳しく見る <span class="card-link-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- エポスカード -->
+          <div class="card-item">
+            <div class="card-item-top">
+              <div class="card-thumbnail" style="background:linear-gradient(135deg,#5A0D0D,#8B1A1A)">
+                <span style="position:relative;z-index:1;line-height:1.6">EPOS<br>CARD</span>
+              </div>
+              <span class="card-badge badge-beginner">旅行好き向け</span>
+            </div>
+            <h3>エポスカード</h3>
+            <div class="card-specs">
+              <div class="spec-row">
+                <span class="spec-key">年会費</span>
+                <span class="spec-val">永年無料</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">海外旅行保険</span>
+                <span class="spec-val accent">500万円 自動付帯</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">マルイ優待</span>
+                <span class="spec-val">年2回 最大10%OFF</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">こんな人に</span>
+                <span class="spec-val">旅行・外出が多い人</span>
+              </div>
+            </div>
+            <a href="cards/epos-card.html" class="card-link">
+              詳しく見る <span class="card-link-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- 三井ショッピングカードセゾン -->
+          <div class="card-item">
+            <div class="card-item-top">
+              <div class="card-thumbnail" style="background:linear-gradient(135deg,#0D2E1D,#1A4D35)">
+                <span style="position:relative;z-index:1;line-height:1.6;font-size:.5rem">三井SP<br>CARD<br>SAISON</span>
+              </div>
+              <span class="card-badge badge-new">モール派向け</span>
+            </div>
+            <h3>三井ショッピング<br>カードセゾン</h3>
+            <div class="card-specs">
+              <div class="spec-row">
+                <span class="spec-key">年会費</span>
+                <span class="spec-val">永年無料</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">三井系モール還元</span>
+                <span class="spec-val accent">最大 10%</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">ポイント有効期限</span>
+                <span class="spec-val">無期限</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-key">こんな人に</span>
+                <span class="spec-val">モールでよく買い物する人</span>
+              </div>
+            </div>
+            <a href="cards/mitsui-sezon.html" class="card-link">
+              詳しく見る <span class="card-link-arrow">→</span>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="notice-banner">
+          掲載情報は執筆時点のものです。キャンペーン・条件は変更される場合があります。申し込み前に必ず公式サイトをご確認ください。当サイトはアフィリエイトプログラムに参加しており、リンク経由の申し込みにより報酬を受ける場合があります。
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container cta-inner">
+        <div class="cta-eyebrow">LINE診断 — 無料</div>
+        <h2>まず診断してみましょう。<br>3分で答えが出ます。</h2>
+        <p>質問に答えるだけで、あなたのライフスタイルに合ったカードを提案します。強引な勧誘はありません。</p>
+        <div class="cta-btns">
+          <a href="#" class="btn-line">LINEで無料診断する</a>
+          <a href="#cards" class="btn-ghost">カード一覧を見る</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-mark">M</span>
+            <span>マネーマップ</span>
+          </a>
+          <p>18〜25歳のための金融リテラシーメディア。クレジットカードから始まる、正しいお金との付き合い方を発信します。</p>
+        </div>
+        <div class="footer-col">
+          <h4>カード情報</h4>
+          <ul>
+            <li><a href="cards/smbc-nl.html">三井住友カード（NL）</a></li>
+            <li><a href="cards/jcb-card-w.html">JCBカードW</a></li>
+            <li><a href="cards/dcard-gold-u.html">dカードGOLD U</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>サイト情報</h4>
+          <ul>
+            <li><a href="#">運営者情報</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">広告掲載について</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="footer-disclaimer">
+        当サイトはアフィリエイトプログラムに参加しており、カード申し込みリンク経由の成約により報酬を受ける場合があります。掲載情報は執筆時点のものであり、最新情報は各カード会社の公式サイトでご確認ください。クレジットカードはご自身の支払い能力の範囲内でご利用ください。
+      </p>
+
+      <div class="footer-bottom">
+        <span>© 2026 MoneyMap. All rights reserved.</span>
+        <span>当サイトは18歳以上の方を対象としています。</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
