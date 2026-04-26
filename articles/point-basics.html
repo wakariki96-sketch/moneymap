@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ポイント還元率のしくみ完全解説｜計算方法と賢い使い方 | マネーマップ</title>
+  <meta name="description" content="クレジットカードのポイント還元率とは何か、計算方法、高還元カードの選び方を徹底解説。年間数万円の差が生まれる「特定店舗×高還元」戦略も紹介。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:#0b1f3a;--navy-mid:#12305e;--navy-light:#1a4a8a;
+      --gold:#b8921e;--gold-mid:#c9a227;--gold-light:#f0d67a;--gold-pale:#fdf6df;
+      --white:#ffffff;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;
+      --gray-400:#94a3b8;--gray-600:#475569;--text:#1e293b;--muted:#475569;
+      --amber:#92400e;--amber-bg:#fffbeb;--amber-border:#fcd34d;
+      --shadow-sm:0 1px 3px rgba(11,31,58,.06),0 4px 12px rgba(11,31,58,.06);
+      --shadow:0 4px 16px rgba(11,31,58,.10),0 1px 4px rgba(11,31,58,.06);
+      --radius:10px;--radius-lg:16px;--transition:0.22s cubic-bezier(.4,0,.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"Noto Sans JP",sans-serif;color:var(--text);background:var(--white);line-height:1.75;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(760px,calc(100% - 48px));margin:0 auto}
+
+    .site-header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--gray-200);transition:box-shadow var(--transition)}
+    .site-header.scrolled{box-shadow:var(--shadow-sm)}
+    .header-inner{height:64px;display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;gap:10px;font-family:"Inter","Noto Sans JP",sans-serif;font-weight:800;color:var(--navy);font-size:1.05rem}
+    .logo-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--navy),var(--navy-mid));color:var(--gold-light);display:grid;place-items:center;font-size:.9rem;font-weight:800}
+    .back-link{font-size:.85rem;font-weight:600;color:var(--gray-600);padding:7px 14px;border-radius:6px;border:1px solid var(--gray-200);transition:background var(--transition)}
+    .back-link:hover{background:var(--gray-100);color:var(--navy)}
+
+    .article-hero{background:linear-gradient(145deg,#3d2800 0%,#7a5200 60%,#b87c00 100%);color:var(--white);padding:56px 0 48px;position:relative;overflow:hidden}
+    .article-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:52px 52px}
+    .article-hero-inner{position:relative;z-index:1}
+    .article-meta{display:flex;align-items:center;gap:16px;margin-bottom:20px;font-size:.82rem;color:rgba(255,255,255,.6)}
+    .article-tag{padding:3px 10px;border-radius:999px;background:rgba(240,214,122,.2);border:1px solid rgba(240,214,122,.4);color:var(--gold-light);font-weight:700;font-size:.75rem}
+    .article-hero h1{font-size:clamp(1.4rem,5vw,2.1rem);font-weight:800;line-height:1.3;margin-bottom:16px}
+    .article-hero-sub{color:rgba(255,255,255,.75);font-size:.97rem;line-height:1.85;max-width:600px}
+
+    .toc-box{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;margin:40px 0}
+    .toc-box h3{font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:14px}
+    .toc-list{list-style:none;display:grid;gap:6px}
+    .toc-list li a{font-size:.88rem;color:var(--navy-light);font-weight:600;display:flex;align-items:center;gap:8px;transition:color var(--transition)}
+    .toc-list li a:hover{color:var(--gold-mid)}
+    .toc-list li a::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold-mid);flex-shrink:0}
+
+    .article-body{padding:48px 0 64px}
+    .article-section{margin-bottom:56px}
+    .article-section h2{font-size:clamp(1.15rem,3vw,1.5rem);font-weight:800;color:var(--navy);padding-bottom:10px;border-bottom:2px solid var(--gold-mid);margin-bottom:24px}
+    .article-section h3{font-size:1rem;font-weight:800;color:var(--navy);margin:24px 0 10px}
+    .article-section p{font-size:.95rem;color:var(--text);line-height:1.95;margin-bottom:14px}
+    .article-section ul,.article-section ol{padding-left:20px;margin-bottom:14px}
+    .article-section li{font-size:.95rem;line-height:1.85;margin-bottom:6px}
+
+    .callout{border-radius:var(--radius);padding:20px 24px;margin:24px 0}
+    .callout-tip{background:#f0fdf8;border-left:4px solid #059669}
+    .callout-warn{background:#fffbeb;border-left:4px solid var(--gold-mid)}
+    .callout-title{font-weight:800;font-size:.88rem;margin-bottom:8px}
+    .callout p{font-size:.9rem;margin-bottom:0;line-height:1.85}
+
+    /* 還元率ビジュアル */
+    .rate-bars{display:grid;gap:14px;margin:24px 0}
+    .rate-bar-item{}
+    .rate-bar-label{display:flex;justify-content:space-between;font-size:.85rem;font-weight:700;color:var(--navy);margin-bottom:7px}
+    .rate-bar-label span{color:var(--gold-mid);font-family:"Inter",sans-serif}
+    .rate-track{height:10px;background:var(--gray-200);border-radius:999px;overflow:hidden}
+    .rate-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold-mid),var(--gold-light))}
+
+    /* 計算例 */
+    .calc-box{background:var(--gold-pale);border:1px solid rgba(184,146,30,.25);border-radius:var(--radius-lg);padding:24px 28px;margin:24px 0}
+    .calc-box h4{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:16px}
+    .calc-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(184,146,30,.15);font-size:.9rem}
+    .calc-row:last-child{border-bottom:none;padding-top:12px}
+    .calc-label{color:var(--muted)}
+    .calc-val{font-weight:800;color:var(--amber);font-family:"Inter",sans-serif}
+    .calc-total{font-size:1.05rem;color:var(--gold)}
+
+    .mini-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);margin:24px 0;font-size:.88rem}
+    .mini-table th{padding:12px 16px;background:var(--navy);color:var(--white);font-weight:700;text-align:left}
+    .mini-table td{padding:12px 16px;border-bottom:1px solid var(--gray-100)}
+    .mini-table tr:last-child td{border-bottom:none}
+    .mini-table td:first-child{font-weight:700;color:var(--navy);background:var(--gray-50);width:35%}
+    .hi{color:var(--gold-mid);font-weight:800}
+
+    .article-cta{background:linear-gradient(135deg,#3d2800,#7a5200);border-radius:var(--radius-lg);padding:32px 36px;color:var(--white);text-align:center;margin-top:48px}
+    .article-cta h3{font-size:1.2rem;font-weight:800;margin-bottom:12px}
+    .article-cta p{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:24px;line-height:1.8}
+    .btn-gold{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:linear-gradient(135deg,var(--gold-mid),var(--gold));color:var(--navy);border-radius:999px;font-weight:800;font-size:.95rem;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform var(--transition)}
+    .btn-gold:hover{transform:translateY(-2px)}
+
+    .related-cards{margin-top:48px}
+    .related-cards h3{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:16px}
+    .related-grid{display:grid;gap:12px}
+    .related-item{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;transition:background var(--transition),border-color var(--transition)}
+    .related-item:hover{background:var(--gold-pale);border-color:rgba(184,146,30,.3)}
+    .related-item-name{font-weight:800;font-size:.92rem;color:var(--navy)}
+    .related-item-desc{font-size:.8rem;color:var(--gray-600);margin-top:2px}
+    .related-arrow{font-size:1rem;color:var(--gold-mid)}
+
+    .site-footer{background:var(--navy);color:var(--white);padding:48px 0 32px}
+    .footer-grid{display:grid;gap:32px;margin-bottom:32px}
+    .footer-brand p{margin-top:12px;font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.8}
+    .footer-col h4{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:12px}
+    .footer-col a{display:block;font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:8px;transition:color var(--transition)}
+    .footer-col a:hover{color:var(--white)}
+    .footer-bottom{padding-top:28px;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.4)}
+    .footer-disclaimer{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.8;margin-top:16px}
+
+    @media(min-width:640px){.footer-grid{grid-template-columns:1.6fr 1fr 1fr}}
+    @media(max-width:639px){.container{width:calc(100% - 36px)}}
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">M</span><span>マネーマップ</span></a>
+      <a href="../index.html" class="back-link">← トップへ</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="article-hero">
+      <div class="container article-hero-inner">
+        <div class="article-meta">
+          <span class="article-tag">ポイント活用</span>
+          <span>読了：約6分</span>
+          <span>2025年</span>
+        </div>
+        <h1>ポイント還元率のしくみ<br>完全解説</h1>
+        <p class="article-hero-sub">「還元率1%」って結局いくら得するの？——計算方法から、賢い使い方まで。年間数万円の差が生まれる「特定店舗×高還元」戦略も解説します。</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <nav class="toc-box">
+        <h3>📋 この記事の内容</h3>
+        <ul class="toc-list">
+          <li><a href="#what">ポイント還元率とは何か</a></li>
+          <li><a href="#calc">実際いくら得するの？計算してみた</a></li>
+          <li><a href="#strategy">「特定店舗×高還元」が最強な理由</a></li>
+          <li><a href="#pitfall">ポイントで損する人の共通点</a></li>
+          <li><a href="#summary">まとめ：還元率より「使う場所」を先に考える</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container article-body">
+
+      <section class="article-section" id="what">
+        <h2>💰 ポイント還元率とは何か</h2>
+        <p>還元率とは、<strong>「使った金額に対してどれくらいのポイントが戻ってくるか」</strong>を示す割合です。</p>
+        <p>還元率1%なら、1万円の買い物で100円分のポイントが戻ります。0.5%なら50円分。一見小さく見えますが、年間で積み上がると大きな差になります。</p>
+
+        <div class="rate-bars">
+          <div class="rate-bar-item">
+            <div class="rate-bar-label"><span>0.5%</span><span>一般的なカード</span></div>
+            <div class="rate-track"><div class="rate-fill" style="width:10%"></div></div>
+          </div>
+          <div class="rate-bar-item">
+            <div class="rate-bar-label"><span>1.0%</span><span>JCBカードW（基本）</span></div>
+            <div class="rate-track"><div class="rate-fill" style="width:20%"></div></div>
+          </div>
+          <div class="rate-bar-item">
+            <div class="rate-bar-label"><span>3.0%</span><span>JCBカードW × Amazon</span></div>
+            <div class="rate-track"><div class="rate-fill" style="width:60%"></div></div>
+          </div>
+          <div class="rate-bar-item">
+            <div class="rate-bar-label"><span>7.0%</span><span>三井住友NL × コンビニ</span></div>
+            <div class="rate-track"><div class="rate-fill" style="width:85%"></div></div>
+          </div>
+          <div class="rate-bar-item">
+            <div class="rate-bar-label"><span>10.5%</span><span>JCBカードW × スターバックス</span></div>
+            <div class="rate-track"><div class="rate-fill" style="width:100%"></div></div>
+          </div>
+        </div>
+
+        <h3>ポイントの「価値」を理解する</h3>
+        <p>ポイントは「1ポイント＝1円」として使えるものが多いですが、交換先によって価値が変わります。現金・商品券への交換レートが高いものを選ぶと損をしません。</p>
+      </section>
+
+      <section class="article-section" id="calc">
+        <h2>🧮 実際いくら得するの？計算してみた</h2>
+
+        <h3>計算式はシンプル</h3>
+        <p><strong>年間還元額 ＝ 年間利用額 × 還元率</strong></p>
+        <p>例えば、月5万円をカードで使う人（年間60万円）が0.5%カードと1.0%カードを比べると：</p>
+
+        <div class="calc-box">
+          <h4>月5万円利用（年間60万円）の場合</h4>
+          <div class="calc-row"><span class="calc-label">還元率0.5%のカード</span><span class="calc-val">年間 3,000円</span></div>
+          <div class="calc-row"><span class="calc-label">還元率1.0%のカード</span><span class="calc-val">年間 6,000円</span></div>
+          <div class="calc-row"><span class="calc-label">コンビニで還元率7%（月2万円）</span><span class="calc-val">年間 16,800円</span></div>
+          <div class="calc-row"><span class="calc-label">Amazon月1万円 × 3%</span><span class="calc-val">年間 3,600円</span></div>
+        </div>
+
+        <p>コンビニ月2万円＋Amazon月1万円だけで、年間<strong>2万円超の還元</strong>を得られる計算になります。「小さい数字」と侮れません。</p>
+
+        <div class="callout callout-tip">
+          <div class="callout-title">✅ ポイントは「使わない限り意味がない」</div>
+          <p>貯めたポイントを使わずに失効させている人が多いです。ポイントの有効期限と使い方を申し込み前に確認しましょう。永久不滅ポイント（セゾン系）は期限なしで安心です。</p>
+        </div>
+      </section>
+
+      <section class="article-section" id="strategy">
+        <h2>🎯 「特定店舗×高還元」が最強な理由</h2>
+        <p>クレジットカードの還元率は「基本還元率」と「特定店舗での還元率」に分かれます。賢い人ほど<strong>自分がよく使う店舗で高還元になるカード</strong>を選んでいます。</p>
+
+        <table class="mini-table">
+          <thead><tr><th>よく使う場所</th><th>おすすめカード</th><th>還元率</th></tr></thead>
+          <tbody>
+            <tr><td>コンビニ・マクドナルド</td><td>三井住友カード(NL)</td><td class="hi">最大7%</td></tr>
+            <tr><td>Amazon</td><td>JCBカードW</td><td class="hi">3%</td></tr>
+            <tr><td>スターバックス</td><td>JCBカードW</td><td class="hi">10.5%</td></tr>
+            <tr><td>三井系ショッピングモール</td><td>三井ショッピングカードセゾン</td><td class="hi">最大10%</td></tr>
+            <tr><td>マルイ・海外旅行</td><td>エポスカード</td><td class="hi">優待・保険</td></tr>
+          </tbody>
+        </table>
+
+        <h3>「2枚持ち」で最大化する考え方</h3>
+        <p>慣れてきたら、2枚のカードを使い分けることで還元率を最大化できます。例えば「コンビニ用に三井住友NL、Amazon用にJCBカードW」のように組み合わせるのが定番です。ただし最初は1枚に絞ることを強くすすめます。</p>
+      </section>
+
+      <section class="article-section" id="pitfall">
+        <h2>❌ ポイントで損する人の共通点</h2>
+
+        <h3>① 高還元率のためだけに不要な買い物をする</h3>
+        <p>「ポイントがつくから」と余計な出費をするのは本末転倒です。10%還元でも使わなくていいものを買ったら損です。ポイントは<strong>「どうせ払う支出」にカードを使って得るもの</strong>です。</p>
+
+        <h3>② ポイントを失効させる</h3>
+        <p>多くのポイントには有効期限があります。1年間で貯めたポイントを期限切れにしてしまう人が後を絶ちません。定期的にポイント残高を確認する習慣をつけましょう。</p>
+
+        <h3>③ 年会費のかかるカードで還元率を追う</h3>
+        <p>年会費1万円のカードで還元率が1%高くなっても、年間100万円使わないと元が取れません。初心者は<strong>年会費無料カードの高還元を狙う</strong>のが正解です。</p>
+
+        <div class="callout callout-warn">
+          <div class="callout-title">⚠️ 「高還元＝お得」とは限らない</div>
+          <p>還元率が高くても、ポイントの使い道が限定されていたり、交換レートが悪ければ実質的な価値は下がります。ポイントが「どこで・いくらで使えるか」まで確認しましょう。</p>
+        </div>
+      </section>
+
+      <section class="article-section" id="summary">
+        <h2>📌 まとめ：還元率より「使う場所」を先に考える</h2>
+        <p>「基本還元率が高いカード」を探すよりも、<strong>「自分がよく使う場所で突出して高還元なカード」</strong>を選ぶほうが、実際の恩恵は大きくなります。</p>
+        <ul>
+          <li>まず自分の毎月の支出パターンを確認する</li>
+          <li>コンビニ・ネット・モール・旅行——どれがメインかで選ぶカードが変わる</li>
+          <li>ポイントは「貯める」より「使う」を先に考える</li>
+          <li>慣れたら2枚持ちで使い分けを考える</li>
+        </ul>
+      </section>
+
+      <div class="article-cta">
+        <h3>自分の使い方に合うカードを3問で診断</h3>
+        <p>LINE診断なら、あなたの生活パターンに合ったカードを提案します。</p>
+        <a href="../index.html#flow" class="btn-gold">LINE診断を試してみる →</a>
+      </div>
+
+      <div class="related-cards">
+        <h3>高還元カードの詳細を見る</h3>
+        <div class="related-grid">
+          <a href="../cards/smbc-nl.html" class="related-item">
+            <div><div class="related-item-name">三井住友カード（NL）</div><div class="related-item-desc">コンビニ最大7%還元</div></div>
+            <span class="related-arrow">→</span>
+          </a>
+          <a href="../cards/jcb-card-w.html" class="related-item">
+            <div><div class="related-item-name">JCBカードW</div><div class="related-item-desc">Amazon 3%・スタバ 10.5%還元</div></div>
+            <span class="related-arrow">→</span>
+          </a>
+          <a href="../cards/mitsui-sezon.html" class="related-item">
+            <div><div class="related-item-name">三井ショッピングカードセゾン</div><div class="related-item-desc">三井系モールで最大10%</div></div>
+            <span class="related-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo"><span class="logo-mark">M</span><span>マネーマップ</span></a>
+          <p>18〜25歳のための金融リテラシーメディア。</p>
+          <p class="footer-disclaimer">当サイトはアフィリエイトプログラムに参加しており、掲載リンク経由の申し込みにより報酬を受ける場合があります。掲載情報は執筆時点のものです。</p>
+        </div>
+        <div class="footer-col">
+          <h4>カード一覧</h4>
+          <a href="../cards/smbc-nl.html">三井住友カード(NL)</a>
+          <a href="../cards/jcb-card-w.html">JCBカードW</a>
+          <a href="../cards/dcard-gold-u.html">dカードGOLD U</a>
+          <a href="../cards/epos-card.html">エポスカード</a>
+          <a href="../cards/mitsui-sezon.html">三井ショッピングカードセゾン</a>
+        </div>
+        <div class="footer-col">
+          <h4>記事</h4>
+          <a href="first-card-guide.html">はじめてのクレカ完全ガイド</a>
+          <a href="point-basics.html">ポイント還元率の基礎</a>
+          <a href="money-basics.html">社会人1年目のお金の基本</a>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2025 マネーマップ</div>
+    </div>
+  </footer>
+
+  <script>
+    const h = document.getElementById('site-header');
+    window.addEventListener('scroll', () => h.classList.toggle('scrolled', scrollY > 10));
+  </script>
+</body>
+</html>
