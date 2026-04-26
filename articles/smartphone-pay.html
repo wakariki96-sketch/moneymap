@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apple Pay・Google Payとクレカの正しい使い方 | マネーマップ</title>
+  <meta name="description" content="Apple Pay・Google Payの仕組み、クレジットカードとの連携方法、ポイントが貯まる設定、iD・QUICPayとの違いをわかりやすく解説します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#0b1f3a;--navy-mid:#12305e;--accent:#1d4ed8;--accent-mid:#2563eb;--accent-light:#60a5fa;--accent-pale:#eff6ff;--gold:#b8921e;--gold-mid:#c9a227;--gold-light:#f0d67a;--gold-pale:#fdf6df;--white:#ffffff;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--text:#1e293b;--muted:#475569;--green:#059669;--shadow-sm:0 1px 3px rgba(11,31,58,.06),0 4px 12px rgba(11,31,58,.06);--shadow:0 4px 16px rgba(11,31,58,.10),0 1px 4px rgba(11,31,58,.06);--radius:10px;--radius-lg:16px;--transition:0.22s cubic-bezier(.4,0,.2,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:"Noto Sans JP",sans-serif;color:var(--text);background:var(--white);line-height:1.75;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.container{width:min(760px,calc(100% - 48px));margin:0 auto}
+    .site-header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--gray-200);transition:box-shadow var(--transition)}.site-header.scrolled{box-shadow:var(--shadow-sm)}.header-inner{height:64px;display:flex;align-items:center;justify-content:space-between}.logo{display:flex;align-items:center;gap:10px;font-family:"Inter","Noto Sans JP",sans-serif;font-weight:800;color:var(--navy);font-size:1.05rem}.logo-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--navy),var(--navy-mid));color:var(--gold-light);display:grid;place-items:center;font-size:.9rem;font-weight:800}.back-link{font-size:.85rem;font-weight:600;color:var(--gray-600);padding:7px 14px;border-radius:6px;border:1px solid var(--gray-200);transition:background var(--transition)}.back-link:hover{background:var(--gray-100);color:var(--navy)}
+    .article-hero{background:linear-gradient(145deg,#0c1e5e 0%,#1d4ed8 55%,#2563eb 100%);color:var(--white);padding:56px 0 48px;position:relative;overflow:hidden}.article-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:52px 52px}.article-hero-inner{position:relative;z-index:1}.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:20px;font-size:.82rem;color:rgba(255,255,255,.6)}.article-tag{padding:3px 10px;border-radius:999px;background:rgba(180,210,255,.12);border:1px solid rgba(180,210,255,.25);color:rgba(180,210,255,.9);font-weight:700;font-size:.75rem}.article-hero h1{font-size:clamp(1.4rem,5vw,2.1rem);font-weight:800;line-height:1.3;margin-bottom:16px}.article-hero-sub{color:rgba(255,255,255,.75);font-size:.97rem;line-height:1.85;max-width:600px}
+    .toc-box{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;margin:40px 0}.toc-box h3{font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:14px}.toc-list{list-style:none;display:grid;gap:6px}.toc-list li a{font-size:.88rem;color:var(--accent-mid);font-weight:600;display:flex;align-items:center;gap:8px;transition:color var(--transition)}.toc-list li a:hover{color:var(--gold-mid)}.toc-list li a::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent-mid);flex-shrink:0}
+    .article-body{padding:48px 0 64px}.article-section{margin-bottom:56px}.article-section h2{font-size:clamp(1.15rem,3vw,1.5rem);font-weight:800;color:var(--navy);padding-bottom:10px;border-bottom:2px solid var(--accent-mid);margin-bottom:24px}.article-section h3{font-size:1rem;font-weight:800;color:var(--navy);margin:24px 0 10px}.article-section p{font-size:.95rem;line-height:1.95;margin-bottom:14px}.article-section ul,.article-section ol{padding-left:20px;margin-bottom:14px}.article-section li{font-size:.95rem;line-height:1.85;margin-bottom:6px}
+    .callout{border-radius:var(--radius);padding:20px 24px;margin:24px 0}.callout-tip{background:#f0fdf8;border-left:4px solid #059669}.callout-warn{background:#fffbeb;border-left:4px solid var(--gold-mid)}.callout-info{background:var(--accent-pale);border-left:4px solid var(--accent-mid)}.callout-title{font-weight:800;font-size:.88rem;margin-bottom:8px}.callout p{font-size:.9rem;margin-bottom:0;line-height:1.85}
+    .compare-grid{display:grid;gap:16px;margin:24px 0}.compare-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:20px 24px;box-shadow:var(--shadow-sm)}.compare-card-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}.compare-icon{font-size:1.6rem}.compare-card h4{font-size:.98rem;font-weight:800;color:var(--navy)}.compare-card p{font-size:.88rem;color:var(--gray-600);line-height:1.8;margin-bottom:10px}.compare-tags{display:flex;flex-wrap:wrap;gap:6px}.compare-tag{font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--accent-pale);color:var(--accent-mid)}
+    .mini-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);margin:24px 0;font-size:.88rem}.mini-table th{padding:12px 16px;background:var(--accent);color:var(--white);font-weight:700;text-align:left}.mini-table td{padding:12px 16px;border-bottom:1px solid var(--gray-100)}.mini-table tr:last-child td{border-bottom:none}.mini-table td:first-child{font-weight:700;color:var(--navy);background:var(--gray-50);width:30%}.hi{color:var(--green);font-weight:800}.mid{color:var(--gold-mid);font-weight:800}
+    .setup-flow{display:grid;gap:0;margin:24px 0}.setup-item{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px dashed var(--gray-200)}.setup-item:last-child{border-bottom:none}.setup-num{width:32px;height:32px;border-radius:50%;background:var(--accent-mid);color:var(--white);display:grid;place-items:center;font-weight:800;font-size:.85rem;flex-shrink:0}.setup-content h4{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:4px}.setup-content p{font-size:.88rem;color:var(--gray-600);line-height:1.8;margin:0}
+    .faq-list{display:grid;gap:12px;margin:24px 0}.faq-item{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden}.faq-q{padding:16px 20px;font-size:.92rem;font-weight:800;color:var(--navy);display:flex;gap:10px;align-items:flex-start}.faq-q::before{content:'Q';background:var(--accent-mid);color:var(--white);font-size:.78rem;font-weight:800;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}.faq-a{padding:0 20px 16px 52px;font-size:.88rem;color:var(--gray-600);line-height:1.85}
+    .article-cta{background:linear-gradient(135deg,var(--accent),#0c1e5e);border-radius:var(--radius-lg);padding:32px 36px;color:var(--white);text-align:center;margin-top:48px}.article-cta h3{font-size:1.2rem;font-weight:800;margin-bottom:12px}.article-cta p{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:24px;line-height:1.8}.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:linear-gradient(135deg,var(--gold-mid),var(--gold));color:var(--navy);border-radius:999px;font-weight:800;font-size:.95rem;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform var(--transition)}.btn-gold:hover{transform:translateY(-2px)}
+    .related-cards{margin-top:48px}.related-cards h3{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:16px}.related-grid{display:grid;gap:12px}.related-item{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;transition:background var(--transition),border-color var(--transition)}.related-item:hover{background:var(--accent-pale);border-color:rgba(37,99,235,.2)}.related-item-name{font-weight:800;font-size:.92rem;color:var(--navy)}.related-item-desc{font-size:.8rem;color:var(--gray-600);margin-top:2px}.related-arrow{color:var(--accent-mid)}
+    .site-footer{background:var(--navy);color:var(--white);padding:48px 0 32px}.footer-grid{display:grid;gap:32px;margin-bottom:32px}.footer-brand p{margin-top:12px;font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.8}.footer-col h4{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:12px}.footer-col a{display:block;font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:8px;transition:color var(--transition)}.footer-col a:hover{color:var(--white)}.footer-bottom{padding-top:28px;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.4)}.footer-disclaimer{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.8;margin-top:16px}
+    @media(min-width:640px){.compare-grid{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1.6fr 1fr 1fr}}@media(max-width:639px){.container{width:calc(100% - 36px)}}
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">M</span><span>マネーマップ</span></a>
+      <a href="../index.html" class="back-link">← トップへ</a>
+    </div>
+  </header>
+  <main>
+    <section class="article-hero">
+      <div class="container article-hero-inner">
+        <div class="article-meta"><span class="article-tag">スマホ・キャッシュレス</span><span>読了：約5分</span><span>2025年</span></div>
+        <h1>Apple Pay・Google Pay<br>とクレカの正しい使い方</h1>
+        <p class="article-hero-sub">スマホをかざすだけで支払いが完了する時代。Apple Pay・Google Payの仕組みとクレカとの連携方法、ポイントをきちんと貯める設定を解説します。</p>
+      </div>
+    </section>
+    <div class="container">
+      <nav class="toc-box">
+        <h3>📋 この記事の内容</h3>
+        <ul class="toc-list">
+          <li><a href="#what">Apple Pay・Google Payとは？</a></li>
+          <li><a href="#emoney">iD・QUICPayとの関係</a></li>
+          <li><a href="#setup">クレカを登録する手順</a></li>
+          <li><a href="#points">ポイントをきちんと貯めるための設定</a></li>
+          <li><a href="#card-match">スマホ決済と相性のいいカード</a></li>
+          <li><a href="#faq">よくある疑問</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container article-body">
+      <section class="article-section" id="what">
+        <h2>📱 Apple Pay・Google Payとは？</h2>
+        <p>Apple Pay（iPhone・Apple Watch）とGoogle Pay（Androidスマホ）は、<strong>クレジットカードや電子マネーをスマホに登録して、タッチするだけで支払える仕組み</strong>です。財布を取り出さずにかざすだけで決済が完了します。</p>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <div class="compare-card-head">
+              <span class="compare-icon">🍎</span>
+              <h4>Apple Pay</h4>
+            </div>
+            <p>iPhone・Apple Watch対応。顔認証（Face ID）または指紋認証（Touch ID）で決済。Suica・iD・QUICPayに対応。</p>
+            <div class="compare-tags">
+              <span class="compare-tag">iPhone対応</span>
+              <span class="compare-tag">Suica◎</span>
+              <span class="compare-tag">iD / QUICPay</span>
+            </div>
+          </div>
+          <div class="compare-card">
+            <div class="compare-card-head">
+              <span class="compare-icon">🤖</span>
+              <h4>Google Pay</h4>
+            </div>
+            <p>Android端末対応。FeliCa（おサイフケータイ）搭載なら電車でも使える。iD・QUICPay・Suicaに対応。</p>
+            <div class="compare-tags">
+              <span class="compare-tag">Android対応</span>
+              <span class="compare-tag">Suica◎</span>
+              <span class="compare-tag">iD / QUICPay</span>
+            </div>
+          </div>
+        </div>
+        <div class="callout callout-tip">
+          <div class="callout-title">✅ カードは物理カードと同じポイントが貯まる</div>
+          <p>Apple Pay・Google Payで払っても、登録したクレジットカードのポイントはしっかり付与されます。財布を出す手間が省けるうえ、ポイントも貯まる一石二鳥の使い方です。</p>
+        </div>
+      </section>
+
+      <section class="article-section" id="emoney">
+        <h2>🔍 iD・QUICPayとの関係</h2>
+        <p>Apple Pay・Google Payに登録したクレカは、店頭での支払い時に「iD」または「QUICPay」という電子マネーとして機能します。これはクレカの後払い方式をそのままスマホで使う仕組みです。</p>
+        <table class="mini-table">
+          <thead><tr><th>ブランド</th><th>対応電子マネー</th><th>主な対応カード</th></tr></thead>
+          <tbody>
+            <tr><td>三井住友カード(NL)</td><td class="hi">iD</td><td>スマホで最大7%還元</td></tr>
+            <tr><td>JCBカードW</td><td class="hi">QUICPay</td><td>スマホ払いでもポイント付与</td></tr>
+            <tr><td>dカード GOLD U</td><td class="hi">iD</td><td>ドコモ関連サービスでボーナス</td></tr>
+            <tr><td>エポスカード</td><td class="mid">QUICPay</td><td>通常還元率0.5%</td></tr>
+          </tbody>
+        </table>
+        <p>三井住友カード（NL）をiDで利用すると、コンビニ（セブン-イレブン・ローソン）やマクドナルドでの支払いが<strong>最大7%還元</strong>になります（スマホのタッチ決済も対象）。</p>
+      </section>
+
+      <section class="article-section" id="setup">
+        <h2>⚙️ クレカを登録する手順</h2>
+        <h3>Apple Payの場合（iPhone）</h3>
+        <div class="setup-flow">
+          <div class="setup-item">
+            <div class="setup-num">1</div>
+            <div class="setup-content"><h4>「Wallet」アプリを開く</h4><p>iPhoneにプリインストールされているWalletアプリをタップします。</p></div>
+          </div>
+          <div class="setup-item">
+            <div class="setup-num">2</div>
+            <div class="setup-content"><h4>「＋」ボタンをタップ</h4><p>画面右上の「＋」を押して「クレジットカードなど」を選択します。</p></div>
+          </div>
+          <div class="setup-item">
+            <div class="setup-num">3</div>
+            <div class="setup-content"><h4>カード番号を入力またはカメラで読み取る</h4><p>カメラでカード表面を撮影すれば番号が自動入力されます。セキュリティコードは手入力します。</p></div>
+          </div>
+          <div class="setup-item">
+            <div class="setup-num">4</div>
+            <div class="setup-content"><h4>カード会社の確認を完了する</h4><p>SMSまたはアプリで本人確認を行うと登録完了です。</p></div>
+          </div>
+        </div>
+        <div class="callout callout-info">
+          <div class="callout-title">💡 Google Payも手順はほぼ同じ</div>
+          <p>Google PayはGoogle Payアプリを開き、「＋ 支払い方法を追加」からカードを登録します。手順はApple Payとほぼ同様です。</p>
+        </div>
+      </section>
+
+      <section class="article-section" id="points">
+        <h2>🎯 ポイントをきちんと貯めるための設定</h2>
+        <h3>「メインカード」を1枚決める</h3>
+        <p>複数のカードを登録している場合、支払い時に使うカードを毎回選べますが、設定によってはデフォルトカードが使われることがあります。<strong>最も還元率の高いカードをメインに設定</strong>しておきましょう。</p>
+        <h3>「Expressカード」の設定（iPhone）</h3>
+        <p>iPhoneのWalletで特定のカードをExpressカードに設定すると、Face ID・Touch IDなしでかざすだけで決済できます。Suicaはこれに対応しており、改札をスムーズに通れます。</p>
+        <h3>コンビニ・スーパーでは必ずスマホをかざす</h3>
+        <p>三井住友カード（NL）はスマホのVisaタッチ決済・iD払いで特定店舗での還元率が最大7%になります。物理カードで払うより高還元なので、スマホ払いを習慣にしましょう。</p>
+      </section>
+
+      <section class="article-section" id="card-match">
+        <h2>💳 スマホ決済と相性のいいカード</h2>
+        <table class="mini-table">
+          <thead><tr><th>カード名</th><th>スマホ払いの特典</th><th>対応電子マネー</th></tr></thead>
+          <tbody>
+            <tr><td>三井住友カード(NL)</td><td class="hi">コンビニ・マクド最大7%</td><td>iD / Visaタッチ</td></tr>
+            <tr><td>JCBカードW</td><td class="mid">QUICPay払いでポイント付与</td><td>QUICPay</td></tr>
+            <tr><td>dカード GOLD U</td><td class="mid">ドコモのポイント追加</td><td>iD</td></tr>
+            <tr><td>エポスカード</td><td class="mid">基本還元率0.5%</td><td>QUICPay</td></tr>
+          </tbody>
+        </table>
+        <p>コンビニや飲食チェーンでの利用頻度が高い人には、三井住友カード（NL）のスマホ払いが特に優れています。日常の出費で自然と高いポイント還元が受けられます。</p>
+      </section>
+
+      <section class="article-section" id="faq">
+        <h2>❓ よくある疑問</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q">スマホの電池が切れたら使えない？</div>
+            <div class="faq-a">iPhoneのSuicaは「予備電力モード」があり、電池切れ後も数時間は使えます。ただし他のカードは電池が必要なため、カードも持ち歩くと安心です。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">スマホを紛失したときは？</div>
+            <div class="faq-a">Apple PayはApple IDでのリモートロック、Google PayはGoogleアカウントからの停止が可能です。すぐに手続きすれば不正利用を防げます。物理カードの紛失より対処が速いメリットがあります。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">登録できるカードの枚数に制限はある？</div>
+            <div class="faq-a">Apple Payは最大12枚、Google Payは複数枚登録できます。ただし使い分けが複雑になるので、メインカード1〜2枚にとどめるのがおすすめです。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">海外でも使える？</div>
+            <div class="faq-a">Visaタッチ・Mastercardコンタクトレス対応の店舗なら海外でも使えます。エポスカードはVisaのタッチ決済に対応しており、海外での使い勝手も優秀です。</div>
+          </div>
+        </div>
+        <div class="article-cta">
+          <h3>あなたに合うカードを3問で診断</h3>
+          <p>スマホ払いと相性のいいカードは生活スタイルで変わります。マネーマップのLINE診断で最適な1枚を3問で診断できます。</p>
+          <a href="#" class="btn-gold">LINE診断を試す →</a>
+        </div>
+      </section>
+
+      <div class="related-cards">
+        <h3>関連記事</h3>
+        <div class="related-grid">
+          <a href="cashless-guide.html" class="related-item"><div><div class="related-item-name">キャッシュレス決済を徹底比較</div><div class="related-item-desc">クレカ・QR・電子マネーの違いとポイント戦略</div></div><span class="related-arrow">→</span></a>
+          <a href="point-basics.html" class="related-item"><div><div class="related-item-name">ポイント還元率のしくみ完全解説</div><div class="related-item-desc">1%と0.5%では年間でいくら差が出る？</div></div><span class="related-arrow">→</span></a>
+          <a href="first-card-guide.html" class="related-item"><div><div class="related-item-name">はじめてのクレジットカード完全ガイド</div><div class="related-item-desc">種類・選び方・申し込み方法をわかりやすく解説</div></div><span class="related-arrow">→</span></a>
+          <a href="student-card.html" class="related-item"><div><div class="related-item-name">学生のうちにクレカを作るべき3つの理由</div><div class="related-item-desc">信用情報・審査・社会人準備の観点で解説</div></div><span class="related-arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><span class="logo-mark">M</span><span>マネーマップ</span></div>
+          <p>18〜25歳のための<br>お金と投資の情報サイト</p>
+        </div>
+        <div class="footer-col">
+          <h4>カード情報</h4>
+          <a href="../cards/smbc-nl.html">三井住友カード(NL)</a>
+          <a href="../cards/jcb-w.html">JCBカードW</a>
+          <a href="../cards/dcard-gold-u.html">dカード GOLD U</a>
+          <a href="../cards/epos-card.html">エポスカード</a>
+          <a href="../cards/mitsui-sezon.html">三井ショッピングSEISON</a>
+        </div>
+        <div class="footer-col">
+          <h4>記事一覧</h4>
+          <a href="first-card-guide.html">はじめてのクレカ完全ガイド</a>
+          <a href="point-basics.html">ポイント還元率のしくみ</a>
+          <a href="money-basics.html">社会人1年目のお金の基本</a>
+          <a href="card-screening.html">クレカ審査のしくみ</a>
+          <a href="cashless-guide.html">キャッシュレス比較</a>
+          <a href="student-card.html">学生とクレカ</a>
+          <a href="nisa-card.html">新NISAとクレカ積立</a>
+          <a href="smartphone-pay.html">スマホ決済とクレカ</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 マネーマップ. All rights reserved.</p>
+        <p class="footer-disclaimer">本サイトの情報は一般的な情報提供を目的としており、投資・金融商品の購入を推奨するものではありません。カードの詳細は各社公式サイトをご確認ください。</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+  </script>
+</body>
+</html>
