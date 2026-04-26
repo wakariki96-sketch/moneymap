@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>給与明細の読み方・手取りを増やす方法 | マネーマップ</title>
+  <meta name="description" content="給与明細の各項目の意味、総支給から手取りまでの計算、手取りを合法的に増やす方法を新社会人向けにわかりやすく解説します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#0b1f3a;--navy-mid:#12305e;--accent:#0f172a;--accent-mid:#1e293b;--accent-light:#334155;--accent-pale:#f1f5f9;--gold:#b8921e;--gold-mid:#c9a227;--gold-light:#f0d67a;--white:#ffffff;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-600:#475569;--text:#1e293b;--green:#059669;--shadow-sm:0 1px 3px rgba(11,31,58,.06),0 4px 12px rgba(11,31,58,.06);--radius:10px;--radius-lg:16px;--transition:0.22s cubic-bezier(.4,0,.2,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:"Noto Sans JP",sans-serif;color:var(--text);background:var(--white);line-height:1.75;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.container{width:min(760px,calc(100% - 48px));margin:0 auto}
+    .site-header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--gray-200)}.header-inner{height:64px;display:flex;align-items:center;justify-content:space-between}.logo{display:flex;align-items:center;gap:10px;font-family:"Inter","Noto Sans JP",sans-serif;font-weight:800;color:var(--navy);font-size:1.05rem}.logo-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--navy),var(--navy-mid));color:var(--gold-light);display:grid;place-items:center;font-size:.9rem;font-weight:800}.back-link{font-size:.85rem;font-weight:600;color:var(--gray-600);padding:7px 14px;border-radius:6px;border:1px solid var(--gray-200)}.back-link:hover{background:var(--gray-100)}
+    .article-hero{background:linear-gradient(145deg,#020617 0%,#0f172a 55%,#1e293b 100%);color:var(--white);padding:56px 0 48px;position:relative;overflow:hidden}.article-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:52px 52px}.article-hero-inner{position:relative;z-index:1}.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:20px;font-size:.82rem;color:rgba(255,255,255,.6)}.article-tag{padding:3px 10px;border-radius:999px;background:rgba(240,214,122,.12);border:1px solid rgba(240,214,122,.25);color:rgba(240,214,122,.9);font-weight:700;font-size:.75rem}.article-hero h1{font-size:clamp(1.4rem,5vw,2.1rem);font-weight:800;line-height:1.3;margin-bottom:16px}.article-hero-sub{color:rgba(255,255,255,.75);font-size:.97rem;line-height:1.85;max-width:600px}
+    .toc-box{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;margin:40px 0}.toc-box h3{font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:14px}.toc-list{list-style:none;display:grid;gap:6px}.toc-list li a{font-size:.88rem;color:var(--navy);font-weight:600;display:flex;align-items:center;gap:8px}.toc-list li a::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--navy);flex-shrink:0}
+    .article-body{padding:48px 0 64px}.article-section{margin-bottom:56px}.article-section h2{font-size:clamp(1.15rem,3vw,1.5rem);font-weight:800;color:var(--navy);padding-bottom:10px;border-bottom:2px solid var(--navy);margin-bottom:24px}.article-section h3{font-size:1rem;font-weight:800;color:var(--navy);margin:24px 0 10px}.article-section p{font-size:.95rem;line-height:1.95;margin-bottom:14px}.article-section ul,.article-section ol{padding-left:20px;margin-bottom:14px}.article-section li{font-size:.95rem;line-height:1.85;margin-bottom:6px}
+    .callout{border-radius:var(--radius);padding:20px 24px;margin:24px 0}.callout-tip{background:#f0fdf8;border-left:4px solid #059669}.callout-warn{background:#fffbeb;border-left:4px solid var(--gold-mid)}.callout-info{background:var(--accent-pale);border-left:4px solid var(--navy)}.callout-title{font-weight:800;font-size:.88rem;margin-bottom:8px}.callout p{font-size:.9rem;margin-bottom:0;line-height:1.85}
+    .payslip-mock{background:var(--white);border:2px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;margin:24px 0;box-shadow:var(--shadow-sm)}.payslip-head{background:var(--navy);color:var(--white);padding:12px 20px;font-size:.85rem;font-weight:800}.payslip-section{padding:16px 20px;border-bottom:1px solid var(--gray-100)}.payslip-section-title{font-size:.78rem;font-weight:700;color:var(--gray-600);margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em}.payslip-row{display:flex;justify-content:space-between;padding:5px 0;font-size:.88rem;border-bottom:1px dashed var(--gray-100)}.payslip-row:last-child{border-bottom:none}.payslip-key{color:var(--gray-600)}.payslip-val{font-weight:700;color:var(--navy)}.payslip-val.minus{color:#dc2626}.payslip-total{padding:14px 20px;background:var(--gray-50);display:flex;justify-content:space-between;font-weight:800;font-size:.95rem;color:var(--navy)}
+    .mini-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);margin:24px 0;font-size:.88rem}.mini-table th{padding:12px 16px;background:var(--navy);color:var(--white);font-weight:700;text-align:left}.mini-table td{padding:12px 16px;border-bottom:1px solid var(--gray-100)}.mini-table tr:last-child td{border-bottom:none}.mini-table td:first-child{font-weight:700;color:var(--navy);background:var(--gray-50);width:35%}.hi{color:var(--green);font-weight:800}.mid{color:var(--gold-mid);font-weight:800}
+    .article-cta{background:linear-gradient(135deg,var(--navy),#020617);border-radius:var(--radius-lg);padding:32px 36px;color:var(--white);text-align:center;margin-top:48px}.article-cta h3{font-size:1.2rem;font-weight:800;margin-bottom:12px}.article-cta p{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:24px;line-height:1.8}.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:linear-gradient(135deg,var(--gold-mid),var(--gold));color:var(--navy);border-radius:999px;font-weight:800;font-size:.95rem;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform var(--transition)}.btn-gold:hover{transform:translateY(-2px)}
+    .related-grid{display:grid;gap:12px;margin-top:48px}.related-item{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:16px 20px;display:flex;justify-content:space-between;align-items:center}.related-item-name{font-weight:800;font-size:.92rem;color:var(--navy)}.related-item-desc{font-size:.8rem;color:var(--gray-600);margin-top:2px}.related-arrow{color:var(--navy)}
+    .site-footer{background:var(--navy);color:var(--white);padding:48px 0 32px}.footer-grid{display:grid;gap:32px;margin-bottom:32px}.footer-brand p{margin-top:12px;font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.8}.footer-col h4{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:12px}.footer-col a{display:block;font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:8px}.footer-col a:hover{color:var(--white)}.footer-bottom{padding-top:28px;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.4)}.footer-disclaimer{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.8;margin-top:16px}
+    @media(min-width:640px){.footer-grid{grid-template-columns:1.6fr 1fr 1fr}}@media(max-width:639px){.container{width:calc(100% - 36px)}}
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">M</span><span>マネーマップ</span></a>
+      <a href="../index.html" class="back-link">← トップへ</a>
+    </div>
+  </header>
+  <main>
+    <section class="article-hero">
+      <div class="container article-hero-inner">
+        <div class="article-meta"><span class="article-tag">給与・税金</span><span>読了：約6分</span><span>2025年</span></div>
+        <h1>給与明細の読み方<br>手取りを増やす方法</h1>
+        <p class="article-hero-sub">「総支給30万円なのに手取り24万円しかない」——その差額が何なのか、どうすれば手取りを増やせるかを解説します。</p>
+      </div>
+    </section>
+    <div class="container">
+      <nav class="toc-box">
+        <h3>📋 この記事の内容</h3>
+        <ul class="toc-list">
+          <li><a href="#structure">給与明細の構造を理解する</a></li>
+          <li><a href="#deductions">各控除項目の意味</a></li>
+          <li><a href="#calculation">手取り計算の仕組み</a></li>
+          <li><a href="#increase">手取りを増やす4つの方法</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container article-body">
+      <section class="article-section" id="structure">
+        <h2>📄 給与明細の構造を理解する</h2>
+        <p>給与明細は大きく「支給」と「控除」の2つに分かれます。支給から控除を引いた金額が「手取り」です。</p>
+        <div class="payslip-mock">
+          <div class="payslip-head">給与明細 — サンプル（月収30万円の場合）</div>
+          <div class="payslip-section">
+            <div class="payslip-section-title">【支給】</div>
+            <div class="payslip-row"><span class="payslip-key">基本給</span><span class="payslip-val">280,000円</span></div>
+            <div class="payslip-row"><span class="payslip-key">交通費</span><span class="payslip-val">10,000円</span></div>
+            <div class="payslip-row"><span class="payslip-key">残業手当</span><span class="payslip-val">10,000円</span></div>
+          </div>
+          <div class="payslip-section">
+            <div class="payslip-section-title">【控除（天引きされるもの）】</div>
+            <div class="payslip-row"><span class="payslip-key">健康保険料</span><span class="payslip-val minus">−14,900円</span></div>
+            <div class="payslip-row"><span class="payslip-key">厚生年金保険料</span><span class="payslip-val minus">−27,450円</span></div>
+            <div class="payslip-row"><span class="payslip-key">雇用保険料</span><span class="payslip-val minus">−1,800円</span></div>
+            <div class="payslip-row"><span class="payslip-key">所得税</span><span class="payslip-val minus">−8,530円</span></div>
+            <div class="payslip-row"><span class="payslip-key">住民税</span><span class="payslip-val minus">−13,500円</span></div>
+          </div>
+          <div class="payslip-total"><span>差引支給額（手取り）</span><span>233,820円</span></div>
+        </div>
+        <p>総支給300,000円に対して、手取りは約234,000円。約22%が各種控除で引かれています。</p>
+      </section>
+
+      <section class="article-section" id="deductions">
+        <h2>🔍 各控除項目の意味</h2>
+        <table class="mini-table">
+          <thead><tr><th>控除項目</th><th>内容</th><th>税率・割合</th></tr></thead>
+          <tbody>
+            <tr><td>健康保険料</td><td>病院代3割負担・傷病手当の財源</td><td>約10%（会社折半）</td></tr>
+            <tr><td>厚生年金保険料</td><td>老後の年金を積み立て</td><td>18.3%（会社折半）</td></tr>
+            <tr><td>雇用保険料</td><td>失業給付・育休給付の財源</td><td>0.6%</td></tr>
+            <tr><td>所得税</td><td>所得に応じた国税（累進課税）</td><td>5〜45%（課税所得次第）</td></tr>
+            <tr><td>住民税</td><td>都道府県・市区町村に納める地方税</td><td>一律10%（前年所得ベース）</td></tr>
+          </tbody>
+        </table>
+        <div class="callout callout-info">
+          <div class="callout-title">💡 住民税は「前年所得」で計算される</div>
+          <p>住民税は前年（1〜12月）の所得に基づいて計算され、翌年6月から1年間かけて天引きされます。社会人1年目（4〜5月入社）は最初の1年間、住民税が0円になることが多いです。</p>
+        </div>
+      </section>
+
+      <section class="article-section" id="calculation">
+        <h2>🧮 手取り計算の仕組み</h2>
+        <p>「年収」と「手取り年収」は別物です。おおよその目安は以下の通りです。</p>
+        <table class="mini-table">
+          <thead><tr><th>額面年収</th><th>手取り年収（目安）</th><th>手取り率</th></tr></thead>
+          <tbody>
+            <tr><td>200万円</td><td class="mid">約162万円</td><td>81%</td></tr>
+            <tr><td>300万円</td><td class="mid">約240万円</td><td>80%</td></tr>
+            <tr><td>400万円</td><td class="mid">約315万円</td><td>79%</td></tr>
+            <tr><td>500万円</td><td class="mid">約390万円</td><td>78%</td></tr>
+            <tr><td>600万円</td><td class="mid">約462万円</td><td>77%</td></tr>
+          </tbody>
+        </table>
+        <p>年収が上がるほど手取り率は下がります。所得税が累進課税（高い所得ほど税率が上がる）のためです。</p>
+      </section>
+
+      <section class="article-section" id="increase">
+        <h2>💡 手取りを増やす4つの方法</h2>
+        <h3>1. iDeCoで所得控除を増やす</h3>
+        <p>iDeCoの掛け金は全額所得控除になります。月2.3万円（会社員の上限）を拠出すると、年間約5〜6万円の節税効果があります。</p>
+        <h3>2. ふるさと納税を活用する</h3>
+        <p>実質2,000円の自己負担で返礼品をもらいながら、翌年の住民税が安くなります。年収400万円なら4万円程度の節税が可能。</p>
+        <h3>3. 医療費・生命保険料控除を申請する</h3>
+        <p>年末調整で生命保険料控除（最大12万円）を必ず申請。医療費が10万円を超えた年は確定申告で控除できます。</p>
+        <h3>4. 交通費・副業費用を経費として計上する</h3>
+        <p>副業がある場合、収入を得るためにかかった費用（交通費・書籍代・PC等）を経費として確定申告で控除できます。</p>
+        <div class="callout callout-tip">
+          <div class="callout-title">✅ 節税の積み重ねが長期的な差を生む</div>
+          <p>iDeCo＋ふるさと納税を組み合わせると、年間10万円以上の節税になることも。この節税分をNISAに回せば、さらに資産形成が加速します。</p>
+        </div>
+        <div class="article-cta">
+          <h3>節税した分はクレカ積立でNISAへ</h3>
+          <p>節税で浮いたお金を投資に回すのが最も効率的。ポイント還元の高いクレカでNISA積立を始めましょう。</p>
+          <a href="#" class="btn-gold">LINE診断を試す →</a>
+        </div>
+      </section>
+
+      <div class="related-grid">
+        <h3 style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:16px">関連記事</h3>
+        <a href="health-insurance.html" class="related-item"><div><div class="related-item-name">社会保険のしくみ完全ガイド</div><div class="related-item-desc">健康保険・年金・雇用保険の全体像</div></div><span class="related-arrow">→</span></a>
+        <a href="tax-savings.html" class="related-item"><div><div class="related-item-name">ふるさと納税・医療費控除で節税する方法</div><div class="related-item-desc">知らないと損する節税テクニック</div></div><span class="related-arrow">→</span></a>
+        <a href="ideco.html" class="related-item"><div><div class="related-item-name">iDeCoとNISAの違い・使い分け</div><div class="related-item-desc">節税しながら老後資産を積み立てる</div></div><span class="related-arrow">→</span></a>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="logo"><span class="logo-mark">M</span><span>マネーマップ</span></div><p>18〜25歳のためのお金と投資の情報サイト</p></div>
+        <div class="footer-col"><h4>カード情報</h4><a href="../cards/smbc-nl.html">三井住友カード(NL)</a><a href="../cards/jcb-w.html">JCBカードW</a><a href="../cards/epos-card.html">エポスカード</a></div>
+        <div class="footer-col"><h4>記事一覧</h4><a href="money-basics.html">社会人1年目のお金の基本</a><a href="salary-payslip.html">給与明細の読み方</a><a href="health-insurance.html">社会保険のしくみ</a><a href="tax-savings.html">ふるさと納税で節税</a></div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 マネーマップ. All rights reserved.</p><p class="footer-disclaimer">本サイトの情報は一般的な情報提供を目的としており、税務・保険に関する最終的な判断は専門家にご確認ください。</p></div>
+    </div>
+  </footer>
+  <script>const h=document.getElementById('site-header');window.addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>10),{passive:true});</script>
+</body>
+</html>
