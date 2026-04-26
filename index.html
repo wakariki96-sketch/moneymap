@@ -149,9 +149,10 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(26,74,138,.55) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(184,146,30,.12) 0%, transparent 60%),
-        linear-gradient(160deg, #0b1f3a 0%, #0f2d52 50%, #0b1f3a 100%);
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(11,31,58,.72) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(184,146,30,.18) 0%, transparent 60%),
+        linear-gradient(160deg, rgba(11,31,58,.88) 0%, rgba(15,45,82,.75) 50%, rgba(11,31,58,.9) 100%),
+        url('images/hero-bg.png') center/cover no-repeat;
     }
 
     .hero-grid-overlay {
@@ -719,7 +720,75 @@
       margin-top: 16px;
     }
 
+    /* ── Article Cards (image grid) ── */
+    .article-card-grid {
+      display: grid;
+      gap: 20px;
+    }
+    .article-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(184,146,30,.35);
+    }
+    .article-card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      background: var(--navy);
+    }
+    .article-card-body {
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .article-card-tag {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--gold-mid);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .article-card-title {
+      font-size: .97rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.45;
+      margin-bottom: 6px;
+    }
+    .article-card-desc {
+      font-size: .83rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .article-card-read {
+      margin-top: 10px;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--navy-light, var(--navy-mid));
+    }
+
     /* ── Responsive ── */
+    @media (min-width: 640px) {
+      .article-card-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
     @media (min-width: 640px) {
       .why-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -1067,182 +1136,182 @@
     </section>
 
     <!-- Articles -->
-    <section class="articles-section" id="articles" style="padding:72px 0;background:var(--white)">
+    <section class="articles-section" id="articles" style="padding:72px 0;background:var(--gray-50)">
       <div class="container">
         <div class="section-head">
           <div class="section-eyebrow">Financial Knowledge</div>
           <h2 class="section-title">お金の基礎知識</h2>
           <p class="section-desc">クレカ選びの前に知っておきたい、18〜25歳のためのお金の教科書。</p>
         </div>
-        <div style="display:grid;gap:16px">
+        <div class="article-card-grid">
 
-          <a href="articles/first-card-guide.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">💳</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">クレカ入門</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">はじめてのクレジットカード完全ガイド</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">失敗しない選び方5つのポイント・リボ払いの落とし穴・国際ブランドの違いまで徹底解説</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/first-card-guide.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-credit-card.png" alt="はじめてのクレジットカード完全ガイド" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">クレカ入門</div>
+              <div class="article-card-title">はじめてのクレジットカード完全ガイド</div>
+              <div class="article-card-desc">失敗しない選び方5つのポイント・リボ払いの落とし穴・国際ブランドの違いまで徹底解説</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/point-basics.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">💰</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">ポイント活用</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">ポイント還元率のしくみ完全解説</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">還元率の計算方法から「特定店舗×高還元」戦略まで。年間数万円の差が生まれる理由</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/point-basics.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-points.png" alt="ポイント還元率のしくみ完全解説" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">ポイント活用</div>
+              <div class="article-card-title">ポイント還元率のしくみ完全解説</div>
+              <div class="article-card-desc">還元率の計算方法から「特定店舗×高還元」戦略まで。年間数万円の差が生まれる理由</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/money-basics.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">📈</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">お金の基本</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">社会人1年目がやるべきお金の基本</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">先取り貯金・緊急資金・信用情報のしくみ。最初の2年で知っておくべきすべて</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/money-basics.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-money-basics.png" alt="社会人1年目がやるべきお金の基本" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">お金の基本</div>
+              <div class="article-card-title">社会人1年目がやるべきお金の基本</div>
+              <div class="article-card-desc">先取り貯金・緊急資金・信用情報のしくみ。最初の2年で知っておくべきすべて</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/card-screening.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">🔍</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">審査・申し込み</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">クレカ審査って何を見てるの？</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">審査で見られる5項目・学生でも通るコツ・申し込みブラックを避ける方法を解説</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/card-screening.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-credit-card.png" alt="クレカ審査って何を見てるの？" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">審査・申し込み</div>
+              <div class="article-card-title">クレカ審査って何を見てるの？</div>
+              <div class="article-card-desc">審査で見られる5項目・学生でも通るコツ・申し込みブラックを避ける方法を解説</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/cashless-guide.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">📱</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">キャッシュレス</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">キャッシュレス決済を徹底比較</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">クレカ・QRコード・電子マネーの違いとポイント二重取り戦略。シーン別おすすめ組み合わせ</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/cashless-guide.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-points.png" alt="キャッシュレス決済を徹底比較" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">キャッシュレス</div>
+              <div class="article-card-title">キャッシュレス決済を徹底比較</div>
+              <div class="article-card-desc">クレカ・QRコード・電子マネーの違いとポイント二重取り戦略。シーン別おすすめ組み合わせ</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/student-card.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">🎓</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">学生・若者向け</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">学生のうちにクレカを作るべき3つの理由</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">信用情報の積み上げ・審査難易度・お金の管理習慣——今作らないと損する理由を解説</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/student-card.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-money-basics.png" alt="学生のうちにクレカを作るべき3つの理由" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">学生・若者向け</div>
+              <div class="article-card-title">学生のうちにクレカを作るべき3つの理由</div>
+              <div class="article-card-desc">信用情報の積み上げ・審査難易度・お金の管理習慣——今作らないと損する理由を解説</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/nisa-card.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">🌱</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">NISA・投資</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">新NISAをクレカ積立で始める方法</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">投資しながらポイントも貯まるクレカ積立。カード別還元率比較と設定手順を解説</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/nisa-card.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-nisa.png" alt="新NISAをクレカ積立で始める方法" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">NISA・投資</div>
+              <div class="article-card-title">新NISAをクレカ積立で始める方法</div>
+              <div class="article-card-desc">投資しながらポイントも貯まるクレカ積立。カード別還元率比較と設定手順を解説</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/smartphone-pay.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">🍎</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">スマホ・キャッシュレス</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">Apple Pay・Google Payとクレカの正しい使い方</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">iD・QUICPayの仕組みとクレカ連携方法。スマホ払いでポイントを正しく貯める設定</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/smartphone-pay.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-credit-card.png" alt="Apple Pay・Google Payとクレカの正しい使い方" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">スマホ・キャッシュレス</div>
+              <div class="article-card-title">Apple Pay・Google Payとクレカの正しい使い方</div>
+              <div class="article-card-desc">iD・QUICPayの仕組みとクレカ連携方法。スマホ払いでポイントを正しく貯める設定</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/life-insurance.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">🛡️</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">保険</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">若者に生命保険は本当に必要？</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">掛け捨てvs積立の違い・公的保険でカバーされること・保険の優先順位を整理</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/life-insurance.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-insurance.png" alt="若者に生命保険は本当に必要？" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">保険</div>
+              <div class="article-card-title">若者に生命保険は本当に必要？</div>
+              <div class="article-card-desc">掛け捨てvs積立の違い・公的保険でカバーされること・保険の優先順位を整理</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/health-insurance.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">🏛️</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">社会保険・年金</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">社会保険のしくみ完全ガイド</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">健康保険・厚生年金・雇用保険・給与明細の控除項目をすべて解説</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/health-insurance.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-insurance.png" alt="社会保険のしくみ完全ガイド" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">社会保険・年金</div>
+              <div class="article-card-title">社会保険のしくみ完全ガイド</div>
+              <div class="article-card-desc">健康保険・厚生年金・雇用保険・給与明細の控除項目をすべて解説</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/investment-types.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">📊</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">投資入門</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">株・投資信託・ETF・債券の違いを整理</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">5種類の投資商品の特徴・リスクとリターンの関係・初心者に最適な選び方</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/investment-types.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-investment.png" alt="株・投資信託・ETF・債券の違いを整理" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">投資入門</div>
+              <div class="article-card-title">株・投資信託・ETF・債券の違いを整理</div>
+              <div class="article-card-desc">5種類の投資商品の特徴・リスクとリターンの関係・初心者に最適な選び方</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/index-fund.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">🌿</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">投資・NISA</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">インデックス投資入門・長期積立の考え方</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">複利のパワー・アクティブvsインデックスの比較・おすすめファンドと始め方</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/index-fund.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-investment.png" alt="インデックス投資入門・長期積立の考え方" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">投資・NISA</div>
+              <div class="article-card-title">インデックス投資入門・長期積立の考え方</div>
+              <div class="article-card-desc">複利のパワー・アクティブvsインデックスの比較・おすすめファンドと始め方</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/ideco.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">💜</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">iDeCo・NISA</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">iDeCoとNISAの違い・使い分け完全ガイド</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">節税効果の計算・引き出し制限・どちらを先に始めるべきかを整理</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/ideco.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-nisa.png" alt="iDeCoとNISAの違い・使い分け完全ガイド" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">iDeCo・NISA</div>
+              <div class="article-card-title">iDeCoとNISAの違い・使い分け完全ガイド</div>
+              <div class="article-card-desc">節税効果の計算・引き出し制限・どちらを先に始めるべきかを整理</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/emergency-fund.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">💙</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">貯金・資産形成</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">緊急資金の正しい作り方</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">いくら必要か・どこに置くべきか・先取り貯金の仕組みを解説</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/emergency-fund.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-salary.png" alt="緊急資金の正しい作り方" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">貯金・資産形成</div>
+              <div class="article-card-title">緊急資金の正しい作り方</div>
+              <div class="article-card-desc">いくら必要か・どこに置くべきか・先取り貯金の仕組みを解説</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/tax-savings.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">🏔️</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">節税・税金</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">ふるさと納税・医療費控除で節税する方法</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">ふるさと納税の手順・控除上限額・年末調整で使える控除を一覧で解説</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/tax-savings.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-tax.png" alt="ふるさと納税・医療費控除で節税する方法" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">節税・税金</div>
+              <div class="article-card-title">ふるさと納税・医療費控除で節税する方法</div>
+              <div class="article-card-desc">ふるさと納税の手順・控除上限額・年末調整で使える控除を一覧で解説</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/salary-payslip.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">📋</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">給与・税金</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">給与明細の読み方・手取りを増やす方法</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">各控除項目の意味・総支給から手取りまでの計算・手取りを増やす4つの方法</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/salary-payslip.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-salary.png" alt="給与明細の読み方・手取りを増やす方法" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">給与・税金</div>
+              <div class="article-card-title">給与明細の読み方・手取りを増やす方法</div>
+              <div class="article-card-desc">各控除項目の意味・総支給から手取りまでの計算・手取りを増やす4つの方法</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
-          <a href="articles/housing-costs.html" style="display:flex;gap:20px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;transition:box-shadow 0.22s,border-color 0.22s;text-decoration:none" onmouseover="this.style.boxShadow='var(--shadow)';this.style.borderColor='rgba(184,146,30,.35)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='var(--gray-200)'">
-            <div style="font-size:2rem;flex-shrink:0;line-height:1">🏠</div>
-            <div>
-              <div style="font-size:.75rem;font-weight:700;color:var(--gold-mid);letter-spacing:.1em;margin-bottom:6px">一人暮らし・生活</div>
-              <div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px">一人暮らしの初期費用とお金の管理術</div>
-              <div style="font-size:.88rem;color:var(--gray-600);line-height:1.7">初期費用の内訳・毎月の生活費の目安・口座を3つに分ける管理ルール</div>
-              <div style="margin-top:10px;font-size:.8rem;font-weight:700;color:var(--navy-light)">読む →</div>
+          <a href="articles/housing-costs.html" class="article-card">
+            <img class="article-card-img" src="images/thumb-housing.png" alt="一人暮らしの初期費用とお金の管理術" loading="lazy">
+            <div class="article-card-body">
+              <div class="article-card-tag">一人暮らし・生活</div>
+              <div class="article-card-title">一人暮らしの初期費用とお金の管理術</div>
+              <div class="article-card-desc">初期費用の内訳・毎月の生活費の目安・口座を3つに分ける管理ルール</div>
+              <div class="article-card-read">読む →</div>
             </div>
           </a>
 
