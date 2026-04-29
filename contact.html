@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>お問い合わせ | moneymap</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="legal-page-shell">
+      <header class="legal-header">
+        <a class="legal-logo" href="index.html" aria-label="moneymap ホーム"><span>money</span><strong>map</strong></a>
+        <a class="legal-back" href="index.html">トップへ戻る</a>
+      </header>
+
+      <main class="legal-content contact-content">
+        <h1>お問い合わせ</h1>
+        <p class="contact-lead">ご要件を入力して「完了」を押してください。</p>
+
+        <form class="contact-form" action="contact.php" method="post">
+          <div class="form-field">
+            <label for="name">お名前 <span>任意</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" maxlength="80" />
+          </div>
+
+          <div class="form-field">
+            <label for="email">返信先メールアドレス <span>任意</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="160" />
+          </div>
+
+          <div class="form-field">
+            <label for="message">ご要件 <strong>必須</strong></label>
+            <textarea id="message" name="message" rows="8" required maxlength="3000" placeholder="お問い合わせ内容を入力してください"></textarea>
+          </div>
+
+          <input class="form-hidden" type="text" name="website" tabindex="-1" autocomplete="off" />
+
+          <button class="contact-submit" type="submit">完了</button>
+        </form>
+      </main>
+
+      <footer class="site-footer" aria-label="サイト情報">
+        <div class="footer-head">
+          <a class="footer-logo" href="index.html" aria-label="moneymap ホーム"><span>money</span><strong>map</strong></a>
+          <nav class="footer-nav" aria-label="フッターナビゲーション">
+            <a href="contact.html">お問い合わせ</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="affiliate.html">広告について</a>
+            <a href="disclaimer.html">免責事項</a>
+          </nav>
+        </div>
+        <p class="footer-disclosure">当サイトはアフィリエイト広告を利用しています。</p>
+        <p class="footer-copy">© 2026 moneymap. All Rights Reserved.</p>
+      </footer>
+    </div>
+  </body>
+</html>

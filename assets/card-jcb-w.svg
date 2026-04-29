@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 427" role="img" aria-label="JCB CARD W black card mockup">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbff" />
+      <stop offset="1" stop-color="#e8f1fb" />
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#171b22" />
+      <stop offset="0.42" stop-color="#0b1018" />
+      <stop offset="1" stop-color="#222a35" />
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff1a8" />
+      <stop offset="0.45" stop-color="#d9aa45" />
+      <stop offset="1" stop-color="#f8d982" />
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.24" />
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0.05" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#031735" flood-opacity="0.24" />
+    </filter>
+  </defs>
+
+  <rect width="760" height="427" rx="26" fill="url(#bg)" />
+  <ellipse cx="380" cy="362" rx="250" ry="30" fill="#0a2750" opacity="0.12" />
+
+  <g filter="url(#shadow)">
+    <rect x="75" y="63" width="610" height="315" rx="22" fill="url(#card)" />
+    <path d="M75 63h610v315H75Z" fill="none" stroke="#303946" stroke-width="1.2" opacity="0.75" />
+    <path d="M75 63h610L401 378H75Z" fill="#111722" opacity="0.74" />
+    <path d="M685 63 420 378h265Z" fill="#27313d" opacity="0.75" />
+    <path d="M252 63h433L367 205Z" fill="url(#shine)" opacity="0.62" />
+    <path d="M75 378 297 184l178 194Z" fill="#03070d" opacity="0.28" />
+
+    <g transform="translate(112 112)">
+      <rect width="70" height="52" rx="10" fill="url(#chip)" />
+      <path d="M18 0v52M52 0v52M0 17h70M0 35h70" stroke="#9b7932" stroke-width="2" opacity="0.55" />
+      <rect x="17" y="12" width="36" height="28" rx="5" fill="none" stroke="#fff4bd" stroke-width="2" opacity="0.5" />
+    </g>
+
+    <g transform="translate(574 127)" fill="none" stroke="#d9e5ef" stroke-linecap="round" opacity="0.95">
+      <path d="M0 34c15-15 15-38 0-53" stroke-width="5" />
+      <path d="M16 47c23-24 23-57 0-80" stroke-width="5" opacity="0.72" />
+    </g>
+
+    <text x="492" y="279" fill="#f6fbff" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="1">JCB CARD W</text>
+    <text x="493" y="309" fill="#bac6d3" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="15" font-weight="600" letter-spacing="2">BLACK STYLE</text>
+
+    <g transform="translate(567 326)">
+      <rect width="33" height="38" rx="7" fill="#1f77c9" />
+      <rect x="29" width="33" height="38" rx="7" fill="#d82d2f" />
+      <rect x="58" width="33" height="38" rx="7" fill="#2ca34a" />
+      <text x="45.5" y="25" text-anchor="middle" fill="#ffffff" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="17" font-weight="800">JCB</text>
+    </g>
+  </g>
+</svg>

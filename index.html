@@ -1,1486 +1,238 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>マネーマップ｜18〜25歳のための金融リテラシーガイド</title>
-  <meta name="description" content="マネーマップは学生・新社会人が自分に合うクレジットカードや金融商品を安心して選べる情報サイトです。LINE診断であなたにぴったりの1枚を提案します。">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    /* ── Design Tokens ── */
-    :root {
-      --navy:       #0b1f3a;
-      --navy-mid:   #12305e;
-      --navy-light: #1a4a8a;
-      --gold:       #b8921e;
-      --gold-mid:   #c9a227;
-      --gold-light: #f0d67a;
-      --gold-pale:  #fdf6df;
-      --white:      #ffffff;
-      --gray-50:    #f8fafc;
-      --gray-100:   #f1f5f9;
-      --gray-200:   #e2e8f0;
-      --gray-400:   #94a3b8;
-      --gray-600:   #475569;
-      --gray-800:   #1e293b;
-      --green:      #06c755;
-      --text:       #1e293b;
-      --radius-sm:  6px;
-      --radius:     10px;
-      --radius-lg:  16px;
-      --shadow-sm:  0 1px 3px rgba(11,31,58,.06), 0 4px 12px rgba(11,31,58,.06);
-      --shadow:     0 4px 16px rgba(11,31,58,.10), 0 1px 4px rgba(11,31,58,.06);
-      --shadow-lg:  0 16px 48px rgba(11,31,58,.14), 0 4px 16px rgba(11,31,58,.08);
-      --transition: 0.22s cubic-bezier(.4,0,.2,1);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: "Noto Sans JP", sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    .container {
-      width: min(1100px, calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    /* ── Header ── */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--gray-200);
-      transition: box-shadow var(--transition);
-    }
-
-    .site-header.scrolled {
-      box-shadow: var(--shadow-sm);
-    }
-
-    .header-inner {
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: "Inter", "Noto Sans JP", sans-serif;
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: var(--navy);
-      letter-spacing: -0.01em;
-    }
-
-    .logo-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-      color: var(--gold-light);
-      display: grid;
-      place-items: center;
-      font-size: 1rem;
-      font-weight: 800;
-      box-shadow: 0 2px 8px rgba(11,31,58,.25);
-    }
-
-    .header-nav {
-      display: none;
-      align-items: center;
-      gap: 28px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--gray-600);
-    }
-
-    .header-nav a:hover { color: var(--navy); }
-
-    .header-cta {
-      display: none;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: 999px;
-      background: var(--navy);
-      color: var(--white);
-      font-size: 0.875rem;
-      font-weight: 700;
-      transition: background var(--transition), transform var(--transition);
-    }
-
-    .header-cta:hover {
-      background: var(--navy-mid);
-      transform: translateY(-1px);
-    }
-
-    /* ── Hero ── */
-    .hero {
-      position: relative;
-      min-height: 680px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: var(--navy);
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(11,31,58,.72) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(184,146,30,.18) 0%, transparent 60%),
-        linear-gradient(160deg, rgba(11,31,58,.88) 0%, rgba(15,45,82,.75) 50%, rgba(11,31,58,.9) 100%),
-        url('images/hero-bg.png') center/cover no-repeat;
-    }
-
-    .hero-grid-overlay {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      padding: 100px 0 90px;
-      max-width: 660px;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 14px;
-      border-radius: 999px;
-      background: rgba(240,214,122,.12);
-      border: 1px solid rgba(240,214,122,.3);
-      color: var(--gold-light);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      margin-bottom: 24px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.1rem, 5.5vw, 3.6rem);
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      margin-bottom: 20px;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--gold-light);
-    }
-
-    .hero-sub {
-      font-size: clamp(0.95rem, 2vw, 1.1rem);
-      color: rgba(255,255,255,.75);
-      max-width: 520px;
-      margin-bottom: 40px;
-      line-height: 1.85;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .btn-line {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 15px 28px;
-      border-radius: var(--radius);
-      background: var(--green);
-      color: var(--white);
-      font-weight: 800;
-      font-size: 0.97rem;
-      box-shadow: 0 8px 24px rgba(6,199,85,.3);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .btn-line:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(6,199,85,.4);
-    }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 15px 28px;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.2);
-      color: rgba(255,255,255,.9);
-      font-weight: 700;
-      font-size: 0.97rem;
-      transition: background var(--transition), transform var(--transition);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(255,255,255,.14);
-      transform: translateY(-2px);
-    }
-
-    .hero-trust {
-      position: relative;
-      z-index: 1;
-      margin-top: 52px;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,.1);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px 40px;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.82rem;
-      color: rgba(255,255,255,.6);
-    }
-
-    .trust-item strong {
-      color: rgba(255,255,255,.9);
-      font-weight: 700;
-    }
-
-    /* ── Section Common ── */
-    section { padding: 80px 0; }
-
-    .section-eyebrow {
-      font-family: "Inter", sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold-mid);
-      margin-bottom: 10px;
-    }
-
-    .section-title {
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: 800;
-      color: var(--navy);
-      line-height: 1.25;
-      letter-spacing: -0.01em;
-      margin-bottom: 14px;
-    }
-
-    .section-desc {
-      font-size: 0.97rem;
-      color: var(--gray-600);
-      max-width: 560px;
-      line-height: 1.85;
-    }
-
-    .section-head {
-      margin-bottom: 48px;
-    }
-
-    /* ── Why Section ── */
-    .why-section {
-      background: var(--gray-50);
-    }
-
-    .why-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    .why-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg);
-      padding: 32px 28px;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .why-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
-    }
-
-    .why-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, var(--gold-pale) 0%, #fef3c7 100%);
-      display: grid;
-      place-items: center;
-      font-size: 1.4rem;
-      margin-bottom: 20px;
-      border: 1px solid rgba(184,146,30,.15);
-    }
-
-    .why-card h3 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 10px;
-    }
-
-    .why-card p {
-      font-size: 0.9rem;
-      color: var(--gray-600);
-      line-height: 1.85;
-    }
-
-    /* ── Flow Section ── */
-    .flow-section {
-      background: var(--white);
-    }
-
-    .flow-list {
-      display: grid;
-      gap: 0;
-      position: relative;
-    }
-
-    .flow-item {
-      display: flex;
-      gap: 24px;
-      padding-bottom: 40px;
-      position: relative;
-    }
-
-    .flow-item:last-child { padding-bottom: 0; }
-
-    .flow-item:not(:last-child)::before {
-      content: '';
-      position: absolute;
-      left: 23px;
-      top: 48px;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--gray-200), transparent);
-    }
-
-    .flow-num {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-      color: var(--white);
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 4px 12px rgba(11,31,58,.25);
-    }
-
-    .flow-content {
-      padding-top: 10px;
-    }
-
-    .flow-content h4 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 6px;
-    }
-
-    .flow-content p {
-      font-size: 0.9rem;
-      color: var(--gray-600);
-      line-height: 1.85;
-    }
-
-    .flow-badge {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 3px 12px;
-      background: var(--gold-pale);
-      border: 1px solid rgba(184,146,30,.2);
-      border-radius: 4px;
-      font-size: 0.78rem;
-      color: var(--gold);
-      font-weight: 700;
-    }
-
-    /* ── Cards Section ── */
-    .cards-section {
-      background: var(--gray-50);
-    }
-
-    .card-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    .card-item {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-    }
-
-    .card-item:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--gold-mid);
-    }
-
-    .card-item-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .card-thumbnail {
-      width: 80px;
-      height: 50px;
-      border-radius: 6px;
-      background: linear-gradient(135deg, #1a3a6b 0%, #0b2252 100%);
-      border: 1px solid rgba(255,255,255,.15);
-      display: grid;
-      place-items: center;
-      font-size: 0.55rem;
-      color: rgba(255,255,255,.7);
-      letter-spacing: 0.06em;
-      text-align: center;
-      flex-shrink: 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card-thumbnail::after {
-      content: '';
-      position: absolute;
-      top: -10px; right: -10px;
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: rgba(240,214,122,.15);
-    }
-
-    .card-badge {
-      padding: 4px 10px;
-      border-radius: 4px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .badge-popular {
-      background: #fff3cd;
-      color: #92610a;
-      border: 1px solid #fcd34d;
-    }
-
-    .badge-beginner {
-      background: #dbeafe;
-      color: #1e40af;
-      border: 1px solid #93c5fd;
-    }
-
-    .badge-new {
-      background: var(--gold-pale);
-      color: var(--gold);
-      border: 1px solid rgba(184,146,30,.3);
-    }
-
-    .card-item h3 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--navy);
-      line-height: 1.4;
-    }
-
-    .card-specs {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .spec-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.85rem;
-      padding: 6px 0;
-      border-bottom: 1px solid var(--gray-100);
-    }
-
-    .spec-row:last-child { border-bottom: none; }
-
-    .spec-row .spec-key { color: var(--gray-600); }
-    .spec-row .spec-val { font-weight: 700; color: var(--navy); }
-    .spec-row .spec-val.accent { color: var(--gold); }
-
-    .card-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 13px;
-      border-radius: var(--radius);
-      background: var(--navy);
-      color: var(--white);
-      font-weight: 800;
-      font-size: 0.9rem;
-      margin-top: auto;
-      transition: background var(--transition), transform var(--transition);
-    }
-
-    .card-link:hover {
-      background: var(--navy-mid);
-      transform: translateY(-1px);
-    }
-
-    .card-link-arrow {
-      font-size: 0.8rem;
-      transition: transform var(--transition);
-    }
-
-    .card-item:hover .card-link-arrow {
-      transform: translateX(3px);
-    }
-
-    /* ── Notice Banner ── */
-    .notice-banner {
-      margin-top: 36px;
-      padding: 16px 20px;
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-left: 4px solid var(--gold-mid);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      font-size: 0.84rem;
-      color: var(--gray-600);
-      line-height: 1.8;
-    }
-
-    /* ── CTA Banner ── */
-    .cta-section {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-      padding: 80px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
-
-    .cta-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-eyebrow {
-      display: inline-block;
-      padding: 4px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(240,214,122,.3);
-      color: var(--gold-light);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      margin-bottom: 16px;
-    }
-
-    .cta-section h2 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.25;
-      margin-bottom: 14px;
-    }
-
-    .cta-section p {
-      font-size: 0.97rem;
-      color: rgba(255,255,255,.7);
-      margin-bottom: 36px;
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cta-btns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-    }
-
-    /* ── Footer ── */
-    .site-footer {
-      background: var(--navy);
-      color: var(--white);
-      padding: 56px 0 32px;
-    }
-
-    .footer-grid {
-      display: grid;
-      gap: 40px;
-      margin-bottom: 48px;
-    }
-
-    .footer-brand .logo {
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-
-    .footer-brand p {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,.55);
-      line-height: 1.85;
-      max-width: 280px;
-    }
-
-    .footer-col h4 {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: rgba(255,255,255,.5);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer-col ul li a {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,.65);
-      transition: color var(--transition);
-    }
-
-    .footer-col ul li a:hover {
-      color: var(--white);
-    }
-
-    .footer-bottom {
-      padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,.1);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,.4);
-    }
-
-    .footer-disclaimer {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,.35);
-      line-height: 1.8;
-      margin-top: 16px;
-    }
-
-    /* ── Article Cards (image grid) ── */
-    .article-card-grid {
-      display: grid;
-      gap: 20px;
-    }
-    .article-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-    }
-    .article-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(184,146,30,.35);
-    }
-    .article-card-img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      display: block;
-      background: var(--navy);
-    }
-    .article-card-body {
-      padding: 18px 20px 20px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-    .article-card-tag {
-      font-size: .72rem;
-      font-weight: 700;
-      color: var(--gold-mid);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .article-card-title {
-      font-size: .97rem;
-      font-weight: 800;
-      color: var(--navy);
-      line-height: 1.45;
-      margin-bottom: 6px;
-    }
-    .article-card-desc {
-      font-size: .83rem;
-      color: var(--gray-600);
-      line-height: 1.7;
-      flex: 1;
-    }
-    .article-card-read {
-      margin-top: 10px;
-      font-size: .8rem;
-      font-weight: 700;
-      color: var(--navy-light, var(--navy-mid));
-    }
-
-    /* ── Responsive ── */
-    @media (min-width: 640px) {
-      .article-card-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (min-width: 640px) {
-      .why-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .card-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .card-grid .card-item {
-        flex: 0 1 calc(33.33% - 14px);
-        min-width: 220px;
-      }
-
-      .header-nav,
-      .header-cta {
-        display: flex;
-      }
-
-      .flow-list {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0 40px;
-      }
-
-      .flow-item:nth-child(odd):not(:last-child)::before {
-        display: none;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1.6fr 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 639px) {
-      .container {
-        width: calc(100% - 36px);
-      }
-
-      section { padding: 60px 0; }
-
-      .hero-content { padding: 80px 0 72px; }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- Header -->
-  <header class="site-header" id="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo">
-        <span class="logo-mark">M</span>
-        <span>マネーマップ</span>
-      </a>
-
-      <nav class="header-nav">
-        <a href="#why">サイトの特徴</a>
-        <a href="#cards">カード一覧</a>
-        <a href="#flow">LINE診断</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>moneymap | お金のこと、もっとカンタンに。</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <a class="logo" href="#" aria-label="moneymap ホーム">
+          <span>money</span><strong>map</strong><i aria-hidden="true"></i>
+        </a>
+
+        <nav class="desktop-nav" aria-label="メインナビゲーション">
+          <a href="#features">できること</a>
+          <a href="#articles">おすすめ記事</a>
+          <a href="#cards">人気カード</a>
+          <a href="#line">LINE診断</a>
+        </nav>
+
+        <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" data-menu-button>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+
+      <nav class="mobile-menu" aria-label="スマホメニュー" data-mobile-menu>
+        <a href="#features">moneymapでできること</a>
+        <a href="#articles">おすすめ記事</a>
+        <a href="#cards">人気カード</a>
+        <a href="#line">LINEで無料診断</a>
       </nav>
 
-      <a href="#flow" class="header-cta">無料で診断する</a>
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <img class="hero-image" src="assets/hero-fintech.png" alt="" aria-hidden="true" />
+          <div class="hero-copy">
+            <h1 id="hero-title">
+              お金のこと、<br />
+              もっとカンタンに。<br />
+              あなたの未来を、<br />
+              <em>moneymap</em>で。
+            </h1>
+            <p>クレジットカードや金融サービスの情報が見つかる。<br />記事を読んで学んで、<br />LINEで自分にピッタリのプランを診断しよう。</p>
+            <div class="hero-actions">
+              <a class="button button-blue" href="#articles">
+                <span class="book-icon" aria-hidden="true"></span>
+                記事を読む
+                <b aria-hidden="true">›</b>
+              </a>
+              <a class="button button-green" href="#line">
+                <span class="line-mini" aria-hidden="true">LINE</span>
+                LINEで無料診断する
+                <b aria-hidden="true">›</b>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="feature-section" id="features" aria-labelledby="features-title">
+          <h2 id="features-title">
+            <span aria-hidden="true">✦</span>
+            moneymapでできること
+            <span aria-hidden="true">✦</span>
+          </h2>
+
+          <div class="feature-list">
+            <article class="feature-card feature-green">
+              <div class="round-icon wallet-icon" aria-hidden="true"></div>
+              <div class="feature-text">
+                <h3>クレジットカードを<br />比較・検索</h3>
+                <p>年会費やポイント還元率など、<br />自分のライフスタイルに合った<br />カードが見つかる！</p>
+              </div>
+              <a href="#cards">カードを探す <span aria-hidden="true">›</span></a>
+            </article>
+
+            <article class="feature-card feature-blue">
+              <div class="round-icon article-icon" aria-hidden="true"></div>
+              <div class="feature-text">
+                <h3>お金に役立つ記事が<br />たくさん</h3>
+                <p>クレジットカードの選び方や<br />節約・投資の基礎まで、<br />わかりやすく解説！</p>
+              </div>
+              <a href="#articles">記事を読む <span aria-hidden="true">›</span></a>
+            </article>
+
+            <article class="feature-card feature-orange">
+              <div class="round-icon line-icon-large" aria-hidden="true">LINE</div>
+              <div class="feature-text">
+                <h3>LINEで無料診断</h3>
+                <p>いくつかの質問に答えるだけで、<br />あなたにピッタリのカードや<br />プランを無料でご提案！</p>
+              </div>
+              <a href="#line">LINEで診断する <span aria-hidden="true">›</span></a>
+            </article>
+          </div>
+        </section>
+
+        <section class="article-section" id="articles" aria-labelledby="articles-title">
+          <div class="section-title-row">
+            <h2 id="articles-title">おすすめ記事 <span aria-hidden="true">✦</span></h2>
+            <a href="#">すべての記事を見る <span aria-hidden="true">›</span></a>
+          </div>
+
+          <div class="article-grid">
+            <a class="article-card" href="cards/jcb-card-w.html">
+              <div class="article-thumb student-card"><span>カードの選び方</span></div>
+              <h3>大学生におすすめのクレジットカード5選！<br />選び方のポイントも解説</h3>
+              <time datetime="2026-04-29">2026.04.29</time>
+            </a>
+            <a class="article-card" href="articles/saving-tips.html">
+              <div class="article-thumb saving-card"><span>節約・生活</span></div>
+              <h3>月5万貯める人が当たり前にやっている<br />30のこと</h3>
+              <time datetime="2026-04-29">2026.04.29</time>
+            </a>
+            <a class="article-card" href="articles/smartphone-cost.html">
+              <div class="article-thumb cashless-card"><span>スマホ・通信費</span></div>
+              <h3>ドコモに毎月1万払ってるのは損。<br />5分で終わる乗り換え手順</h3>
+              <time datetime="2026-04-29">2026.04.29</time>
+            </a>
+            <a class="article-card" href="articles/investment-types.html">
+              <div class="article-thumb invest-card"><span>投資の基礎</span></div>
+              <h3>「株」と「投資信託」は何が違うのか、<br />正直に教えます</h3>
+              <time datetime="2026-04-29">2026.04.29</time>
+            </a>
+          </div>
+        </section>
+
+        <section class="card-section" id="cards" aria-labelledby="cards-title">
+          <div class="card-section-head">
+            <h2 id="cards-title"><span>はじめての1枚におすすめ！</span><span>人気カード</span></h2>
+            <a href="#">すべてのカードを見る <span aria-hidden="true">›</span></a>
+          </div>
+
+          <button class="carousel-button carousel-prev" type="button" aria-label="前のカード" data-carousel-prev>‹</button>
+          <div class="card-viewport" data-carousel-viewport tabindex="0">
+            <div class="card-track" data-carousel-track>
+              <a class="credit-card" href="cards/jcb-card-w.html">
+                <img class="credit-visual" src="assets/card-jcb-w.png" alt="" />
+                <h3>JCB CARD W</h3>
+                <p>年会費無料・高還元<br />学生にも人気！</p>
+              </a>
+              <a class="credit-card" href="cards/smbc-nl.html">
+                <img class="credit-visual" src="assets/card-green.png" alt="" />
+                <h3>三井住友カード（NL）</h3>
+                <p>ナンバーレスで安心<br />使いやすい</p>
+              </a>
+              <a class="credit-card" href="cards/epos-card.html">
+                <img class="credit-visual" src="assets/card-silver.png" alt="" />
+                <h3>エポスカード</h3>
+                <p>ポイントが貯まる<br />定番カード</p>
+              </a>
+              <a class="credit-card" href="cards/dcard-gold-u.html">
+                <img class="credit-visual" src="assets/card-red.png" alt="" />
+                <h3>dカード GOLD U</h3>
+                <p>ドコモユーザーに<br />最強の還元率</p>
+              </a>
+            </div>
+          </div>
+          <button class="carousel-button carousel-next" type="button" aria-label="次のカード" data-carousel-next>›</button>
+
+          <div class="carousel-dots" aria-label="カード表示位置">
+            <button class="is-active" type="button" aria-label="1番目を表示" data-carousel-dot></button>
+            <button type="button" aria-label="2番目を表示" data-carousel-dot></button>
+            <button type="button" aria-label="3番目を表示" data-carousel-dot></button>
+            <button type="button" aria-label="4番目を表示" data-carousel-dot></button>
+          </div>
+        </section>
+
+        <section class="line-cta" id="line" aria-labelledby="line-title">
+          <img class="line-visual" src="assets/line-advisor-illustration.png" alt="" aria-hidden="true" />
+          <div class="line-copy">
+            <p>たったの<span>3分！</span></p>
+            <h2 id="line-title"><span>LINEで無料診断</span><span>してみよう</span></h2>
+            <small>あなたのライフスタイルや<br />価値観に合わせて、<br />最適なクレジットカードや<br />金融サービスを診断します。</small>
+          </div>
+          <ol class="step-list">
+            <li><b>1</b><span>質問に回答<br />（約3分）</span></li>
+            <li><b>2</b><span>結果をもとに<br />プランを診断</span></li>
+            <li><b>3</b><span>おすすめを<br />ご提案！</span></li>
+          </ol>
+          <a class="button cta-button" href="#">
+            <span class="line-mini" aria-hidden="true">LINE</span>
+            LINEで無料診断を始める
+            <b aria-hidden="true">›</b>
+          </a>
+        </section>
+
+        <section class="trust-section" aria-label="moneymapの特徴">
+          <article class="trust-card">
+            <div class="trust-icon trust-book" aria-hidden="true">
+              <svg viewBox="0 0 64 64" focusable="false">
+                <path d="M11 12h15c4 0 7 3 7 7v31c0-4-3-7-7-7H11V12Z" />
+                <path d="M53 12H38c-4 0-7 3-7 7v31c0-4 3-7 7-7h15V12Z" />
+                <path d="M32 19v33" />
+              </svg>
+            </div>
+            <h2>初心者にも<br />わかりやすい</h2>
+            <p>やさしく丁寧に解説し、<br />初めてのカード選びを<br />支えます。</p>
+          </article>
+          <article class="trust-card">
+            <div class="trust-icon trust-shield" aria-hidden="true">
+              <svg viewBox="0 0 64 64" focusable="false">
+                <path d="M32 6 52 14v17c0 13-8 22-20 27C20 53 12 44 12 31V14l20-8Z" />
+                <path d="m22 32 7 7 15-17" />
+              </svg>
+            </div>
+            <h2>厳選した情報を<br />掲載</h2>
+            <p>比較しやすいように、要点を整理して<br />紹介します。</p>
+          </article>
+          <article class="trust-card">
+            <div class="trust-icon yen-zero" aria-hidden="true">¥0</div>
+            <h2>無料で<br />診断OK</h2>
+            <p>質問に答えるだけで、気軽におすすめを<br />確認できます。</p>
+          </article>
+        </section>
+      </main>
+
+      <footer class="site-footer" aria-label="サイト情報">
+        <div class="footer-head">
+          <a class="footer-logo" href="#" aria-label="moneymap ホーム">
+            <span>money</span><strong>map</strong>
+          </a>
+          <nav class="footer-nav" aria-label="フッターナビゲーション">
+            <a href="contact.html">お問い合わせ</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="affiliate.html">広告について</a>
+            <a href="disclaimer.html">免責事項</a>
+          </nav>
+        </div>
+        <p class="footer-disclosure">当サイトはアフィリエイト広告を利用しています。</p>
+        <p class="footer-copy">© 2026 moneymap. All Rights Reserved.</p>
+      </footer>
     </div>
-  </header>
-
-  <main>
-
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-grid-overlay"></div>
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-eyebrow">18〜25歳のための金融リテラシーガイド</div>
-          <h1>はじめての<em>クレカ選び</em>を、<br>もっとわかりやすく。</h1>
-          <p class="hero-sub">
-            「どのカードが自分に合うの？」その答えをLINE診断で提案します。年会費・ポイント還元・セキュリティ——難しいことは全部整理しました。
-          </p>
-          <div class="hero-actions">
-            <a href="#flow" class="btn-line">LINEで無料診断する</a>
-            <a href="#cards" class="btn-ghost">カードを比べてみる</a>
-          </div>
-          <div class="hero-trust">
-            <div class="trust-item"><strong>完全無料</strong>で使えます</div>
-            <div class="trust-item"><strong>広告表記</strong>を明示しています</div>
-            <div class="trust-item"><strong>デメリット</strong>も正直に書いています</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why -->
-    <section class="why-section" id="why">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-eyebrow">Why MoneyMap</div>
-          <h2 class="section-title">マネーマップが選ばれる理由</h2>
-          <p class="section-desc">「なんか怪しそう」「本当に自分に合うの？」その不安を取り除くために、3つのことを大切にしています。</p>
-        </div>
-        <div class="why-grid">
-          <div class="why-card">
-            <div class="why-icon">🔍</div>
-            <h3>メリットもデメリットも正直に書く</h3>
-            <p>良い点だけでなく、注意点・向いていない人もきちんと記載。広告費のために都合の悪い情報を隠すことはしません。</p>
-          </div>
-          <div class="why-card">
-            <div class="why-icon">🎯</div>
-            <h3>18〜25歳に特化した情報設計</h3>
-            <p>学生・アルバイト・新社会人の生活スタイルに合わせて情報を整理。難しい金融用語もわかりやすく解説しています。</p>
-          </div>
-          <div class="why-card">
-            <div class="why-icon">🛡️</div>
-            <h3>提携先・広告主を明示する</h3>
-            <p>当サイトはアフィリエイトプログラムに参加しています。該当する記事には広告表記を必ず記載し、透明性を確保しています。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Flow -->
-    <section class="flow-section" id="flow">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-eyebrow">How It Works</div>
-          <h2 class="section-title">LINE診断の使い方</h2>
-          <p class="section-desc">3分でできるLINE診断で、あなたにぴったりのカードを提案します。</p>
-        </div>
-        <div class="flow-list">
-          <div class="flow-item">
-            <div class="flow-num">1</div>
-            <div class="flow-content">
-              <h4>LINEを友だち追加する</h4>
-              <p>ボタンをタップしてマネーマップの公式LINEを友だち追加します。個人情報の入力は不要です。</p>
-              <span class="flow-badge">所要：10秒</span>
-            </div>
-          </div>
-          <div class="flow-item">
-            <div class="flow-num">2</div>
-            <div class="flow-content">
-              <h4>簡単な質問に答える</h4>
-              <p>「コンビニをよく使う？」「学生？社会人？」など、数問の選択式の質問に答えるだけです。</p>
-              <span class="flow-badge">所要：約2分</span>
-            </div>
-          </div>
-          <div class="flow-item">
-            <div class="flow-num">3</div>
-            <div class="flow-content">
-              <h4>あなたに合うカードを提案</h4>
-              <p>回答をもとに、最もあなたのライフスタイルに合ったクレジットカードを提案します。</p>
-              <span class="flow-badge">すぐに回答</span>
-            </div>
-          </div>
-          <div class="flow-item">
-            <div class="flow-num">4</div>
-            <div class="flow-content">
-              <h4>詳細を確認して申し込む</h4>
-              <p>このサイトの詳細解説ページで内容を確認し、納得したうえで公式サイトから申し込めます。</p>
-              <span class="flow-badge">強引な勧誘はありません</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Cards -->
-    <section class="cards-section" id="cards">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-eyebrow">Recommended Cards</div>
-          <h2 class="section-title">おすすめクレジットカード</h2>
-          <p class="section-desc">18〜25歳の生活スタイルを考慮して厳選。条件・還元率・安全性を総合評価しています。</p>
-        </div>
-
-        <div class="card-grid">
-
-          <!-- 三井住友 NL -->
-          <div class="card-item">
-            <div class="card-item-top">
-              <div class="card-thumbnail">
-                <span style="position:relative;z-index:1;line-height:1.6">SMBC<br>NUMBER<br>LESS</span>
-              </div>
-              <span class="card-badge badge-popular">編集部イチオシ</span>
-            </div>
-            <h3>三井住友カード<br>（NL）</h3>
-            <div class="card-specs">
-              <div class="spec-row">
-                <span class="spec-key">年会費</span>
-                <span class="spec-val">永年無料</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">コンビニ還元率</span>
-                <span class="spec-val accent">最大 7%</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">ナンバーレス</span>
-                <span class="spec-val">◎ 対応</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">こんな人に</span>
-                <span class="spec-val">学生・新社会人</span>
-              </div>
-            </div>
-            <a href="cards/smbc-nl.html" class="card-link">
-              詳しく見る <span class="card-link-arrow">→</span>
-            </a>
-          </div>
-
-          <!-- JCBカードW -->
-          <div class="card-item">
-            <div class="card-item-top">
-              <div class="card-thumbnail" style="background:linear-gradient(135deg,#001a4d,#002880)">
-                <span style="position:relative;z-index:1;line-height:1.6">JCB<br>CARD<br>W</span>
-              </div>
-              <span class="card-badge badge-beginner">39歳以下限定</span>
-            </div>
-            <h3>JCBカードW</h3>
-            <div class="card-specs">
-              <div class="spec-row">
-                <span class="spec-key">年会費</span>
-                <span class="spec-val">永年無料</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">基本還元率</span>
-                <span class="spec-val accent">1.0%</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">Amazon還元率</span>
-                <span class="spec-val accent">最大 3.0%</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">こんな人に</span>
-                <span class="spec-val">Amazon・スタバ好き</span>
-              </div>
-            </div>
-            <a href="cards/jcb-card-w.html" class="card-link">
-              詳しく見る <span class="card-link-arrow">→</span>
-            </a>
-          </div>
-
-          <!-- dカードGOLD U -->
-          <div class="card-item">
-            <div class="card-item-top">
-              <div class="card-thumbnail" style="background:linear-gradient(135deg,#5c0018,#8a0022)">
-                <span style="position:relative;z-index:1;line-height:1.6">dカード<br>GOLD<br>U</span>
-              </div>
-              <span class="card-badge badge-popular">29歳以下限定</span>
-            </div>
-            <h3>dカードGOLD U</h3>
-            <div class="card-specs">
-              <div class="spec-row">
-                <span class="spec-key">年会費</span>
-                <span class="spec-val">無料（29歳以下）</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">ドコモ料金還元</span>
-                <span class="spec-val accent">10%</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">海外旅行保険</span>
-                <span class="spec-val">最高1億円</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">こんな人に</span>
-                <span class="spec-val">ドコモユーザー</span>
-              </div>
-            </div>
-            <a href="cards/dcard-gold-u.html" class="card-link">
-              詳しく見る <span class="card-link-arrow">→</span>
-            </a>
-          </div>
-
-          <!-- エポスカード -->
-          <div class="card-item">
-            <div class="card-item-top">
-              <div class="card-thumbnail" style="background:linear-gradient(135deg,#5A0D0D,#8B1A1A)">
-                <span style="position:relative;z-index:1;line-height:1.6">EPOS<br>CARD</span>
-              </div>
-              <span class="card-badge badge-beginner">旅行好き向け</span>
-            </div>
-            <h3>エポスカード</h3>
-            <div class="card-specs">
-              <div class="spec-row">
-                <span class="spec-key">年会費</span>
-                <span class="spec-val">永年無料</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">海外旅行保険</span>
-                <span class="spec-val accent">500万円 自動付帯</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">マルイ優待</span>
-                <span class="spec-val">年2回 最大10%OFF</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">こんな人に</span>
-                <span class="spec-val">旅行・外出が多い人</span>
-              </div>
-            </div>
-            <a href="cards/epos-card.html" class="card-link">
-              詳しく見る <span class="card-link-arrow">→</span>
-            </a>
-          </div>
-
-          <!-- 三井ショッピングカードセゾン -->
-          <div class="card-item">
-            <div class="card-item-top">
-              <div class="card-thumbnail" style="background:linear-gradient(135deg,#0D2E1D,#1A4D35)">
-                <span style="position:relative;z-index:1;line-height:1.6;font-size:.5rem">三井SP<br>CARD<br>SAISON</span>
-              </div>
-              <span class="card-badge badge-new">モール派向け</span>
-            </div>
-            <h3>三井ショッピング<br>カードセゾン</h3>
-            <div class="card-specs">
-              <div class="spec-row">
-                <span class="spec-key">年会費</span>
-                <span class="spec-val">永年無料</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">三井系モール還元</span>
-                <span class="spec-val accent">最大 10%</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">ポイント有効期限</span>
-                <span class="spec-val">無期限</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">こんな人に</span>
-                <span class="spec-val">モールでよく買い物する人</span>
-              </div>
-            </div>
-            <a href="cards/mitsui-sezon.html" class="card-link">
-              詳しく見る <span class="card-link-arrow">→</span>
-            </a>
-          </div>
-
-        </div>
-
-        <div class="notice-banner">
-          掲載情報は執筆時点のものです。キャンペーン・条件は変更される場合があります。申し込み前に必ず公式サイトをご確認ください。当サイトはアフィリエイトプログラムに参加しており、リンク経由の申し込みにより報酬を受ける場合があります。
-        </div>
-      </div>
-    </section>
-
-    <!-- Articles -->
-    <section class="articles-section" id="articles" style="padding:72px 0;background:var(--gray-50)">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-eyebrow">Financial Knowledge</div>
-          <h2 class="section-title">お金の基礎知識</h2>
-          <p class="section-desc">クレカ選びの前に知っておきたい、18〜25歳のためのお金の教科書。</p>
-        </div>
-        <div class="article-card-grid">
-
-          <a href="articles/first-card-guide.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-credit-card.png" alt="はじめてのクレジットカード完全ガイド" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">クレカ入門</div>
-              <div class="article-card-title">はじめてのクレジットカード完全ガイド</div>
-              <div class="article-card-desc">失敗しない選び方5つのポイント・リボ払いの落とし穴・国際ブランドの違いまで徹底解説</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/point-basics.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-points.png" alt="ポイント還元率のしくみ完全解説" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">ポイント活用</div>
-              <div class="article-card-title">ポイント還元率のしくみ完全解説</div>
-              <div class="article-card-desc">還元率の計算方法から「特定店舗×高還元」戦略まで。年間数万円の差が生まれる理由</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/money-basics.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-money-basics.png" alt="社会人1年目がやるべきお金の基本" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">お金の基本</div>
-              <div class="article-card-title">手取り20万でも毎月3万貯まる。社会人1年目のお金の全ルール</div>
-              <div class="article-card-desc">先取り貯金・緊急資金・信用情報のしくみ。入社2年以内に知っておくべきすべて</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/card-screening.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-credit-card.png" alt="クレカ審査って何を見てるの？" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">審査・申し込み</div>
-              <div class="article-card-title">クレカ審査って何を見てるの？</div>
-              <div class="article-card-desc">審査で見られる5項目・学生でも通るコツ・申し込みブラックを避ける方法を解説</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/cashless-guide.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-points.png" alt="キャッシュレス決済を徹底比較" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">キャッシュレス</div>
-              <div class="article-card-title">キャッシュレス決済を徹底比較</div>
-              <div class="article-card-desc">クレカ・QRコード・電子マネーの違いとポイント二重取り戦略。シーン別おすすめ組み合わせ</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/student-card.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-money-basics.png" alt="学生のうちにクレカを作るべき3つの理由" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">学生・若者向け</div>
-              <div class="article-card-title">学生のうちにクレカを作るべき3つの理由</div>
-              <div class="article-card-desc">信用情報の積み上げ・審査難易度・お金の管理習慣——今作らないと損する理由を解説</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/nisa-card.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-nisa.png" alt="新NISAをクレカ積立で始める方法" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">NISA・投資</div>
-              <div class="article-card-title">新NISAをクレカ積立で始める方法</div>
-              <div class="article-card-desc">投資しながらポイントも貯まるクレカ積立。カード別還元率比較と設定手順を解説</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/smartphone-pay.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-credit-card.png" alt="Apple Pay・Google Payとクレカの正しい使い方" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">スマホ・キャッシュレス</div>
-              <div class="article-card-title">Apple Pay・Google Payとクレカの正しい使い方</div>
-              <div class="article-card-desc">iD・QUICPayの仕組みとクレカ連携方法。スマホ払いでポイントを正しく貯める設定</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/life-insurance.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-insurance.png" alt="若者に生命保険は本当に必要？" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">保険</div>
-              <div class="article-card-title">月1万の保険料、20代の9割は払いすぎています</div>
-              <div class="article-card-desc">掛け捨てvs積立の違い・公的保険でカバーされること・本当に必要な保険だけを選ぶ方法</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/health-insurance.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-insurance.png" alt="社会保険のしくみ完全ガイド" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">社会保険・年金</div>
-              <div class="article-card-title">給料から毎月4万円引かれてる正体、全部説明します</div>
-              <div class="article-card-desc">健康保険・厚生年金・雇用保険——給与明細の謎の控除項目を全部解説</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/investment-types.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-investment.png" alt="株・投資信託・ETF・債券の違いを整理" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">投資入門</div>
-              <div class="article-card-title">「株」と「投資信託」は何が違うのか、正直に教えます</div>
-              <div class="article-card-desc">株・投信・ETF・債券の違いをゼロから整理。初心者が最初に選ぶべき投資商品とは</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/index-fund.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-investment.png" alt="インデックス投資入門・長期積立の考え方" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">投資・NISA</div>
-              <div class="article-card-title">月1万円を30年放置したら830万円になる理由</div>
-              <div class="article-card-desc">複利のパワー・プロより勝率が高いインデックス投資・おすすめファンドと始め方</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/ideco.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-nisa.png" alt="iDeCoとNISAの違い・使い分け完全ガイド" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">iDeCo・NISA</div>
-              <div class="article-card-title">NISAとiDeCo、どっちから始めるべきか正直に答えます</div>
-              <div class="article-card-desc">節税額の計算・引き出し制限の違い・「まずNISA」が正解な理由を整理</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/emergency-fund.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-salary.png" alt="緊急資金の正しい作り方" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">貯金・資産形成</div>
-              <div class="article-card-title">貯金ゼロで投資を始めるのが危険な理由</div>
-              <div class="article-card-desc">生活防衛資金はいくら必要か・どこに置くべきか・先取り貯金の始め方</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/tax-savings.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-tax.png" alt="ふるさと納税・医療費控除で節税する方法" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">節税・税金</div>
-              <div class="article-card-title">知らなかったら損してた。新社会人が使える節税術3選</div>
-              <div class="article-card-desc">ふるさと納税・医療費控除・年末調整の書き方——5分でわかる節税の全手順</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/salary-payslip.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-salary.png" alt="給与明細の読み方・手取りを増やす方法" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">給与・税金</div>
-              <div class="article-card-title">給料から5万円引かれてる理由が給与明細に全部書いてある</div>
-              <div class="article-card-desc">控除項目の意味・総支給から手取りの計算・合法的に手取りを増やす4つの方法</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/housing-costs.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-housing.png" alt="一人暮らしの初期費用とお金の管理術" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">一人暮らし・生活</div>
-              <div class="article-card-title">一人暮らし初月に50万飛ぶ。後悔しないための費用全リスト</div>
-              <div class="article-card-desc">敷金・礼金・引越し代の内訳・生活費の目安・口座を3つに分ける管理ルール</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/freelance-tax.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-tax.png" alt="副業・フリーランスの確定申告入門" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">副業・税金</div>
-              <div class="article-card-title">副業で年20万を超えたら読む確定申告の全手順</div>
-              <div class="article-card-desc">確定申告の流れ・経費の落とし方・青色申告65万控除・会社にバレない住民税対策</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/student-loan.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-salary.png" alt="奨学金の返済計画完全ガイド" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">奨学金・返済</div>
-              <div class="article-card-title">奨学金と投資、どっちを先に始めるべきか問題に答えます</div>
-              <div class="article-card-desc">返済シミュレーション・繰り上げ返済の効果・返せない時の猶予制度・NISA優先の条件</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/online-bank.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-money-basics.png" alt="ネット銀行の選び方・使い分け完全ガイド" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">銀行・口座管理</div>
-              <div class="article-card-title">メガバンクに100万預けての年利息は10円です</div>
-              <div class="article-card-desc">住信SBI・楽天・PayPay・auじぶんを比較。金利100倍のネット銀行に今すぐ移す方法</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/fixed-costs.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-housing.png" alt="固定費の見直しで月3万円節約する方法" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">節約・支出管理</div>
-              <div class="article-card-title">一度見直すだけで毎月2万円戻ってくる固定費チェックリスト</div>
-              <div class="article-card-desc">スマホ・サブスク・保険・電気代——今すぐ削れる固定費6選と優先順位</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/ribo-danger.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-credit-card.png" alt="リボ払いが怖い本当の理由と脱出方法" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">クレカ・リスク管理</div>
-              <div class="article-card-title">リボ払いが怖い本当の理由と脱出方法</div>
-              <div class="article-card-desc">金利18%の恐怖計算・分割払いとの違い・リボ地獄から抜け出す手順を解説</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/online-broker.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-investment.png" alt="ネット証券の選び方・口座開設完全ガイド" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">証券・投資口座</div>
-              <div class="article-card-title">SBI vs 楽天、NISAはどっちで開くべきか正直に答えます</div>
-              <div class="article-card-desc">SBI・楽天・マネックスを比較。クレカ積立の還元率の差と口座開設の全手順</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/kakeibo-app.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-points.png" alt="家計管理アプリ完全比較ガイド" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">家計管理・アプリ</div>
-              <div class="article-card-title">3日で挫折しない家計簿。クレカ連携で自動管理する方法</div>
-              <div class="article-card-desc">マネーフォワード・Zaim・マネーツリーを比較。手間ゼロで続く家計管理の始め方</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/nenkin-basics.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-insurance.png" alt="年金のしくみと老後のお金計画" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">年金・老後設計</div>
-              <div class="article-card-title">「どうせ年金もらえない」は間違い。20代が今知るべき本当の話</div>
-              <div class="article-card-desc">公的年金の受給額・老後2,000万円問題の実態・20代が今すぐ始めるべき老後対策</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/saving-tips.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-money-basics.png" alt="社会人の節約術30選" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">節約・貯金</div>
-              <div class="article-card-title">月5万貯める人が当たり前にやっている30のこと</div>
-              <div class="article-card-desc">食費・固定費・娯楽まで30の節約術。無理せず月収の20%を貯める習慣づくり</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-          <a href="articles/smartphone-cost.html" class="article-card">
-            <img class="article-card-img" src="images/thumb-credit-card.png" alt="スマホ代を月1,000円台にする方法" loading="lazy">
-            <div class="article-card-body">
-              <div class="article-card-tag">スマホ・通信費節約</div>
-              <div class="article-card-title">ドコモに毎月1万払ってるのは損。5分で終わる乗り換え手順</div>
-              <div class="article-card-desc">楽天・povo・UQ・ahamoを比較。年間8万円節約できる格安SIM乗り換えの全手順</div>
-              <div class="article-card-read">読む →</div>
-            </div>
-          </a>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-      <div class="container cta-inner">
-        <div class="cta-eyebrow">LINE診断 — 無料</div>
-        <h2>まず診断してみましょう。<br>3分で答えが出ます。</h2>
-        <p>質問に答えるだけで、あなたのライフスタイルに合ったカードを提案します。強引な勧誘はありません。</p>
-        <div class="cta-btns">
-          <a href="#" class="btn-line">LINEで無料診断する</a>
-          <a href="#cards" class="btn-ghost">カード一覧を見る</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.html" class="logo">
-            <span class="logo-mark">M</span>
-            <span>マネーマップ</span>
-          </a>
-          <p>18〜25歳のための金融リテラシーメディア。クレジットカードから始まる、正しいお金との付き合い方を発信します。</p>
-        </div>
-        <div class="footer-col">
-          <h4>カード情報</h4>
-          <ul>
-            <li><a href="cards/smbc-nl.html">三井住友カード（NL）</a></li>
-            <li><a href="cards/jcb-card-w.html">JCBカードW</a></li>
-            <li><a href="cards/dcard-gold-u.html">dカードGOLD U</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>サイト情報</h4>
-          <ul>
-            <li><a href="#">運営者情報</a></li>
-            <li><a href="#">プライバシーポリシー</a></li>
-            <li><a href="#">広告掲載について</a></li>
-            <li><a href="#">お問い合わせ</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="footer-disclaimer">
-        当サイトはアフィリエイトプログラムに参加しており、カード申し込みリンク経由の成約により報酬を受ける場合があります。掲載情報は執筆時点のものであり、最新情報は各カード会社の公式サイトでご確認ください。クレジットカードはご自身の支払い能力の範囲内でご利用ください。
-      </p>
-
-      <div class="footer-bottom">
-        <span>© 2026 MoneyMap. All rights reserved.</span>
-        <span>当サイトは18歳以上の方を対象としています。</span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const header = document.getElementById('site-header');
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 10);
-    }, { passive: true });
-  </script>
-
-</body>
+  </body>
 </html>
