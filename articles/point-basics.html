@@ -5,121 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ポイント還元率のしくみ完全解説｜計算方法と賢い使い方 | マネーマップ</title>
   <meta name="description" content="クレジットカードのポイント還元率とは何か、計算方法、高還元カードの選び方を徹底解説。年間数万円の差が生まれる「特定店舗×高還元」戦略も紹介。">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --navy:#0b1f3a;--navy-mid:#12305e;--navy-light:#1a4a8a;
-      --gold:#b8921e;--gold-mid:#c9a227;--gold-light:#f0d67a;--gold-pale:#fdf6df;
-      --white:#ffffff;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;
-      --gray-400:#94a3b8;--gray-600:#475569;--text:#1e293b;--muted:#475569;
-      --amber:#92400e;--amber-bg:#fffbeb;--amber-border:#fcd34d;
-      --shadow-sm:0 1px 3px rgba(11,31,58,.06),0 4px 12px rgba(11,31,58,.06);
-      --shadow:0 4px 16px rgba(11,31,58,.10),0 1px 4px rgba(11,31,58,.06);
-      --radius:10px;--radius-lg:16px;--transition:0.22s cubic-bezier(.4,0,.2,1);
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:"Noto Sans JP",sans-serif;color:var(--text);background:var(--white);line-height:1.75;-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-    .container{width:min(760px,calc(100% - 48px));margin:0 auto}
-
-    .site-header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--gray-200);transition:box-shadow var(--transition)}
-    .site-header.scrolled{box-shadow:var(--shadow-sm)}
-    .header-inner{height:64px;display:flex;align-items:center;justify-content:space-between}
-    .logo{display:flex;align-items:center;gap:10px;font-family:"Inter","Noto Sans JP",sans-serif;font-weight:800;color:var(--navy);font-size:1.05rem}
-    .logo-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--navy),var(--navy-mid));color:var(--gold-light);display:grid;place-items:center;font-size:.9rem;font-weight:800}
-    .back-link{font-size:.85rem;font-weight:600;color:var(--gray-600);padding:7px 14px;border-radius:6px;border:1px solid var(--gray-200);transition:background var(--transition)}
-    .back-link:hover{background:var(--gray-100);color:var(--navy)}
-
-    .article-hero{background:linear-gradient(145deg,#3d2800 0%,#7a5200 60%,#b87c00 100%);color:var(--white);padding:56px 0 48px;position:relative;overflow:hidden}
-    .article-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:52px 52px}
-    .article-hero-inner{position:relative;z-index:1}
-    .article-meta{display:flex;align-items:center;gap:16px;margin-bottom:20px;font-size:.82rem;color:rgba(255,255,255,.6)}
-    .article-tag{padding:3px 10px;border-radius:999px;background:rgba(240,214,122,.2);border:1px solid rgba(240,214,122,.4);color:var(--gold-light);font-weight:700;font-size:.75rem}
-    .article-hero h1{font-size:clamp(1.4rem,5vw,2.1rem);font-weight:800;line-height:1.3;margin-bottom:16px}
-    .article-hero-sub{color:rgba(255,255,255,.75);font-size:.97rem;line-height:1.85;max-width:600px}
-
-    .toc-box{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;margin:40px 0}
-    .toc-box h3{font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:14px}
-    .toc-list{list-style:none;display:grid;gap:6px}
-    .toc-list li a{font-size:.88rem;color:var(--navy-light);font-weight:600;display:flex;align-items:center;gap:8px;transition:color var(--transition)}
-    .toc-list li a:hover{color:var(--gold-mid)}
-    .toc-list li a::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold-mid);flex-shrink:0}
-
-    .article-body{padding:48px 0 64px}
-    .article-section{margin-bottom:56px}
-    .article-section h2{font-size:clamp(1.15rem,3vw,1.5rem);font-weight:800;color:var(--navy);padding-bottom:10px;border-bottom:2px solid var(--gold-mid);margin-bottom:24px}
-    .article-section h3{font-size:1rem;font-weight:800;color:var(--navy);margin:24px 0 10px}
-    .article-section p{font-size:.95rem;color:var(--text);line-height:1.95;margin-bottom:14px}
-    .article-section ul,.article-section ol{padding-left:20px;margin-bottom:14px}
-    .article-section li{font-size:.95rem;line-height:1.85;margin-bottom:6px}
-
-    .callout{border-radius:var(--radius);padding:20px 24px;margin:24px 0}
-    .callout-tip{background:#f0fdf8;border-left:4px solid #059669}
-    .callout-warn{background:#fffbeb;border-left:4px solid var(--gold-mid)}
-    .callout-title{font-weight:800;font-size:.88rem;margin-bottom:8px}
-    .callout p{font-size:.9rem;margin-bottom:0;line-height:1.85}
-
-    /* 還元率ビジュアル */
-    .rate-bars{display:grid;gap:14px;margin:24px 0}
-    .rate-bar-item{}
-    .rate-bar-label{display:flex;justify-content:space-between;font-size:.85rem;font-weight:700;color:var(--navy);margin-bottom:7px}
-    .rate-bar-label span{color:var(--gold-mid);font-family:"Inter",sans-serif}
-    .rate-track{height:10px;background:var(--gray-200);border-radius:999px;overflow:hidden}
-    .rate-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold-mid),var(--gold-light))}
-
-    /* 計算例 */
-    .calc-box{background:var(--gold-pale);border:1px solid rgba(184,146,30,.25);border-radius:var(--radius-lg);padding:24px 28px;margin:24px 0}
-    .calc-box h4{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:16px}
-    .calc-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(184,146,30,.15);font-size:.9rem}
-    .calc-row:last-child{border-bottom:none;padding-top:12px}
-    .calc-label{color:var(--muted)}
-    .calc-val{font-weight:800;color:var(--amber);font-family:"Inter",sans-serif}
-    .calc-total{font-size:1.05rem;color:var(--gold)}
-
-    .mini-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);margin:24px 0;font-size:.88rem}
-    .mini-table th{padding:12px 16px;background:var(--navy);color:var(--white);font-weight:700;text-align:left}
-    .mini-table td{padding:12px 16px;border-bottom:1px solid var(--gray-100)}
-    .mini-table tr:last-child td{border-bottom:none}
-    .mini-table td:first-child{font-weight:700;color:var(--navy);background:var(--gray-50);width:35%}
-    .hi{color:var(--gold-mid);font-weight:800}
-
-    .article-cta{background:linear-gradient(135deg,#3d2800,#7a5200);border-radius:var(--radius-lg);padding:32px 36px;color:var(--white);text-align:center;margin-top:48px}
-    .article-cta h3{font-size:1.2rem;font-weight:800;margin-bottom:12px}
-    .article-cta p{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:24px;line-height:1.8}
-    .btn-gold{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:linear-gradient(135deg,var(--gold-mid),var(--gold));color:var(--navy);border-radius:999px;font-weight:800;font-size:.95rem;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform var(--transition)}
-    .btn-gold:hover{transform:translateY(-2px)}
-
-    .related-cards{margin-top:48px}
-    .related-cards h3{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:16px}
-    .related-grid{display:grid;gap:12px}
-    .related-item{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;transition:background var(--transition),border-color var(--transition)}
-    .related-item:hover{background:var(--gold-pale);border-color:rgba(184,146,30,.3)}
-    .related-item-name{font-weight:800;font-size:.92rem;color:var(--navy)}
-    .related-item-desc{font-size:.8rem;color:var(--gray-600);margin-top:2px}
-    .related-arrow{font-size:1rem;color:var(--gold-mid)}
-
-    .site-footer{background:var(--navy);color:var(--white);padding:48px 0 32px}
-    .footer-grid{display:grid;gap:32px;margin-bottom:32px}
-    .footer-brand p{margin-top:12px;font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.8}
-    .footer-col h4{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:12px}
-    .footer-col a{display:block;font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:8px;transition:color var(--transition)}
-    .footer-col a:hover{color:var(--white)}
-    .footer-bottom{padding-top:28px;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.4)}
-    .footer-disclaimer{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.8;margin-top:16px}
-
-    @media(min-width:640px){.footer-grid{grid-template-columns:1.6fr 1fr 1fr}}
-    @media(max-width:639px){.container{width:calc(100% - 36px)}}
-  </style>
-</head>
+  <link rel="stylesheet" href="article.css" />
+  <style>:root{--accent:#087cff;--accent-dark:#3d2800;--accent-pale:color-mix(in srgb,#087cff 12%,#fff);}</style></head>
 <body>
-  <header class="site-header" id="site-header">
-    <div class="container header-inner">
-      <a href="../index.html" class="logo"><span class="logo-mark">M</span><span>マネーマップ</span></a>
-      <a href="../index.html" class="back-link">← トップへ</a>
-    </div>
+  <div class="page">
+  <header class="site-header">
+    <a href="../index.html" class="logo" aria-label="moneymap ホーム"><span>money</span><strong>map</strong><i aria-hidden="true"></i></a>
+    <a href="../index.html" class="back-link">← トップへ</a>
   </header>
 
   <main>
@@ -279,36 +171,19 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="../index.html" class="logo"><span class="logo-mark">M</span><span>マネーマップ</span></a>
-          <p>18〜25歳のための金融リテラシーメディア。</p>
-          <p class="footer-disclaimer">当サイトはアフィリエイトプログラムに参加しており、掲載リンク経由の申し込みにより報酬を受ける場合があります。掲載情報は執筆時点のものです。</p>
-        </div>
-        <div class="footer-col">
-          <h4>カード一覧</h4>
-          <a href="../cards/smbc-nl.html">三井住友カード(NL)</a>
-          <a href="../cards/jcb-card-w.html">JCBカードW</a>
-          <a href="../cards/dcard-gold-u.html">dカードGOLD U</a>
-          <a href="../cards/epos-card.html">エポスカード</a>
-          <a href="../cards/mitsui-sezon.html">三井ショッピングカードセゾン</a>
-        </div>
-        <div class="footer-col">
-          <h4>記事</h4>
-          <a href="first-card-guide.html">はじめてのクレカ完全ガイド</a>
-          <a href="point-basics.html">ポイント還元率の基礎</a>
-          <a href="money-basics.html">社会人1年目のお金の基本</a>
-        </div>
-      </div>
-      <div class="footer-bottom">© 2025 マネーマップ</div>
+    <footer class="site-footer" aria-label="サイト情報">
+    <div class="footer-head">
+      <a class="footer-logo" href="../index.html" aria-label="moneymap ホーム"><span>money</span><strong>map</strong></a>
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <a href="../contact.html">お問い合わせ</a>
+        <a href="../privacy.html">プライバシーポリシー</a>
+        <a href="../affiliate.html">広告について</a>
+        <a href="../disclaimer.html">免責事項</a>
+      </nav>
     </div>
+    <p class="footer-disclosure">当サイトはアフィリエイト広告を利用しています。</p>
+    <p class="footer-copy">© 2026 moneymap. All Rights Reserved.</p>
   </footer>
-
-  <script>
-    const h = document.getElementById('site-header');
-    window.addEventListener('scroll', () => h.classList.toggle('scrolled', scrollY > 10));
-  </script>
+  </div>
 </body>
 </html>
