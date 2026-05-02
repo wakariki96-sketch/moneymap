@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 
-const CHANNEL_ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN?.trim();
-const CHANNEL_SECRET = process.env.LINE_CHANNEL_SECRET?.trim();
+const CHANNEL_ACCESS_TOKEN = (process.env.LINE_CHANNEL_ACCESS_TOKEN ?? "").replace(/\s/g, "");
+const CHANNEL_SECRET = (process.env.LINE_CHANNEL_SECRET ?? "").replace(/\s/g, "");
 
 // ── カード定義 ──────────────────────────────────────────────
 const CARDS = {
