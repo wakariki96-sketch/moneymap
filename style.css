@@ -1669,9 +1669,10 @@ section,
   }
 
   .hero-image {
-    height: 100%;
+    height: calc(100% + 50px);
     top: 0;
     object-position: 54% center;
+    transform: translateY(50px);
   }
 
   .hero-copy {
