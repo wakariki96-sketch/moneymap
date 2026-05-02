@@ -76,4 +76,21 @@ if (viewport && track && prevButton && nextButton && dots.length) {
 
   window.addEventListener("resize", () => updateCarousel(activeIndex));
   updateCarousel(0);
+
+  // スワイプ対応
+  let swipeStartX = 0;
+  let swipeStartY = 0;
+
+  viewport.addEventListener("touchstart", (e) => {
+    swipeStartX = e.touches[0].clientX;
+    swipeStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  viewport.addEventListener("touchend", (e) => {
+    const dx = swipeStartX - e.changedTouches[0].clientX;
+    const dy = swipeStartY - e.changedTouches[0].clientY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      updateCarousel(dx > 0 ? activeIndex + 1 : activeIndex - 1);
+    }
+  }, { passive: true });
 }
