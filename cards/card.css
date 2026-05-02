@@ -1059,3 +1059,21 @@ section { padding: 44px 0; }
   .footer-nav  { justify-content: flex-end; }
   .page { box-shadow: 0 0 34px rgba(5, 37, 99, 0.08); }
 }
+
+/* ── ヒーロー申し込みボタン ── */
+.hero-apply-btn {
+  display: inline-block;
+  margin-top: 18px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+  font-size: .97rem;
+  padding: 13px 28px;
+  border-radius: 50px;
+  transition: background .2s, transform .15s;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+}
+.hero-apply-btn:hover {
+  background: var(--accent-mid);
+  transform: translateY(-1px);
+}
