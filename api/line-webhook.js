@@ -33,12 +33,7 @@ const CARDS = {
 };
 
 // ── 質問フロー ───────────────────────────────────────────────
-// state は postback の data フィールドでエンコードして引き継ぐ
-// data 形式: "q<番号>|<前の回答パス>"
-//   例: "q1", "q2b|has", "q3s|has|student", "q4sw|has|student|nodocomo"
-
 const FLOW = {
-  // Q1: クレカ持ってる？
   q1: {
     text: "クレジットカードを持っていますか？",
     choices: [
@@ -46,8 +41,6 @@ const FLOW = {
       { label: "持っている", data: "q2b|has" },
     ],
   },
-
-  // Q2a: 持っていない → よく使う場所
   "q2a|no": {
     text: "普段よく使うのはどちらですか？",
     choices: [
@@ -55,8 +48,6 @@ const FLOW = {
       { label: "Amazon・ネット通販", result: "jcb" },
     ],
   },
-
-  // Q2b: 持っている → 学生 or 社会人
   "q2b|has": {
     text: "現在の状況を教えてください。",
     choices: [
@@ -64,9 +55,6 @@ const FLOW = {
       { label: "社会人", data: "q3w|has|worker" },
     ],
   },
-
-  // ── 学生ルート ──
-  // Q3s: ドコモユーザー？
   "q3s|has|student": {
     text: "ドコモ（ahamo含む）を使っていますか？",
     choices: [
@@ -74,8 +62,6 @@ const FLOW = {
       { label: "いいえ", data: "q4s|has|student|nodocomo" },
     ],
   },
-
-  // Q4s: ショッピング・外出優待に興味ある？
   "q4s|has|student|nodocomo": {
     text: "ショッピングや外食・映画・レジャーでお得な優待割引を使いたいですか？",
     choices: [
@@ -83,8 +69,6 @@ const FLOW = {
       { label: "どちらかというとネット派", data: "q5s|has|student|nodocomo|noout" },
     ],
   },
-
-  // Q5s: コンビニ派 or ネット通販派
   "q5s|has|student|nodocomo|noout": {
     text: "普段の支払いで一番多いのはどれですか？",
     choices: [
@@ -92,9 +76,6 @@ const FLOW = {
       { label: "Amazon・ネット通販", result: "jcb" },
     ],
   },
-
-  // ── 社会人ルート ──
-  // Q3w: 旅行・外出が多い？
   "q3w|has|worker": {
     text: "週末の外出や旅行は多いですか？",
     choices: [
@@ -102,8 +83,6 @@ const FLOW = {
       { label: "どちらかというとインドア", data: "q4wi|has|worker|in" },
     ],
   },
-
-  // Q4wo: アウトドア社会人 → マルイ・全国優待に興味？
   "q4wo|has|worker|out": {
     text: "マルイや全国の飲食店・映画・レジャー施設での優待割引に興味がありますか？",
     choices: [
@@ -111,18 +90,14 @@ const FLOW = {
       { label: "ポイント還元の方が大事", data: "q5wo|has|worker|out|noout" },
     ],
   },
-
-  // Q5wo: ポイント重視アウトドア社会人
   "q5wo|has|worker|out|noout": {
     text: "一番よく使うショッピング先はどこですか？",
     choices: [
       { label: "コンビニ・マック", result: "nl" },
       { label: "Amazon・ネット通販", result: "jcb" },
-      { label: "三井アウトレット・ショッピングパーク", result: "sezon" },
+      { label: "三井アウトレット", result: "sezon" },
     ],
   },
-
-  // Q4wi: インドア社会人 → ドコモ？
   "q4wi|has|worker|in": {
     text: "ドコモ（ahamo含む）を使っていますか？",
     choices: [
@@ -130,14 +105,12 @@ const FLOW = {
       { label: "いいえ", data: "q5wi|has|worker|in|nodocomo" },
     ],
   },
-
-  // Q5wi: インドア・非ドコモ社会人
   "q5wi|has|worker|in|nodocomo": {
     text: "一番よく使うショッピング先はどこですか？",
     choices: [
       { label: "コンビニ・マック", result: "nl" },
       { label: "Amazon・ネット通販", result: "jcb" },
-      { label: "三井アウトレット・ショッピングパーク", result: "sezon" },
+      { label: "三井アウトレット", result: "sezon" },
     ],
   },
 };
@@ -155,8 +128,6 @@ async function replyMessage(replyToken, messages) {
 }
 
 function makeButtonMessage(text, choices) {
-  // LINE Buttons Template は最大4択まで
-  // 5択以上は Quick Reply に切り替え
   if (choices.length <= 4) {
     return {
       type: "template",
@@ -173,7 +144,6 @@ function makeButtonMessage(text, choices) {
       },
     };
   }
-  // Quick Reply fallback（3択超の場合）
   return {
     type: "text",
     text,
@@ -266,10 +236,10 @@ function makeResultMessage(cardKey) {
 }
 
 // ── 署名検証 ─────────────────────────────────────────────────
-function verifySignature(body, signature) {
+function verifySignature(rawBody, signature) {
   const hash = crypto
     .createHmac("SHA256", CHANNEL_SECRET)
-    .update(body)
+    .update(rawBody)
     .digest("base64");
   return hash === signature;
 }
@@ -277,27 +247,34 @@ function verifySignature(body, signature) {
 // ── イベントハンドラ ──────────────────────────────────────────
 async function handleEvent(event) {
   if (event.type === "follow" || event.type === "join") {
-    // 友達追加・参加時に Q1 を送信
-    await replyMessage(event.replyToken, [makeButtonMessage(FLOW.q1.text, FLOW.q1.choices)]);
+    await replyMessage(event.replyToken, [
+      makeButtonMessage(FLOW.q1.text, FLOW.q1.choices),
+    ]);
     return;
   }
 
   if (event.type === "message" && event.message.type === "text") {
     const text = event.message.text.trim();
-    if (text === "診断" || text === "スタート" || text === "start") {
-      await replyMessage(event.replyToken, [makeButtonMessage(FLOW.q1.text, FLOW.q1.choices)]);
+    if (["診断", "スタート", "start", "START"].includes(text)) {
+      await replyMessage(event.replyToken, [
+        makeButtonMessage(FLOW.q1.text, FLOW.q1.choices),
+      ]);
       return;
     }
-    // その他のテキストにも Q1 案内
     await replyMessage(event.replyToken, [
       {
         type: "text",
-        text: '「診断」と送信するか、下のボタンから診断をスタートしてください。',
+        text: "「診断」と送信するか、下のボタンから診断をスタートしてください。",
         quickReply: {
           items: [
             {
               type: "action",
-              action: { type: "postback", label: "診断スタート", data: "q1", displayText: "診断スタート" },
+              action: {
+                type: "postback",
+                label: "診断スタート",
+                data: "q1",
+                displayText: "診断スタート",
+              },
             },
           ],
         },
@@ -317,34 +294,51 @@ async function handleEvent(event) {
 
     const step = FLOW[data];
     if (step) {
-      await replyMessage(event.replyToken, [makeButtonMessage(step.text, step.choices)]);
+      await replyMessage(event.replyToken, [
+        makeButtonMessage(step.text, step.choices),
+      ]);
       return;
     }
 
-    // 不明なデータは Q1 に戻す
-    await replyMessage(event.replyToken, [makeButtonMessage(FLOW.q1.text, FLOW.q1.choices)]);
+    await replyMessage(event.replyToken, [
+      makeButtonMessage(FLOW.q1.text, FLOW.q1.choices),
+    ]);
   }
 }
 
-// ── Vercel Edge Handler ───────────────────────────────────────
-export default async function handler(req) {
+// ── 生のリクエストボディを取得 ────────────────────────────────
+function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on("data", (chunk) => chunks.push(chunk));
+    req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
+    req.on("error", reject);
+  });
+}
+
+// ── Vercel Node.js Function ───────────────────────────────────
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return new Response("Method Not Allowed", { status: 405 });
+    res.status(405).send("Method Not Allowed");
+    return;
   }
 
-  const rawBody = await req.text();
-  const signature = req.headers.get("x-line-signature") ?? "";
+  const rawBody = await getRawBody(req);
+  const signature = req.headers["x-line-signature"] ?? "";
 
   if (!verifySignature(rawBody, signature)) {
-    return new Response("Unauthorized", { status: 401 });
+    res.status(401).send("Unauthorized");
+    return;
   }
 
   const body = JSON.parse(rawBody);
   await Promise.all((body.events ?? []).map(handleEvent));
 
-  return new Response("OK", { status: 200 });
+  res.status(200).send("OK");
 }
-
-export const config = {
-  runtime: "edge",
-};
