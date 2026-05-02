@@ -95,7 +95,7 @@ const FLOW = {
     choices: [
       { label: "コンビニ・マック", result: "nl" },
       { label: "Amazon・ネット通販", result: "jcb" },
-      { label: "三井アウトレット", result: "sezon" },
+      { label: "ららぽーと・三井モール", result: "sezon" },
     ],
   },
   "q4wi|has|worker|in": {
@@ -110,7 +110,7 @@ const FLOW = {
     choices: [
       { label: "コンビニ・マック", result: "nl" },
       { label: "Amazon・ネット通販", result: "jcb" },
-      { label: "三井アウトレット", result: "sezon" },
+      { label: "ららぽーと・三井モール", result: "sezon" },
     ],
   },
 };
