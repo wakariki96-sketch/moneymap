@@ -1658,7 +1658,7 @@ section,
   }
 
   .hero {
-    min-height: 580px;
+    min-height: 460px;
     padding: 82px 24px 24px;
   }
 
@@ -1818,7 +1818,7 @@ section,
 
 @media (max-width: 390px) {
   .hero {
-    min-height: 560px;
+    min-height: 440px;
   }
 
   .hero-copy {
