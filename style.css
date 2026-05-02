@@ -737,19 +737,19 @@ section,
 }
 
 .student-card {
-  background-image: url("assets/article-student-card.png");
+  background-image: url("assets/article-student-card.webp");
 }
 
 .saving-card {
-  background-image: url("assets/article-saving.png");
+  background-image: url("assets/article-saving.webp");
 }
 
 .cashless-card {
-  background-image: url("assets/article-cashless.png");
+  background-image: url("assets/article-cashless.webp");
 }
 
 .invest-card {
-  background-image: url("assets/article-invest.png");
+  background-image: url("assets/article-invest.webp");
 }
 
 .article-thumb span {
