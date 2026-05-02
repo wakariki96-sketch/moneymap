@@ -1842,6 +1842,12 @@ section,
     font-size: 16px;
   }
 
+  .cta-button {
+    padding-right: 62px;
+    padding-left: 62px;
+    font-size: 19px;
+  }
+
   .line-mini {
     width: 36px;
     height: 31px;
@@ -1868,7 +1874,6 @@ section,
   }
 
   .step-list li {
-    min-height: 84px;
     padding: 9px 6px;
     border-radius: 999px;
   }
