@@ -1,24 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;600;700;800&display=swap");
+
 :root {
-  --navy: #06164f;
-  --text: #0b1f5a;
-  --muted: #52648b;
-  --blue: #087cff;
-  --blue-dark: #005de6;
-  --green: #08bf6f;
-  --green-dark: #00a760;
+  --navy: #0B1D4D;
+  --text: #0B1D4D;
+  --muted: #6B778C;
+  --blue: #2A7BFF;
+  --blue-dark: #0066E6;
+  --green: #0AC07A;
+  --green-dark: #0AA254;
   --line: #06c755;
   --orange: #ff9d16;
   --orange-dark: #ff8800;
   --border: #d7e7f6;
-  --soft-blue: #edf8ff;
-  --shadow: 0 12px 30px rgba(15, 76, 158, 0.14);
+  --soft-blue: #E8FAF6;
+  --light-blue-gray: #F2F6FD;
+  --shadow-s: 0 1px 3px rgba(11, 29, 77, 0.08);
+  --shadow-m: 0 4px 12px rgba(11, 29, 77, 0.12);
+  --shadow-l: 0 12px 24px rgba(11, 29, 77, 0.15);
+  --shadow: 0 12px 30px rgba(11, 29, 77, 0.14);
   --radius: 18px;
-  --font-body: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+  --font-body: "Noto Sans JP", "Inter", -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
+  --font-display: "Noto Sans JP", "Inter", "Helvetica Neue",
     "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "YuGothic",
     "Meiryo", sans-serif;
-  --font-display: "Helvetica Neue", "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
-  --font-latin: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --font-latin: "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
 }
 
 * {
@@ -315,7 +322,7 @@ section,
   padding-bottom: 0.04em;
   color: transparent;
   font-style: italic;
-  background: linear-gradient(100deg, #11c878, #087cff);
+  background: linear-gradient(100deg, #0AC07A, #2A7BFF);
   -webkit-background-clip: text;
   background-clip: text;
   text-shadow: none;
@@ -388,12 +395,12 @@ section,
 }
 
 .button-blue {
-  background: linear-gradient(180deg, #188cff, var(--blue-dark));
+  background: linear-gradient(180deg, #2A7BFF, var(--blue-dark));
 }
 
 .button-green,
 .cta-button {
-  background: linear-gradient(180deg, #11d272, var(--green-dark));
+  background: linear-gradient(180deg, #17C964, var(--green-dark));
 }
 
 .book-icon {
@@ -558,7 +565,7 @@ section,
 }
 
 .article-icon {
-  background: radial-gradient(circle at 35% 24%, #eff9ff, #91d4ff 48%, #087cff);
+  background: radial-gradient(circle at 35% 24%, #eff9ff, #91d4ff 48%, #2A7BFF);
 }
 
 .article-icon::before {
@@ -639,11 +646,11 @@ section,
 }
 
 .feature-green a {
-  background: linear-gradient(180deg, #16cc78, #00ad67);
+  background: linear-gradient(180deg, #17C964, #0AA254);
 }
 
 .feature-blue a {
-  background: linear-gradient(180deg, #178bff, #0069e9);
+  background: linear-gradient(180deg, #2A7BFF, #0066E6);
 }
 
 .feature-orange a {
@@ -801,7 +808,7 @@ section,
   background:
     radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.32), transparent 160px),
     radial-gradient(circle at 95% 0%, rgba(255, 239, 105, 0.18), transparent 190px),
-    linear-gradient(112deg, #13c884 0%, #13bfac 32%, #12a4ff 74%, #087cff 100%);
+    linear-gradient(112deg, #0AC07A 0%, #00D2B5 32%, #2A7BFF 74%, #0066E6 100%);
 }
 
 .card-section-head {
@@ -955,7 +962,7 @@ section,
   background:
     radial-gradient(circle at 17% 20%, rgba(255, 255, 255, 0.42), transparent 118px),
     radial-gradient(circle at 92% 12%, rgba(255, 255, 255, 0.2), transparent 160px),
-    linear-gradient(130deg, #28d18a 0%, #23c6bd 48%, #2388ff 100%);
+    linear-gradient(130deg, #0AC07A 0%, #00D2B5 48%, #2A7BFF 100%);
 }
 
 .line-cta::before {
@@ -1273,7 +1280,7 @@ section,
 }
 
 .footer-logo strong {
-  color: #20d17d;
+  color: #0AC07A;
 }
 
 .footer-nav {
@@ -1352,8 +1359,8 @@ section,
   color: #ffffff;
   font-size: 13px;
   font-weight: 700;
-  background: linear-gradient(180deg, #188cff, var(--blue-dark));
-  box-shadow: 0 8px 18px rgba(5, 91, 200, 0.16);
+  background: linear-gradient(180deg, #2A7BFF, var(--blue-dark));
+  box-shadow: 0 8px 18px rgba(11, 29, 77, 0.16);
 }
 
 .legal-content {
@@ -1495,8 +1502,8 @@ section,
   font: inherit;
   font-size: 17px;
   font-weight: 800;
-  background: linear-gradient(180deg, #11d272, var(--green-dark));
-  box-shadow: 0 10px 22px rgba(0, 167, 96, 0.18);
+  background: linear-gradient(180deg, #17C964, var(--green-dark));
+  box-shadow: 0 10px 22px rgba(11, 29, 77, 0.18);
   cursor: pointer;
 }
 
