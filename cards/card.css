@@ -69,7 +69,7 @@ img { max-width: 100%; display: block; }
 }
 
 .container {
-  width: min(860px, calc(100% - 48px));
+  width: calc(100% - 32px);
   margin: 0 auto;
 }
 
@@ -105,8 +105,10 @@ img { max-width: 100%; display: block; }
 
 .logo strong { color: var(--green); }
 
-.logo i {
+.logo i,
+.footer-logo i {
   position: relative;
+  display: inline-block;
   width: 11px;
   height: 15px;
   margin: -4px 0 0 3px;
@@ -116,7 +118,8 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
 }
 
-.logo i::after {
+.logo i::after,
+.footer-logo i::after {
   position: absolute;
   inset: 3px;
   content: "";
@@ -164,7 +167,7 @@ img { max-width: 100%; display: block; }
     radial-gradient(ellipse 40% 60% at 8% 20%, rgba(0, 209, 157, 0.06), transparent),
     linear-gradient(140deg, #eef6ff 0%, #ffffff 55%, #f0fbff 100%);
   color: var(--navy);
-  padding: 56px 0 52px;
+  padding: 36px 0 40px;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
 }
@@ -200,15 +203,16 @@ img { max-width: 100%; display: block; }
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  align-items: center;
+  gap: 24px;
 }
 
 /* Card image — floats as cutout */
 .card-visual {
   flex-shrink: 0;
-  width: clamp(220px, 40%, 300px);
+  width: clamp(200px, 60%, 280px);
   filter: drop-shadow(0 20px 48px rgba(6, 22, 79, 0.22)) drop-shadow(0 4px 12px rgba(6, 22, 79, 0.12));
-  transform: rotate(-3deg);
+  transform: rotate(-2deg);
   transition: transform 0.3s ease;
 }
 
@@ -262,12 +266,12 @@ img { max-width: 100%; display: block; }
 /* ─── Rating bars ────────────────────────────────── */
 
 .rating-bar-section {
-  padding: 28px 0;
+  padding: 24px 0;
   background: #fff;
   border-bottom: 1px solid var(--border);
 }
 
-.rating-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 28px; }
+.rating-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; }
 
 .rating-item label {
   display: flex;
@@ -294,7 +298,7 @@ img { max-width: 100%; display: block; }
 
 /* ─── Section headers ────────────────────────────── */
 
-section { padding: 60px 0; }
+section { padding: 44px 0; }
 
 .section-head { margin-bottom: 28px; }
 
@@ -324,8 +328,15 @@ section { padding: 60px 0; }
 
 .spec-section { background: var(--soft-blue); }
 
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-lg);
+}
+
 .spec-table {
   width: 100%;
+  min-width: 320px;
   border-collapse: collapse;
   background: #fff;
   border-radius: var(--radius-lg);
@@ -553,6 +564,7 @@ section { padding: 60px 0; }
 
 .compare-table {
   width: 100%;
+  min-width: 360px;
   border-collapse: collapse;
   background: #fff;
   border-radius: var(--radius-lg);
@@ -832,9 +844,9 @@ section { padding: 60px 0; }
 
 .cta-buttons {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   gap: 12px;
-  justify-content: center;
 }
 
 /* 申し込むボタン — 橙色: 最優先CTA */
@@ -843,16 +855,16 @@ section { padding: 60px 0; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 58px;
-  padding: 15px 40px;
+  min-height: 54px;
+  padding: 14px 28px;
   border-radius: var(--radius);
   background: linear-gradient(135deg, #ff7a2f, #e85500);
   color: #fff;
   font-weight: 800;
-  font-size: 1.02rem;
+  font-size: 1rem;
   transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
   width: 100%;
-  max-width: 380px;
+  max-width: 420px;
   box-shadow: 0 6px 24px rgba(232, 85, 0, 0.38);
   letter-spacing: 0.01em;
 }
@@ -875,16 +887,16 @@ section { padding: 60px 0; }
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-height: 52px;
-  padding: 13px 34px;
+  min-height: 50px;
+  padding: 12px 28px;
   border-radius: var(--radius);
   background: #06c755;
   color: #fff;
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   transition: opacity var(--transition), transform var(--transition);
   width: 100%;
-  max-width: 380px;
+  max-width: 420px;
   border: 2px solid rgba(255,255,255,.18);
 }
 
@@ -1003,9 +1015,20 @@ section { padding: 60px 0; }
   font-weight: 600;
 }
 
-/* ─── Responsive ─────────────────────────────────── */
+/* ─── Responsive (mobile-first) ──────────────────── */
+
+/* Mobile defaults above. Enhance at 640px+ */
+.footer-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+.footer-nav  { justify-content: flex-start; }
+.page { box-shadow: none; }
+.card-info h1 { font-size: clamp(1.4rem, 6vw, 2.4rem); }
 
 @media (min-width: 640px) {
+  .container { width: min(860px, calc(100% - 48px)); }
+
+  .card-hero { padding: 56px 0 52px; }
+  section { padding: 60px 0; }
+
   .card-hero-inner {
     flex-direction: row;
     align-items: center;
@@ -1014,30 +1037,25 @@ section { padding: 60px 0; }
   .card-visual {
     width: clamp(240px, 38%, 310px);
     order: 2;
+    transform: rotate(-3deg);
   }
   .card-info { order: 1; flex: 1; }
-  .rating-grid { grid-template-columns: repeat(4, 1fr); }
+
+  .rating-grid { grid-template-columns: repeat(4, 1fr); gap: 14px 28px; }
+
   .sim-cards { grid-template-columns: repeat(3, 1fr); }
   .sim-grid  { grid-template-columns: repeat(2, 1fr); }
   .story-grid { grid-template-columns: repeat(2, 1fr); }
   .merit-list, .merit-grid { grid-template-columns: 1fr 1fr; }
   .recommend-grid { grid-template-columns: 1fr 1fr; }
-  .cta-buttons { flex-direction: row; justify-content: center; }
-}
 
-@media (max-width: 639px) {
-  .container { width: calc(100% - 36px); }
-  section { padding: 48px 0; }
-  .card-hero { padding: 40px 0 44px; }
-  .card-visual {
-    width: clamp(180px, 55%, 240px);
-    margin: 0 auto;
-    transform: rotate(-2deg);
+  .cta-buttons {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
-  .card-info h1 { font-size: 1.5rem; }
-  .cta-primary, .btn-apply, .cta-line { max-width: 100%; }
-  .rating-grid { grid-template-columns: 1fr 1fr; }
-  .footer-head { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .footer-nav  { justify-content: flex-start; }
-  .page { box-shadow: none; }
+
+  .footer-head { flex-direction: row; align-items: center; gap: 18px; }
+  .footer-nav  { justify-content: flex-end; }
+  .page { box-shadow: 0 0 34px rgba(5, 37, 99, 0.08); }
 }

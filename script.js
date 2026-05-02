@@ -1,41 +1,6 @@
 const menuButton = document.querySelector("[data-menu-button]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
 
-document.addEventListener(
-  "wheel",
-  (event) => {
-    if (event.ctrlKey || Math.abs(event.deltaY) < 1) return;
-    window.scrollBy({ top: event.deltaY, left: 0, behavior: "auto" });
-    event.preventDefault();
-  },
-  { passive: false },
-);
-
-let lastTouchY = 0;
-
-document.addEventListener(
-  "touchstart",
-  (event) => {
-    if (event.touches.length === 1) {
-      lastTouchY = event.touches[0].clientY;
-    }
-  },
-  { passive: true },
-);
-
-document.addEventListener(
-  "touchmove",
-  (event) => {
-    if (event.touches.length !== 1) return;
-    const nextTouchY = event.touches[0].clientY;
-    const deltaY = lastTouchY - nextTouchY;
-    if (Math.abs(deltaY) < 2) return;
-    window.scrollBy({ top: deltaY, left: 0, behavior: "auto" });
-    lastTouchY = nextTouchY;
-    event.preventDefault();
-  },
-  { passive: false },
-);
 
 if (menuButton && mobileMenu) {
   const closeMenu = () => {
@@ -70,7 +35,7 @@ if (viewport && track && prevButton && nextButton && dots.length) {
   const visibleCount = () => {
     if (window.matchMedia("(max-width: 390px)").matches) return 1;
     if (window.matchMedia("(max-width: 720px)").matches) return 2;
-    return cards.length;
+    return 4;
   };
 
   const maxIndex = () => Math.max(0, cards.length - visibleCount());

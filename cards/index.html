@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>クレジットカード比較・一覧 | moneymap</title>
+  <meta name="description" content="20代におすすめのクレジットカードを徹底比較。年会費無料・高還元・旅行保険など目的別に解説。" />
+  <link rel="stylesheet" href="card.css" />
+  <style>
+    /* ── Listing-page overrides ── */
+    .list-hero {
+      background: linear-gradient(145deg, var(--navy) 0%, #0a2e72 60%, #0e3a90 100%);
+      color: #fff;
+      padding: 44px 0 40px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .list-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .list-hero-inner { position: relative; z-index: 1; }
+    .list-hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 10px;
+    }
+    .list-hero h1 {
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .list-hero p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.85;
+      max-width: 540px;
+    }
+
+    /* ── Card list ── */
+    .cards-list-section {
+      padding: 40px 0 60px;
+      background: #f7fbff;
+    }
+    .cards-list { display: grid; gap: 20px; }
+
+    .card-list-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .card-list-item:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .card-list-body {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 22px 20px 18px;
+    }
+
+    .card-list-visual {
+      flex-shrink: 0;
+      width: clamp(140px, 40%, 200px);
+      align-self: center;
+      filter: drop-shadow(0 12px 28px rgba(6,22,79,.18)) drop-shadow(0 3px 8px rgba(6,22,79,.10));
+      transform: rotate(-2deg);
+    }
+    .card-list-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .card-list-info { flex: 1; }
+    .card-list-info h2 {
+      font-size: clamp(1rem, 3.5vw, 1.25rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .card-list-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .card-list-tags .tag {
+      font-size: 0.72rem;
+      padding: 3px 10px;
+    }
+    .card-list-summary {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    .btn-list-detail {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: var(--radius);
+      font-weight: 800;
+      font-size: 0.87rem;
+      transition: background 0.2s ease;
+      align-self: flex-start;
+    }
+    .btn-list-detail:hover { background: var(--blue); }
+    .btn-list-detail::after { content: '→'; }
+
+    /* accent border per card */
+    .card-list-item.accent-blue  { border-top: 3px solid #087cff; }
+    .card-list-item.accent-green { border-top: 3px solid #08bf6f; }
+    .card-list-item.accent-red   { border-top: 3px solid #dc2626; }
+    .card-list-item.accent-gold  { border-top: 3px solid #b8921e; }
+    .card-list-item.accent-dark  { border-top: 3px solid #06164f; }
+
+    @media (min-width: 600px) {
+      .list-hero { padding: 56px 0 48px; }
+      .cards-list-section { padding: 52px 0 72px; }
+
+      .card-list-body {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 28px 28px 24px;
+      }
+      .card-list-visual {
+        width: clamp(160px, 28%, 200px);
+        align-self: flex-start;
+        margin-top: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="site-header">
+    <a href="../index.html" class="logo"><span>money</span><strong>map</strong><i aria-hidden="true"></i></a>
+    <a href="../index.html" class="back-link">← トップへ</a>
+  </header>
+
+  <!-- Hero -->
+  <section class="list-hero">
+    <div class="container list-hero-inner">
+      <p class="list-hero-eyebrow">Credit Cards</p>
+      <h1>クレジットカード<br>比較・一覧</h1>
+      <p>20代の生活スタイルに合わせたおすすめカードを厳選。年会費・還元率・保険の観点から徹底解説します。</p>
+    </div>
+  </section>
+
+  <!-- Cards list -->
+  <section class="cards-list-section">
+    <div class="container">
+      <div class="cards-list">
+
+        <!-- JCBカードW -->
+        <a class="card-list-item accent-blue" href="jcb-card-w.html">
+          <div class="card-list-body">
+            <div class="card-list-visual">
+              <img src="../assets/card-jcb-w.png" alt="JCBカードW" />
+            </div>
+            <div class="card-list-info">
+              <h2>JCBカードW</h2>
+              <div class="card-list-tags">
+                <span class="tag">年会費永年無料</span>
+                <span class="tag">18〜39歳限定</span>
+                <span class="tag">基本還元率1.0%</span>
+                <span class="tag">Amazon最大3倍</span>
+              </div>
+              <p class="card-list-summary">通常のJCBカードの2倍ポイントが貯まる、39歳以下限定のハイスペックカード。Amazonやスターバックスでは驚異的な還元率を誇り、年会費は永年無料。若いうちにしか申し込めない、知る人ぞ知る一枚。</p>
+              <span class="btn-list-detail">詳細を見る</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 三井住友カード（NL） -->
+        <a class="card-list-item accent-green" href="smbc-nl.html">
+          <div class="card-list-body">
+            <div class="card-list-visual">
+              <img src="../assets/card-green.png" alt="三井住友カード（NL）" />
+            </div>
+            <div class="card-list-info">
+              <h2>三井住友カード（NL）</h2>
+              <div class="card-list-tags">
+                <span class="tag">年会費永年無料</span>
+                <span class="tag">コンビニ最大7%還元</span>
+                <span class="tag">ナンバーレス</span>
+                <span class="tag">学生OK</span>
+              </div>
+              <p class="card-list-summary">「とりあえずこの1枚」と言い切れる、18〜25歳に最もおすすめできるクレジットカード。コンビニやマクドナルドで最大7%還元、カード番号は表面に記載なしでセキュリティも万全。</p>
+              <span class="btn-list-detail">詳細を見る</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- エポスカード -->
+        <a class="card-list-item accent-red" href="epos-card.html">
+          <div class="card-list-body">
+            <div class="card-list-visual">
+              <img src="../assets/card-silver.png" alt="エポスカード" />
+            </div>
+            <div class="card-list-info">
+              <h2>エポスカード</h2>
+              <div class="card-list-tags">
+                <span class="tag">年会費永年無料</span>
+                <span class="tag">海外保険自動付帯</span>
+                <span class="tag">マルイ優待</span>
+                <span class="tag">即日発行OK</span>
+              </div>
+              <p class="card-list-summary">年会費無料なのに海外旅行傷害保険が最高500万円自動付帯。丸井のセール優待や全国500ヵ所以上の割引特典も。旅行や外出が多い若い世代が「持っておくべき」と言われる理由がここにあります。</p>
+              <span class="btn-list-detail">詳細を見る</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- dカードGOLD U -->
+        <a class="card-list-item accent-gold" href="dcard-gold-u.html">
+          <div class="card-list-body">
+            <div class="card-list-visual">
+              <img src="../assets/card-red.png" alt="dカードGOLD U" />
+            </div>
+            <div class="card-list-info">
+              <h2>dカードGOLD U</h2>
+              <div class="card-list-tags">
+                <span class="tag">29歳以下限定</span>
+                <span class="tag">年会費無料（29歳以下）</span>
+                <span class="tag">ドコモ利用料10%還元</span>
+                <span class="tag">GOLD保険付帯</span>
+              </div>
+              <p class="card-list-summary">通常11,000円（税込）のdカードGOLDが、29歳以下なら年会費無料。ドコモユーザーなら携帯料金の10%がポイント還元——毎月の固定費を一気に取り戻せる、ドコモユーザー必携の一枚。</p>
+              <span class="btn-list-detail">詳細を見る</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 三井ショッピングカードセゾン -->
+        <a class="card-list-item accent-dark" href="mitsui-sezon.html">
+          <div class="card-list-body">
+            <div class="card-list-visual">
+              <img src="../assets/card-black.png" alt="三井ショッピングカードセゾン" />
+            </div>
+            <div class="card-list-info">
+              <h2>三井ショッピングカードセゾン</h2>
+              <div class="card-list-tags">
+                <span class="tag">年会費永年無料</span>
+                <span class="tag">最大10%還元</span>
+                <span class="tag">永久不滅ポイント</span>
+                <span class="tag">ショッピング保険付</span>
+              </div>
+              <p class="card-list-summary">ラゾーナ川崎・ダイバーシティ・ららぽーとなど三井ショッピングパーク全施設で最大10%還元。年会費無料でショッピング保険も付帯。ポイントは有効期限なしの永久不滅ポイント。</p>
+              <span class="btn-list-detail">詳細を見る</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" aria-label="サイト情報">
+    <div class="footer-head">
+      <a class="footer-logo" href="../index.html"><span>money</span><strong>map</strong><i aria-hidden="true"></i></a>
+      <nav class="footer-nav">
+        <a href="../contact.html">お問い合わせ</a>
+        <a href="../privacy.html">プライバシーポリシー</a>
+        <a href="../affiliate.html">広告について</a>
+        <a href="../disclaimer.html">免責事項</a>
+      </nav>
+    </div>
+    <p class="footer-disclosure">本サイトはアフィリエイト広告を利用しています。記事内のリンクから商品・サービスに申し込むと、サイト運営者に報酬が支払われる場合があります。掲載情報は公開時点のものであり、最新情報は各公式サイトでご確認ください。</p>
+    <p class="footer-copy">© 2026 moneymap. All Rights Reserved.</p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>記事一覧 | moneymap</title>
+  <meta name="description" content="お金の基礎からクレジットカード・投資・節税まで。moneymap の全記事を新着順に掲載。" />
+  <link rel="stylesheet" href="article.css" />
+  <style>
+    /* ── List hero ── */
+    .list-hero {
+      background: linear-gradient(145deg, var(--navy) 0%, #0a2e72 60%, #0e3a90 100%);
+      color: #fff;
+      padding: 36px 0 32px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .list-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .list-hero-inner { position: relative; z-index: 1; }
+    .list-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 10px;
+    }
+    .list-hero h1 {
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .list-hero p { font-size: 0.88rem; color: rgba(255,255,255,.65); }
+
+    /* ── Filter bar ── */
+    .filter-section {
+      background: var(--soft-blue);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      position: sticky;
+      top: 64px;
+      z-index: 100;
+    }
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+      padding-right: clamp(20px, 5vw, 48px);
+    }
+    .filter-bar::-webkit-scrollbar { display: none; }
+
+    .filter-btn {
+      flex-shrink: 0;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-body);
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .filter-btn:hover { background: var(--soft-blue); color: var(--navy); }
+    .filter-btn.is-active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+
+    /* ── Articles section ── */
+    .articles-section { padding: 28px 0 60px; }
+
+    .articles-count {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .articles-count strong { color: var(--navy); }
+
+    .article-list { display: grid; gap: 10px; }
+
+    .article-list-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--text);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .article-list-item:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-1px);
+    }
+    .article-list-item.hidden { display: none; }
+
+    /* Thumbnail */
+    .article-list-thumb {
+      flex-shrink: 0;
+      width: 100px;
+      min-height: 80px;
+      align-self: stretch;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* サムネイルは data-thumb 属性 + JS で動的に設定 */
+    .article-list-thumb[style] { background-color: var(--soft-blue); }
+
+    .article-list-body {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 12px 12px 0;
+    }
+
+    .article-list-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+    }
+
+    .article-list-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      border: 1px solid var(--border);
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .article-list-date {
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .article-list-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+
+    .article-list-arrow {
+      flex-shrink: 0;
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 1rem;
+      align-self: center;
+      padding-right: 14px;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      display: none;
+    }
+    .no-results.visible { display: block; }
+
+    /* ── Pagination ── */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+    .page-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 38px;
+      height: 38px;
+      padding: 0 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--navy);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .page-btn:hover:not(:disabled) {
+      background: var(--soft-blue);
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+    .page-btn.is-active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+    .page-btn:disabled { opacity: 0.35; cursor: default; }
+
+    @media (min-width: 600px) {
+      .list-hero { padding: 52px 0 44px; }
+      .article-list-thumb { width: 130px; }
+      .article-list-title { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="site-header">
+    <a href="../index.html" class="logo"><span>money</span><strong>map</strong><i aria-hidden="true"></i></a>
+    <a href="../index.html" class="back-link">← トップへ</a>
+  </header>
+
+  <!-- Hero -->
+  <section class="list-hero">
+    <div class="container list-hero-inner">
+      <p class="list-eyebrow">All Articles</p>
+      <h1>記事一覧</h1>
+      <p>全 27 記事｜新着順</p>
+    </div>
+  </section>
+
+  <!-- Filter -->
+  <div class="filter-section">
+    <div class="container">
+      <div class="filter-bar" role="group" aria-label="カテゴリフィルター">
+        <button class="filter-btn is-active" data-filter="all">すべて</button>
+        <button class="filter-btn" data-filter="card">💳 クレジットカード</button>
+        <button class="filter-btn" data-filter="invest">📈 投資・NISA</button>
+        <button class="filter-btn" data-filter="saving">🐷 節約・家計</button>
+        <button class="filter-btn" data-filter="cashless">📱 スマホ・決済</button>
+        <button class="filter-btn" data-filter="tax">💸 税金・給与</button>
+        <button class="filter-btn" data-filter="insurance">🛡️ 保険・年金</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- List -->
+  <section class="articles-section">
+    <div class="container">
+      <p class="articles-count" id="page-status"></p>
+
+      <div class="article-list" id="article-list">
+
+        <a class="article-list-item" href="tax-savings.html" data-filter="tax" data-tag="節税・税金">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_36_36.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">節税・税金</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">知らなかったら損してた節税術3選</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="student-card.html" data-filter="card" data-tag="学生・若者向け">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_36_41.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">学生・若者向け</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">学生のうちにクレカを作るべき3つの理由</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="smartphone-pay.html" data-filter="cashless" data-tag="スマホ・キャッシュレス">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_36_46.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">スマホ・キャッシュレス</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">Apple Pay・Google Payとクレカの正しい使い方</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="salary-payslip.html" data-filter="tax" data-tag="給与・税金">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_36_50.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">給与・税金</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">給料から5万円引かれてる理由</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="point-basics.html" data-filter="card" data-tag="ポイント活用">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_36_54.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">ポイント活用</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">ポイント還元率のしくみ完全解説</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="nisa-card.html" data-filter="invest" data-tag="NISA・投資">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_36_58.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">NISA・投資</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">新NISAをクレカ積立で始める方法</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="money-basics.html" data-filter="saving" data-tag="お金の基本">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_03.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">お金の基本</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">手取り20万でも毎月3万貯まる理由</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="life-insurance.html" data-filter="insurance" data-tag="保険">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_08.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">保険</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">月1万の保険料、20代の9割は払いすぎ</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="investment-types.html" data-filter="invest" data-tag="投資入門">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_12.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">投資入門</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">「株」と「投資信託」は何が違うのか？</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="index-fund.html" data-filter="invest" data-tag="投資・NISA">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_16.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">投資・NISA</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">月1万円を30年放置したら830万円になる</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="ideco.html" data-filter="invest" data-tag="iDeCo・NISA">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_21.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">iDeCo・NISA</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">NISAとiDeCo、どっちから始めるべきか</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="housing-costs.html" data-filter="saving" data-tag="一人暮らし・生活">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_25.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">一人暮らし・生活</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">一人暮らし初月に50万飛ぶ理由</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="health-insurance.html" data-filter="insurance" data-tag="社会保険・年金">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_28.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">社会保険・年金</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">給料から毎月4万円引かれてる正体</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="first-card-guide.html" data-filter="card" data-tag="クレカ入門">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_31.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">クレカ入門</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">はじめてのクレジットカード完全ガイド</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="emergency-fund.html" data-filter="invest" data-tag="貯金・資産形成">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_42.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">貯金・資産形成</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">貯金ゼロで投資するのは危険な理由</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="cashless-guide.html" data-filter="cashless" data-tag="キャッシュレス">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_45.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">キャッシュレス</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">キャッシュレス決済を徹底比較</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="card-screening.html" data-filter="card" data-tag="審査・申し込み">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_49.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">審査・申し込み</span>
+              <span class="article-list-date">2026.04.29</span>
+            </div>
+            <p class="article-list-title">クレカ審査って何を見てるの？</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="student-loan.html" data-filter="tax" data-tag="奨学金・返済">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_54.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">奨学金・返済</span>
+              <span class="article-list-date">2026.04.27</span>
+            </div>
+            <p class="article-list-title">奨学金と投資、どっちを先に始めるべきか</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="smartphone-cost.html" data-filter="cashless" data-tag="スマホ・通信費節約">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_37_57.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">スマホ・通信費節約</span>
+              <span class="article-list-date">2026.04.27</span>
+            </div>
+            <p class="article-list-title">ドコモに毎月1万円払ってるのは損です</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="saving-tips.html" data-filter="saving" data-tag="節約・貯金">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_38_01.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">節約・貯金</span>
+              <span class="article-list-date">2026.04.27</span>
+            </div>
+            <p class="article-list-title">月5万貯める人が当たり前にやっている30のこと</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="ribo-danger.html" data-filter="card" data-tag="クレカ・リスク管理">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_38_06.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">クレカ・リスク管理</span>
+              <span class="article-list-date">2026.04.27</span>
+            </div>
+            <p class="article-list-title">リボ払いが怖い本当の理由と脱出方法</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="online-broker.html" data-filter="invest" data-tag="証券・投資口座">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_38_09.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">証券・投資口座</span>
+              <span class="article-list-date">2026.04.27</span>
+            </div>
+            <p class="article-list-title">SBI vs 楽天、NISAはどっちで開くべきか</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="online-bank.html" data-filter="cashless" data-tag="銀行・口座管理">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_38_12.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">銀行・口座管理</span>
+              <span class="article-list-date">2026.04.27</span>
+            </div>
+            <p class="article-list-title">メガバンクの年利息は100万円で10円です</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="nenkin-basics.html" data-filter="insurance" data-tag="年金・老後設計">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_38_16.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">年金・老後設計</span>
+              <span class="article-list-date">2026.04.27</span>
+            </div>
+            <p class="article-list-title">「どうせ年金もらえない」は間違いです</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="kakeibo-app.html" data-filter="saving" data-tag="家計管理・アプリ">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_38_21.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">家計管理・アプリ</span>
+              <span class="article-list-date">2026.04.27</span>
+            </div>
+            <p class="article-list-title">3日で挫折しない家計簿の作り方</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="freelance-tax.html" data-filter="tax" data-tag="副業・税金">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_38_24.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">副業・税金</span>
+              <span class="article-list-date">2026.04.27</span>
+            </div>
+            <p class="article-list-title">副業で年20万を超えたら読む確定申告の全手順</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+        <a class="article-list-item" href="fixed-costs.html" data-filter="saving" data-tag="節約・支出管理">
+          <div class="article-list-thumb" data-thumb="thumbnails/ChatGPT Image 2026年4月30日 11_38_27.png"></div>
+          <div class="article-list-body">
+            <div class="article-list-meta">
+              <span class="article-list-tag">節約・支出管理</span>
+              <span class="article-list-date">2026.04.27</span>
+            </div>
+            <p class="article-list-title">一度見直すだけで毎月2万円戻ってくる</p>
+          </div>
+          <span class="article-list-arrow">›</span>
+        </a>
+
+      </div><!-- /article-list -->
+
+      <p class="no-results" id="no-results">該当する記事がありません。</p>
+      <nav class="pagination" aria-label="ページナビゲーション" id="pagination"></nav>
+    </div>
+  </section>
+
+  <footer class="site-footer" aria-label="サイト情報">
+    <div class="footer-head">
+      <a class="footer-logo" href="../index.html"><span>money</span><strong>map</strong><i aria-hidden="true"></i></a>
+      <nav class="footer-nav">
+        <a href="../contact.html">お問い合わせ</a>
+        <a href="../privacy.html">プライバシーポリシー</a>
+        <a href="../affiliate.html">広告について</a>
+        <a href="../disclaimer.html">免責事項</a>
+      </nav>
+    </div>
+    <p class="footer-disclosure">本サイトはアフィリエイト広告を利用しています。記事内のリンクから商品・サービスに申し込むと、サイト運営者に報酬が支払われる場合があります。掲載情報は公開時点のものであり、最新情報は各公式サイトでご確認ください。</p>
+    <p class="footer-copy">© 2026 moneymap. All Rights Reserved.</p>
+  </footer>
+
+</div>
+
+<script>
+  // サムネイル適用：data-thumb 属性から background-image をセット
+  document.querySelectorAll('[data-thumb]').forEach(el => {
+    const p = el.dataset.thumb;
+    if (p) el.style.backgroundImage = "url('../assets/" + p + "')";
+  });
+
+  const PER_PAGE = 10;
+  const allItems   = [...document.querySelectorAll('.article-list-item')];
+  const filterBtns = [...document.querySelectorAll('.filter-btn')];
+  const statusEl   = document.getElementById('page-status');
+  const paginationEl = document.getElementById('pagination');
+  const noResultsEl  = document.getElementById('no-results');
+
+  let currentFilter = 'all';
+  let currentPage   = 1;
+
+  function getFiltered() {
+    if (currentFilter === 'all') return allItems;
+    return allItems.filter(el => el.dataset.filter === currentFilter);
+  }
+
+  function showPage(page) {
+    currentPage = page;
+    const filtered = getFiltered();
+    const total = filtered.length;
+    const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
+    currentPage = Math.min(currentPage, totalPages);
+
+    const start = (currentPage - 1) * PER_PAGE;
+    const end   = start + PER_PAGE;
+
+    // hide all, then show current page of filtered
+    allItems.forEach(el => el.classList.add('hidden'));
+    filtered.forEach((el, i) => {
+      el.classList.toggle('hidden', i < start || i >= end);
+    });
+
+    // no results
+    noResultsEl.classList.toggle('visible', total === 0);
+
+    // status
+    if (total > 0) {
+      const from = start + 1;
+      const to   = Math.min(end, total);
+      statusEl.innerHTML = `<strong>${total}</strong> 件中 ${from}〜${to} 件を表示`;
+    } else {
+      statusEl.textContent = '';
+    }
+
+    // pagination
+    paginationEl.innerHTML = '';
+    if (totalPages <= 1) return;
+
+    const prev = makeBtn('‹ 前へ', false, currentPage === 1);
+    prev.addEventListener('click', () => { showPage(currentPage - 1); scrollUp(); });
+    paginationEl.appendChild(prev);
+
+    for (let p = 1; p <= totalPages; p++) {
+      const btn = makeBtn(String(p), p === currentPage, false);
+      btn.setAttribute('aria-current', p === currentPage ? 'page' : 'false');
+      btn.addEventListener('click', () => { showPage(p); scrollUp(); });
+      paginationEl.appendChild(btn);
+    }
+
+    const next = makeBtn('次へ ›', false, currentPage === totalPages);
+    next.addEventListener('click', () => { showPage(currentPage + 1); scrollUp(); });
+    paginationEl.appendChild(next);
+  }
+
+  function makeBtn(label, active, disabled) {
+    const btn = document.createElement('button');
+    btn.className = 'page-btn' + (active ? ' is-active' : '');
+    btn.textContent = label;
+    btn.disabled = disabled;
+    return btn;
+  }
+
+  function scrollUp() {
+    document.querySelector('.articles-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Filter button events
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      currentFilter = btn.dataset.filter;
+      showPage(1);
+    });
+  });
+
+  showPage(1);
+</script>
+</body>
+</html>
